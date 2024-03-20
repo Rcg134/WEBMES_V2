@@ -1,14 +1,14 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Users\\russe\\source\\repos\\WEBMES_V2\\",
+  "WorkspaceRootPath": "C:\\Users\\russe\\OneDrive\\Documents\\GitHub\\WEBMES_V2\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{53F2C0E6-7B97-409C-BB71-0F774320914E}|WEBMES_V2\\WEBMES_V2.csproj|c:\\users\\russe\\source\\repos\\webmes_v2\\webmes_v2\\views\\home\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{53F2C0E6-7B97-409C-BB71-0F774320914E}|WEBMES_V2\\WEBMES_V2.csproj|solutionrelative:webmes_v2\\views\\home\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+      "AbsoluteMoniker": "D:0:0:{53F2C0E6-7B97-409C-BB71-0F774320914E}|WEBMES_V2\\WEBMES_V2.csproj|c:\\users\\russe\\onedrive\\documents\\github\\webmes_v2\\webmes_v2\\views\\login\\loginview.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{53F2C0E6-7B97-409C-BB71-0F774320914E}|WEBMES_V2\\WEBMES_V2.csproj|solutionrelative:webmes_v2\\views\\login\\loginview.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{53F2C0E6-7B97-409C-BB71-0F774320914E}|WEBMES_V2\\WEBMES_V2.csproj|c:\\users\\russe\\source\\repos\\webmes_v2\\webmes_v2\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{53F2C0E6-7B97-409C-BB71-0F774320914E}|WEBMES_V2\\WEBMES_V2.csproj|solutionrelative:webmes_v2\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{53F2C0E6-7B97-409C-BB71-0F774320914E}|WEBMES_V2\\WEBMES_V2.csproj|c:\\users\\russe\\onedrive\\documents\\github\\webmes_v2\\webmes_v2\\wwwroot\\css\\custom_theme_atec.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
+      "RelativeMoniker": "D:0:0:{53F2C0E6-7B97-409C-BB71-0F774320914E}|WEBMES_V2\\WEBMES_V2.csproj|solutionrelative:webmes_v2\\wwwroot\\css\\custom_theme_atec.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
     }
   ],
   "DocumentGroupContainers": [
@@ -31,27 +31,27 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "Index.cshtml",
-              "DocumentMoniker": "C:\\Users\\russe\\source\\repos\\WEBMES_V2\\WEBMES_V2\\Views\\Home\\Index.cshtml",
-              "RelativeDocumentMoniker": "WEBMES_V2\\Views\\Home\\Index.cshtml",
-              "ToolTip": "C:\\Users\\russe\\source\\repos\\WEBMES_V2\\WEBMES_V2\\Views\\Home\\Index.cshtml",
-              "RelativeToolTip": "WEBMES_V2\\Views\\Home\\Index.cshtml",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Title": "LoginView.cshtml",
+              "DocumentMoniker": "C:\\Users\\russe\\OneDrive\\Documents\\GitHub\\WEBMES_V2\\WEBMES_V2\\Views\\Login\\LoginView.cshtml",
+              "RelativeDocumentMoniker": "WEBMES_V2\\Views\\Login\\LoginView.cshtml",
+              "ToolTip": "C:\\Users\\russe\\OneDrive\\Documents\\GitHub\\WEBMES_V2\\WEBMES_V2\\Views\\Login\\LoginView.cshtml",
+              "RelativeToolTip": "WEBMES_V2\\Views\\Login\\LoginView.cshtml",
+              "ViewState": "AQIAAA8AAAAAAAAAAAAAACUAAAApAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-03-20T04:06:42.745Z",
+              "WhenOpened": "2024-03-20T05:27:08.938Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "Program.cs",
-              "DocumentMoniker": "C:\\Users\\russe\\source\\repos\\WEBMES_V2\\WEBMES_V2\\Program.cs",
-              "RelativeDocumentMoniker": "WEBMES_V2\\Program.cs",
-              "ToolTip": "C:\\Users\\russe\\source\\repos\\WEBMES_V2\\WEBMES_V2\\Program.cs",
-              "RelativeToolTip": "WEBMES_V2\\Program.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-03-20T04:06:22.926Z",
+              "Title": "custom_Theme_ATEC.css",
+              "DocumentMoniker": "C:\\Users\\russe\\OneDrive\\Documents\\GitHub\\WEBMES_V2\\WEBMES_V2\\wwwroot\\css\\custom_Theme_ATEC.css",
+              "RelativeDocumentMoniker": "WEBMES_V2\\wwwroot\\css\\custom_Theme_ATEC.css",
+              "ToolTip": "C:\\Users\\russe\\OneDrive\\Documents\\GitHub\\WEBMES_V2\\WEBMES_V2\\wwwroot\\css\\custom_Theme_ATEC.css",
+              "RelativeToolTip": "WEBMES_V2\\wwwroot\\css\\custom_Theme_ATEC.css",
+              "ViewState": "AQIAAB4AAAAAAAAAAAAAACoAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
+              "WhenOpened": "2024-03-20T05:25:19.392Z",
               "EditorCaption": ""
             }
           ]

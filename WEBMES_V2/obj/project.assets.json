@@ -3046,11 +3046,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\russe\\source\\repos\\WEBMES_V2\\WEBMES_V2\\WEBMES_V2.csproj",
+      "projectUniqueName": "C:\\Users\\russe\\OneDrive\\Documents\\GitHub\\WEBMES_V2\\WEBMES_V2\\WEBMES_V2.csproj",
       "projectName": "WEBMES_V2",
-      "projectPath": "C:\\Users\\russe\\source\\repos\\WEBMES_V2\\WEBMES_V2\\WEBMES_V2.csproj",
+      "projectPath": "C:\\Users\\russe\\OneDrive\\Documents\\GitHub\\WEBMES_V2\\WEBMES_V2\\WEBMES_V2.csproj",
       "packagesPath": "C:\\Users\\russe\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\russe\\source\\repos\\WEBMES_V2\\WEBMES_V2\\obj\\",
+      "outputPath": "C:\\Users\\russe\\OneDrive\\Documents\\GitHub\\WEBMES_V2\\WEBMES_V2\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

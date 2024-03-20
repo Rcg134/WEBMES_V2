@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "/njCbL1F8hn9p9Ovo5NG2VefO5B2Xi9Qek+r4zUlJSej5Pkwl7lfG64Z47xiR8h5kYXA9DBY1YPjydEB5sYAYw==",
+  "dgSpecHash": "THuo/wZ/gnB6GvhT9vuDJ3Sf6qoLTXVLy3bKvprE1OiI21VZAJEVoAXC7PXulDRW8k6so/ZTAbF9nKcNPxePXg==",
   "success": true,
-  "projectFilePath": "C:\\Users\\russe\\source\\repos\\WEBMES_V2\\WEBMES_V2\\WEBMES_V2.csproj",
+  "projectFilePath": "C:\\Users\\russe\\OneDrive\\Documents\\GitHub\\WEBMES_V2\\WEBMES_V2\\WEBMES_V2.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\russe\\.nuget\\packages\\automapper\\11.0.0\\automapper.11.0.0.nupkg.sha512",
     "C:\\Users\\russe\\.nuget\\packages\\automapper.extensions.microsoft.dependencyinjection\\11.0.0\\automapper.extensions.microsoft.dependencyinjection.11.0.0.nupkg.sha512",
