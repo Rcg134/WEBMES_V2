@@ -12,6 +12,25 @@
 - BCrypt.Net-Core 1.6.0
 - Microsoft.Data.SqlClient 5.2.0
 
+  
+# Dapper Installation in PMC
+ - Install Dapper from Nuget
+ - Install SQL Client from Nuget
+
+ ## In Package Manager
+ ``````bash
+
+ PM> Install-Package Dapper
+
+ ``````
+
+  ``````bash
+
+ PM> Install-Package Microsoft.Data.SqlClient
+
+ ``````
+
+
 ## Script for DB First Migration
 
 ```bash
@@ -92,23 +111,6 @@
 
 
 
-
-# Dapper Installation in PMC
- - Install Dapper from Nuget
- - Install SQL Client from Nuget
-
- ## In Package Manager
- ``````bash
-
- PM> Install-Package Dapper
-
- ``````
-
-  ``````bash
-
- PM> Install-Package Microsoft.Data.SqlClient
-
- ``````
 
 
 
