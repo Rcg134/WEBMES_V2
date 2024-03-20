@@ -1,4 +1,4 @@
-# AR_Tracking_App
+# ATEC WEBMES VERSION 2
  
  <!-- @format -->
 
@@ -11,7 +11,7 @@
 - AutoMapper.Extensions.Microsoft.DependencyInjection 11.0.0
 - BCrypt.Net-Core 1.6.0
 - Microsoft.Data.SqlClient 5.2.0
-
+- Dapper 2.1.35
   
 # Dapper Installation in PMC
  - Install Dapper from Nuget
