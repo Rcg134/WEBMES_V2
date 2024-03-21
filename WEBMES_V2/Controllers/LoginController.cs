@@ -18,9 +18,11 @@ namespace WEBMES_V2.Controllers
             return View();
         }
 
-        public IActionResult Privacy()
+        [HttpPost]
+        public IActionResult Submit()
         {
-            return View();
+
+            return RedirectToAction("MainPageView", "MainPage");
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

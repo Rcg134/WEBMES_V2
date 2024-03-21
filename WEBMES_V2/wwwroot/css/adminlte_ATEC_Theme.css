@@ -4947,7 +4947,7 @@ input[type="button"].btn-block {
     /*custom*/
     .navbar-light .navbar-nav .nav-link:hover, .navbar-light .navbar-nav .nav-link:focus {
         /*  color: rgba(0, 0, 0, 0.7);*/
-        color: #981D97
+        color: #FD6F01
     }
 
     .navbar-light .navbar-nav .nav-link.disabled {
@@ -5368,8 +5368,8 @@ input[type="button"].btn-block {
 .page-item.active .page-link {
     z-index: 3;
     color: #fff;
-    background-color: #981D97;
-    border-color: #981D97;
+    background-color: #FD6F01;
+    border-color: #FD6F01;
 }
 
 .page-item.disabled .page-link {
@@ -13900,7 +13900,7 @@ body:not(.layout-fixed) .main-sidebar {
     }
 /*custom SIDE PANEL COLOR*/
 [class*="sidebar-dark-"] {
-    background: #4c4794;
+    background: #FD6F01;
 }
 
     [class*="sidebar-dark-"] .user-panel a:hover {
@@ -13923,11 +13923,11 @@ body:not(.layout-fixed) .main-sidebar {
     }
 
     [class*="sidebar-dark-"] .user-panel .dropdown-item {
-        color: #212529;
+        color: #fff;
     }
 
     [class*="sidebar-dark-"] .nav-sidebar > .nav-item > .nav-link:active {
-        color: #c2c7d0;
+        color: #fff;
     }
 
     /**Side Bar Color focus tree**/
@@ -13967,7 +13967,7 @@ body:not(.layout-fixed) .main-sidebar {
 
         /*CUSTOM tree child*/
         [class*="sidebar-dark-"] .nav-treeview > .nav-item > .nav-link:hover, [class*="sidebar-dark-"] .nav-treeview > .nav-item > .nav-link:focus {
-            background-color: #981D97;
+            background-color: #BB1900;
             color: #fff;
         }
 
@@ -14663,7 +14663,7 @@ body:not(.layout-fixed) .main-sidebar {
 [class*="sidebar-dark"] .btn-sidebar {
     background-color: #eaeaea;
     border: 1px solid #56606a;
-    color: #981D97;
+    color: #FD6F01;
 }
 
     [class*="sidebar-dark"] .form-control-sidebar:focus,
