@@ -108,12 +108,3 @@
 ```bash
 -dotnet ef database update <PreviousMigrationName>
 ```
-
-
-
-TESTING LANG LOL
-
-
-
-
-
