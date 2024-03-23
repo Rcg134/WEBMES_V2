@@ -1,25 +1,27 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\russe\\OneDrive\\Documents\\GitHub\\WEBMES_V2\\WEBMES_V2\\WEBMES_V2.csproj": {}
+    "C:\\Users\\jd_it\\Desktop\\WEBMES_V2\\WEBMES_V2\\WEBMES_V2.csproj": {}
   },
   "projects": {
-    "C:\\Users\\russe\\OneDrive\\Documents\\GitHub\\WEBMES_V2\\WEBMES_V2\\WEBMES_V2.csproj": {
+    "C:\\Users\\jd_it\\Desktop\\WEBMES_V2\\WEBMES_V2\\WEBMES_V2.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\russe\\OneDrive\\Documents\\GitHub\\WEBMES_V2\\WEBMES_V2\\WEBMES_V2.csproj",
+        "projectUniqueName": "C:\\Users\\jd_it\\Desktop\\WEBMES_V2\\WEBMES_V2\\WEBMES_V2.csproj",
         "projectName": "WEBMES_V2",
-        "projectPath": "C:\\Users\\russe\\OneDrive\\Documents\\GitHub\\WEBMES_V2\\WEBMES_V2\\WEBMES_V2.csproj",
-        "packagesPath": "C:\\Users\\russe\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\russe\\OneDrive\\Documents\\GitHub\\WEBMES_V2\\WEBMES_V2\\obj\\",
+        "projectPath": "C:\\Users\\jd_it\\Desktop\\WEBMES_V2\\WEBMES_V2\\WEBMES_V2.csproj",
+        "packagesPath": "C:\\Users\\jd_it\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\jd_it\\Desktop\\WEBMES_V2\\WEBMES_V2\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
+          "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\"
         ],
         "configFilePaths": [
-          "C:\\Users\\russe\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\jd_it\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
         ],
         "originalTargetFrameworks": [
           "net7.0"
@@ -39,11 +41,6 @@
           "warnAsError": [
             "NU1605"
           ]
-        },
-        "restoreAuditProperties": {
-          "enableAudit": "true",
-          "auditLevel": "low",
-          "auditMode": "direct"
         }
       },
       "frameworks": {
@@ -98,6 +95,24 @@
           ],
           "assetTargetFallback": true,
           "warn": true,
+          "downloadDependencies": [
+            {
+              "name": "Microsoft.AspNetCore.App.Ref",
+              "version": "[7.0.15, 7.0.15]"
+            },
+            {
+              "name": "Microsoft.NETCore.App.Host.win-x64",
+              "version": "[7.0.15, 7.0.15]"
+            },
+            {
+              "name": "Microsoft.NETCore.App.Ref",
+              "version": "[7.0.15, 7.0.15]"
+            },
+            {
+              "name": "Microsoft.WindowsDesktop.App.Ref",
+              "version": "[7.0.15, 7.0.15]"
+            }
+          ],
           "frameworkReferences": {
             "Microsoft.AspNetCore.App": {
               "privateAssets": "none"
@@ -106,7 +121,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.200\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.101\\RuntimeIdentifierGraph.json"
         }
       }
     }
