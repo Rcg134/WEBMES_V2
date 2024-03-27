@@ -108,5 +108,3 @@
 ```bash
 -dotnet ef database update <PreviousMigrationName>
 ```
-
-Polly
