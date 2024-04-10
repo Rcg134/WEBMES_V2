@@ -1,7 +1,42 @@
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.Data.SqlClient;
+using Microsoft.EntityFrameworkCore;
+using WEBMES_V2.Models.Context;
+using WEBMES_V2.Models.Models.SQLRepositoryImplementation;
+using static WEBMES_V2.Models.Models.ISQLRepository.ILoginRepository;
+
 var builder = WebApplication.CreateBuilder(args);
+
+
+//------------------Service Registration----------------
+builder.Services.AddScoped<ILoginRepoConnection, SQLLoginRepository>();
+//------------------------------------------------------
+
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+
+//----------------------Connection----------------------
+builder.Services.AddDbContext<CentralAccessContext>(option =>
+{
+    option.UseSqlServer(builder.Configuration.GetConnectionString("CentralAccessConnection"));
+});
+//-------------------------------------------------------
+
+//------------------------------------------------------Auth
+builder.Services.AddAuthentication(
+                 CookieAuthenticationDefaults.AuthenticationScheme)
+                 .AddCookie(option =>
+                 {
+                     option.LoginPath = "/LogIn/LoginView";
+                     option.ExpireTimeSpan = TimeSpan.FromMinutes(20);
+                     option.AccessDeniedPath = "/LogIn/LoginView";
+                 });
+//-------------------------------------------------------
+
+//---------------------------Add automapper configuration
+builder.Services.AddAutoMapper(typeof(Program).Assembly);
+//-------------------------------------------------------
 
 var app = builder.Build();
 
@@ -18,6 +53,7 @@ app.UseStaticFiles();
 
 app.UseRouting();
 
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllerRoute(

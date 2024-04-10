@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("WEBMES_V2")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+18332058baaa0b00536ade6096a34e49be0f15c9")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+2fa813552ac52ee333068537816ec90db82e9f57")]
 [assembly: System.Reflection.AssemblyProductAttribute("WEBMES_V2")]
 [assembly: System.Reflection.AssemblyTitleAttribute("WEBMES_V2")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
