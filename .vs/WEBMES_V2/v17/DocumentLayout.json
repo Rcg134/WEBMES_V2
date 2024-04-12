@@ -3,16 +3,20 @@
   "WorkspaceRootPath": "C:\\Users\\russe\\Documents\\GitHub\\WEBMES_V2\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{53F2C0E6-7B97-409C-BB71-0F774320914E}|WEBMES_V2\\WEBMES_V2.csproj|c:\\users\\russe\\documents\\github\\webmes_v2\\webmes_v2\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
-      "RelativeMoniker": "D:0:0:{53F2C0E6-7B97-409C-BB71-0F774320914E}|WEBMES_V2\\WEBMES_V2.csproj|solutionrelative:webmes_v2\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+      "AbsoluteMoniker": "D:0:0:{53F2C0E6-7B97-409C-BB71-0F774320914E}|WEBMES_V2\\WEBMES_V2.csproj|c:\\users\\russe\\documents\\github\\webmes_v2\\webmes_v2\\views\\plasmamagazine\\plasmamagazineview.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{53F2C0E6-7B97-409C-BB71-0F774320914E}|WEBMES_V2\\WEBMES_V2.csproj|solutionrelative:webmes_v2\\views\\plasmamagazine\\plasmamagazineview.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{53F2C0E6-7B97-409C-BB71-0F774320914E}|WEBMES_V2\\WEBMES_V2.csproj|c:\\users\\russe\\documents\\github\\webmes_v2\\webmes_v2\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{53F2C0E6-7B97-409C-BB71-0F774320914E}|WEBMES_V2\\WEBMES_V2.csproj|solutionrelative:webmes_v2\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+      "AbsoluteMoniker": "D:0:0:{53F2C0E6-7B97-409C-BB71-0F774320914E}|WEBMES_V2\\WEBMES_V2.csproj|c:\\users\\russe\\documents\\github\\webmes_v2\\webmes_v2\\models\\sqlrepositoryimplementation\\sqlloginrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{53F2C0E6-7B97-409C-BB71-0F774320914E}|WEBMES_V2\\WEBMES_V2.csproj|solutionrelative:webmes_v2\\models\\sqlrepositoryimplementation\\sqlloginrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{53F2C0E6-7B97-409C-BB71-0F774320914E}|WEBMES_V2\\WEBMES_V2.csproj|c:\\users\\russe\\documents\\github\\webmes_v2\\webmes_v2\\wwwroot\\css\\adminlte_atec_theme.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
-      "RelativeMoniker": "D:0:0:{53F2C0E6-7B97-409C-BB71-0F774320914E}|WEBMES_V2\\WEBMES_V2.csproj|solutionrelative:webmes_v2\\wwwroot\\css\\adminlte_atec_theme.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
+      "AbsoluteMoniker": "D:0:0:{53F2C0E6-7B97-409C-BB71-0F774320914E}|WEBMES_V2\\WEBMES_V2.csproj|c:\\users\\russe\\documents\\github\\webmes_v2\\webmes_v2\\controllers\\plasmamagazinecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{53F2C0E6-7B97-409C-BB71-0F774320914E}|WEBMES_V2\\WEBMES_V2.csproj|solutionrelative:webmes_v2\\controllers\\plasmamagazinecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{53F2C0E6-7B97-409C-BB71-0F774320914E}|WEBMES_V2\\WEBMES_V2.csproj|c:\\users\\russe\\documents\\github\\webmes_v2\\webmes_v2\\models\\isqlrepository\\iloginrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{53F2C0E6-7B97-409C-BB71-0F774320914E}|WEBMES_V2\\WEBMES_V2.csproj|solutionrelative:webmes_v2\\models\\isqlrepository\\iloginrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -35,39 +39,54 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "appsettings.json",
-              "DocumentMoniker": "C:\\Users\\russe\\Documents\\GitHub\\WEBMES_V2\\WEBMES_V2\\appsettings.json",
-              "RelativeDocumentMoniker": "WEBMES_V2\\appsettings.json",
-              "ToolTip": "C:\\Users\\russe\\Documents\\GitHub\\WEBMES_V2\\WEBMES_V2\\appsettings.json",
-              "RelativeToolTip": "WEBMES_V2\\appsettings.json",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAIAAAA6AAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
-              "WhenOpened": "2024-04-11T01:08:34.636Z",
+              "Title": "PlasmaMagazineView.cshtml",
+              "DocumentMoniker": "C:\\Users\\russe\\Documents\\GitHub\\WEBMES_V2\\WEBMES_V2\\Views\\PlasmaMagazine\\PlasmaMagazineView.cshtml",
+              "RelativeDocumentMoniker": "WEBMES_V2\\Views\\PlasmaMagazine\\PlasmaMagazineView.cshtml",
+              "ToolTip": "C:\\Users\\russe\\Documents\\GitHub\\WEBMES_V2\\WEBMES_V2\\Views\\PlasmaMagazine\\PlasmaMagazineView.cshtml",
+              "RelativeToolTip": "WEBMES_V2\\Views\\PlasmaMagazine\\PlasmaMagazineView.cshtml",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABcAAAASAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-04-12T02:33:29.234Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "PlasmaMagazineController.cs",
+              "DocumentMoniker": "C:\\Users\\russe\\Documents\\GitHub\\WEBMES_V2\\WEBMES_V2\\Controllers\\PlasmaMagazineController.cs",
+              "RelativeDocumentMoniker": "WEBMES_V2\\Controllers\\PlasmaMagazineController.cs",
+              "ToolTip": "C:\\Users\\russe\\Documents\\GitHub\\WEBMES_V2\\WEBMES_V2\\Controllers\\PlasmaMagazineController.cs",
+              "RelativeToolTip": "WEBMES_V2\\Controllers\\PlasmaMagazineController.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAwAAAAFAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-04-12T02:32:17.301Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "_Layout.cshtml",
-              "DocumentMoniker": "C:\\Users\\russe\\Documents\\GitHub\\WEBMES_V2\\WEBMES_V2\\Views\\Shared\\_Layout.cshtml",
-              "RelativeDocumentMoniker": "WEBMES_V2\\Views\\Shared\\_Layout.cshtml",
-              "ToolTip": "C:\\Users\\russe\\Documents\\GitHub\\WEBMES_V2\\WEBMES_V2\\Views\\Shared\\_Layout.cshtml",
-              "RelativeToolTip": "WEBMES_V2\\Views\\Shared\\_Layout.cshtml",
-              "ViewState": "AQIAAAkAAAAAAAAAAAAAAMcAAAAkAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-03-21T03:07:07.388Z"
+              "Title": "SQLLoginRepository.cs",
+              "DocumentMoniker": "C:\\Users\\russe\\Documents\\GitHub\\WEBMES_V2\\WEBMES_V2\\Models\\SQLRepositoryImplementation\\SQLLoginRepository.cs",
+              "RelativeDocumentMoniker": "WEBMES_V2\\Models\\SQLRepositoryImplementation\\SQLLoginRepository.cs",
+              "ToolTip": "C:\\Users\\russe\\Documents\\GitHub\\WEBMES_V2\\WEBMES_V2\\Models\\SQLRepositoryImplementation\\SQLLoginRepository.cs",
+              "RelativeToolTip": "WEBMES_V2\\Models\\SQLRepositoryImplementation\\SQLLoginRepository.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAACQAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-04-12T02:13:51.612Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "adminlte_ATEC_Theme.css",
-              "DocumentMoniker": "C:\\Users\\russe\\Documents\\GitHub\\WEBMES_V2\\WEBMES_V2\\wwwroot\\css\\adminlte_ATEC_Theme.css",
-              "RelativeDocumentMoniker": "WEBMES_V2\\wwwroot\\css\\adminlte_ATEC_Theme.css",
-              "ToolTip": "C:\\Users\\russe\\Documents\\GitHub\\WEBMES_V2\\WEBMES_V2\\wwwroot\\css\\adminlte_ATEC_Theme.css",
-              "RelativeToolTip": "WEBMES_V2\\wwwroot\\css\\adminlte_ATEC_Theme.css",
-              "ViewState": "AQIAAHk2AAAAAAAAAADgv482AAAOAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
-              "WhenOpened": "2024-03-21T03:04:56.585Z"
+              "DocumentIndex": 3,
+              "Title": "ILoginRepository.cs",
+              "DocumentMoniker": "C:\\Users\\russe\\Documents\\GitHub\\WEBMES_V2\\WEBMES_V2\\Models\\ISQLRepository\\ILoginRepository.cs",
+              "RelativeDocumentMoniker": "WEBMES_V2\\Models\\ISQLRepository\\ILoginRepository.cs",
+              "ToolTip": "C:\\Users\\russe\\Documents\\GitHub\\WEBMES_V2\\WEBMES_V2\\Models\\ISQLRepository\\ILoginRepository.cs",
+              "RelativeToolTip": "WEBMES_V2\\Models\\ISQLRepository\\ILoginRepository.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAqwAkAAAAjAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-04-12T02:13:26.31Z",
+              "EditorCaption": ""
             }
           ]
         }

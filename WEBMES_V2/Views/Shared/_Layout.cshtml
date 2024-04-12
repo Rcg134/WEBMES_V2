@@ -1,10 +1,9 @@
-﻿@* @using System.Security.Claims
+﻿@using System.Security.Claims
 @{
-    var userName = User.FindFirstValue(ClaimTypes.Name);
-    var userRole = User.FindFirstValue(ClaimTypes.Role);
+    var userName = User.FindFirstValue(ClaimTypes.NameIdentifier);
     var GivenName = User.FindFirstValue(ClaimTypes.GivenName);
 }
- *@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -45,11 +44,9 @@
                 <!-- Notifications Dropdown Menu -->
                 <li class="nav-item dropdown">
                     <a class="nav-link" data-toggle="dropdown" href="#">
-                        @* @GivenName *@
+                        @GivenName
                     </a>
                     <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
-                        @*           <span class="dropdown-item dropdown-header">15 Notifications</span>
-                        <div class="dropdown-divider"></div> *@
                         <a class="dropdown-item" asp-area="" asp-controller="Logout" asp-action="LogoutView">
                             <i class="fa fa-sign-out">Logout</i>
                         </a>
@@ -98,32 +95,32 @@
                                 </p>
                             </a>
 
-                            <ul class="nav nav-treeview">
+                                <ul class="nav nav-treeview">
 
 
 
-                                <li class="nav-item sub-item">
-                                    <a class="nav-link" asp-area="" asp-controller="Dashboard" asp-action="Index">
-                                        <i class="fas fa-circle nav-icon"></i>
-                                        <p>DashBoard</p>
+                                    <li class="nav-item sub-item">
+                                    <a class="nav-link" asp-area="" asp-controller="PlasmaMagazine" asp-action="PlasmaMagazineView">
+                                            <i class="fas fa-circle nav-icon"></i>
+                                            <p>Plasma</p>
+                                        </a>
+                                    </li>
+                                    @*
+                                    <li class="nav-item">
+                                    <a class="nav-link" asp-area="" asp-controller="Maintenance" asp-action="PlanOwnerList">
+                                    <i class="fas fa-circle nav-icon"></i>
+                                    <p>Action Plan Owner</p>
                                     </a>
-                                </li>
-                                @*
-                                <li class="nav-item">
-                                <a class="nav-link" asp-area="" asp-controller="Maintenance" asp-action="PlanOwnerList">
-                                <i class="fas fa-circle nav-icon"></i>
-                                <p>Action Plan Owner</p>
-                                </a>
-                                </li> *@
+                                    </li> *@
 
-                            </ul>
+                                </ul>
                         </li>
 
 
 
 
                         @*Maintenance *@
-                        <li class="nav-item" id="arMaintenance">
+@*                         <li class="nav-item" id="arMaintenance">
                             <a href="#" class="nav-link">
                                 <i class="nav-icon fas fa-tools"></i>
                                 <p>
@@ -157,7 +154,7 @@
                                 </li>
 
                             </ul>
-                        </li>
+                        </li> *@
 
 
                     </ul>
@@ -173,7 +170,7 @@
             <!-- Main content -->
             <section class="content">
                 <div class="container-fluid">
-                    <div class="pb-3 pt-3">
+                    <div class="p-3">
                         <div id="renderBody">
                             @RenderBody()
                         </div>

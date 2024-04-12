@@ -5,8 +5,7 @@ using System.Diagnostics;
 using System.Security.Claims;
 using WEBMES_V2.Models;
 using WEBMES_V2.Models.DomainModels;
-using WEBMES_V2.Models.Models.ISQLRepository;
-using static WEBMES_V2.Models.Models.ISQLRepository.ILoginRepository;
+using static WEBMES_V2.Models.ISQLRepository.ILoginRepository;
 using WEBMES_V2.Models.DTO;
 
 namespace WEBMES_V2.Controllers
@@ -33,29 +32,34 @@ namespace WEBMES_V2.Controllers
         public async Task<IActionResult> LoginView(UserDTO usrDTO)
         {
 
-            if (ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
-
-                var isExisst =await _loginRepository.UserLogin(usrDTO);
-
-                if (isExisst != false)
-                {
-                    List<Claim> claims = new List<Claim>()
-                        {
-                            new Claim(ClaimTypes.NameIdentifier,usrDTO.UserCode.ToString())
-                        };
-
-                    var claimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
-
-                    await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme,
-                                                   new ClaimsPrincipal(claimsIdentity));
-
-                    return RedirectToAction("MainPageView", "MainPage");
-
-                }
+                return View();
             }
-            ModelState.AddModelError(string.Empty, "Username and Password is invalid");
-            return View();
+
+            var usrDetail = await _loginRepository.UserLogin(usrDTO);
+
+            if (usrDetail == null)
+            {
+                ModelState.AddModelError(string.Empty, "Username and Password is invalid");
+                return View();
+            }
+
+            List<Claim> claims = new List<Claim>()
+                    {
+                        new Claim(ClaimTypes.NameIdentifier,usrDetail.UserCode.ToString()),
+                        new Claim(ClaimTypes.GivenName,usrDetail.FullName),
+                        new Claim(ClaimTypes.Role,"User")
+                    };
+
+            var claimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
+
+            await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme,
+                                           new ClaimsPrincipal(claimsIdentity));
+
+            return RedirectToAction("MainPageView", "MainPage");
+
+         
        
         }
 

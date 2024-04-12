@@ -1,0 +1,72 @@
+﻿
+<div class="card ATEC-theme-color mb-3">
+       <div class="card-header text-white">
+               <H3>PLASMA</H3>
+       </div>
+   </div>
+   
+   
+   
+   <div class="card pb-3">
+       <div class="card-body">
+        @* Validation *@
+        @if (!ViewData.ModelState.IsValid)
+        {
+            <div class="mb-3">
+                <div class="alert alert-danger">
+                    <ul>
+                        @foreach (var modelError in ViewData.ModelState.Values.SelectMany(v => v.Errors))
+                        {
+                            <li>@modelError.ErrorMessage</li>
+                        }
+                    </ul>
+                </div>
+            </div>
+        }
+
+         <div class="row p-3">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label>Stage</label>
+                    <select id="LastActionPlanSelect" class="select2">
+                        <option value="0">Select Stage</option>
+                        <option value="1">DA TO DA CURE</option>
+                        <option value="2">PLASMA TO WIREBOND</option>
+                        <option value="3">PLASMA TO MOLD</option>
+                    </select>
+                </div>
+            </div>
+         </div>
+
+           <div class="row p-3">
+               <div class="col-md-4">
+                   <label for="txtLotCode" class="form-label">Lot Code</label>
+                   <input type="text" class="form-control" id="txtLotCode">
+               </div>
+            <div class="col-md-4">
+                <label for="txtMachineCode" class="form-label">Machine Code</label>
+                <input type="text" class="form-control" id="txtMachineCode">
+            </div>
+            <div class="col-md-4">
+                <label for="txtMagazineCode" class="form-label">Magazine Code</label>
+                <input type="text" class="form-control" id="txtMagazineCode">
+            </div>
+           </div>
+
+       </div>
+   </div>
+
+@section Scripts 
+ 
+{
+
+    <script>
+        //initialize select
+        $('.select2').select2({
+            width: '100%'
+        });
+
+
+    </script>
+
+}

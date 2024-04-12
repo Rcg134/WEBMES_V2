@@ -1,6 +1,6 @@
 ﻿/*for text border*/
 .form-control:focus {
-    border-color: #981D97;
+    border-color: #fd6f01;
 }
 
 
@@ -10,7 +10,7 @@
 
 /*override*/
 .select2-container--default .select2-results__option--highlighted[aria-selected], .select2-container--default .select2-results__option--highlighted[aria-selected]:hover {
-    background-color: #981D97;
+    background-color: #fd6f01;
     color: #fff;
 }
 
@@ -29,13 +29,6 @@
 }
 
 
-.card {
-    background: linear-gradient(10deg, #BB1900, #FD6F01, #FFB000);
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    border-radius: 15px;
-    backdrop-filter: blur(10px);
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-}
 
 .alert{
     border-color:transparent;
@@ -123,7 +116,7 @@
 
 
 .ATEC-theme-color {
-    background-color: #981D97;
+    background-color: #FD6F01;
 }
 
 

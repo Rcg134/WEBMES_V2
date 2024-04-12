@@ -2,8 +2,8 @@ using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
 using WEBMES_V2.Models.Context;
-using WEBMES_V2.Models.Models.SQLRepositoryImplementation;
-using static WEBMES_V2.Models.Models.ISQLRepository.ILoginRepository;
+using WEBMES_V2.Models.SQLRepositoryImplementation;
+using static WEBMES_V2.Models.ISQLRepository.ILoginRepository;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -16,14 +16,28 @@ builder.Services.AddScoped<ILoginRepoConnection, SQLLoginRepository>();
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 
-//----------------------Connection----------------------
+
+//----------------------Policy---------------------------------
+builder.Services.AddAuthorization(option =>
+{
+    option.AddPolicy("UserCred", policy => policy.RequireRole("User"));
+});
+//--------------------------------------------------------------
+
+
+//----------------------Connection Context----------------------
 builder.Services.AddDbContext<CentralAccessContext>(option =>
 {
     option.UseSqlServer(builder.Configuration.GetConnectionString("CentralAccessConnection"));
 });
-//-------------------------------------------------------
 
-//------------------------------------------------------Auth
+builder.Services.AddDbContext<MesAtecContext>(option =>
+{
+    option.UseSqlServer(builder.Configuration.GetConnectionString("MES_ATEC_Connection"));
+});
+//---------------------------------------------------------------
+
+//---------------------------Auth--------------------------------
 builder.Services.AddAuthentication(
                  CookieAuthenticationDefaults.AuthenticationScheme)
                  .AddCookie(option =>
@@ -32,11 +46,11 @@ builder.Services.AddAuthentication(
                      option.ExpireTimeSpan = TimeSpan.FromMinutes(20);
                      option.AccessDeniedPath = "/LogIn/LoginView";
                  });
-//-------------------------------------------------------
+//---------------------------------------------------------------
 
-//---------------------------Add automapper configuration
+//---------------------------Add automapper configuration--------
 builder.Services.AddAutoMapper(typeof(Program).Assembly);
-//-------------------------------------------------------
+//---------------------------------------------------------------
 
 var app = builder.Build();
 
