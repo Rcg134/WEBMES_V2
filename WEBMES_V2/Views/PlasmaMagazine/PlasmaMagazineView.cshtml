@@ -29,9 +29,9 @@
                 <div class="form-group">
                     <label>Stage</label>
                     <select id="LastActionPlanSelect" class="select2">
-                        <option value="1">DA TO DA CURE</option>
-                        <option value="2">PLASMA TO WIREBOND</option>
-                        <option value="3">PLASMA TO MOLD</option>
+                        <option value="6">DA TO DA CURE</option>
+                        <option value="7">PLASMA TO WIREBOND</option>
+                        <option value="7">PLASMA TO MOLD</option>
                     </select>
                 </div>
             </div>
@@ -89,18 +89,16 @@
 
         });
 
- 
 
-
-        $('#txtLotCode').keypress(function (event) {
+        $('#txtLotCode').keypress(function (event) { 
             var selectedStage = $('#LastActionPlanSelect').val();
             var lotAlias = $('#txtLotCode').val();
 
             if (event.keyCode === 13) {
-                callLotChecker(lotAlias)
+                callLotChecker(lotAlias,
+                              selectedStage)
             }
         });
-
 
 
 
@@ -117,13 +115,15 @@
         });
 
 
-        function callLotChecker(paramLotAlias) {
+        function callLotChecker(paramLotAlias,
+                                paramSelectedStage) {
             return new Promise(function (resolve, reject) {
                 $.ajax({
                     type: "GET",
-                    url: "/PlasmaMagazine/CheckLot",
+                    url: "/PlasmaMagazine/WhatAction",
                     data: {
-                        LotAlias: paramLotAlias
+                        LotAlias: paramLotAlias,
+                        StageCode: paramSelectedStage
                     },
                     dataType: "json",
                     success: function (response) {

@@ -28,21 +28,42 @@ namespace WEBMES_V2.Controllers
         public async Task<IActionResult> WhatAction(int stageId,
                                                     StageLot stageLot)
         {
-            var selectedAction = (ActionStageEnum)stageId;
-            return RedirectToAction(selectedAction.ToString(),
-                                     new {LotAlias = stageLot.LotAlias });
+            return RedirectToAction("CheckLot",
+                                     new {LotAlias = stageLot.LotAlias,
+                                          stageCode= stageLot.StageCode
+                                          });
         }
-
         public async Task<IActionResult> CheckLot(StageLot stagelot)
         {
-            var StageCode = (int)StageEnum.DA;
-
-            var StatusCode = (int)StatusListEnum.InProcess;
+            var StageCode = stagelot.StageCode;
 
             var lotDetails = await _plasmaMagazineRepository
                                             .CheckLotStage(stagelot);
 
-            //validate if null
+    
+
+            //Check if user select Plasma to WB or plasma to mold , check if lot was tracked out in DA cure and trackin in Plasma
+            if (StageCode == (int)StageEnum.DA_CURE) {
+                var isTrackoutInCure = lotDetails.Any(lot => lot.StageCode == (int)StageEnum.DA_CURE &&
+                                                             lot.StatusCode == (int)StatusListEnum.LotComplete);
+
+                var isTrackInInPlasma = lotDetails.Any(lot => lot.StageCode == (int)StageEnum.Plasma &&
+                                                              lot.StatusCode == (int)StatusListEnum.InProcess);
+
+                if (!isTrackoutInCure ||
+                    !isTrackInInPlasma)
+                {
+                    return Json(new
+                    {
+                        status = 2,
+                        details = (object)null,
+                        message = $"Lot is yet process in DA Cure Or Not yet Trackin in Plasma"
+                    });
+                }
+
+            }
+
+            //validate if no record found
             if (lotDetails.Count() == 0 || 
                 lotDetails == null)
                 return Json(new
@@ -52,10 +73,11 @@ namespace WEBMES_V2.Controllers
                     message =  "Lot is not exist"
                 });
 
-           
+          
             var isProcess = lotDetails
-                     .SingleOrDefault(lot => lot.StageCode == StageCode && 
-                                             lot.StatusCode == StatusCode);
+                     .FirstOrDefault(lot => lot.StageCode == StageCode && 
+                                             lot.StatusCode == (int)StatusListEnum.InProcess || 
+                                             lot.StatusCode == (int)StatusListEnum.LotComplete);
 
             //validate if  null and stage is not in process in DA Stage
             if (isProcess == null)
@@ -68,7 +90,7 @@ namespace WEBMES_V2.Controllers
                     status = 2,
                     details = (object)null,
                     message = $"Lot is currently in the {lotdetails.StatusID} stage"
-                }); ;
+                });
             }
 
             return Json(new {status = 1,
@@ -119,6 +141,12 @@ namespace WEBMES_V2.Controllers
                 status = 1,
                 message = "Machine is exist"
             });
+        }
+
+        public async Task<IActionResult> _MachineTrackInList(StageLot stagelot)
+        {
+
+          return PartialView();
         }
     }
 }

@@ -5,5 +5,6 @@
         public string? LotAlias { get; set; }
         public string? MachineCode { get; set; }
         public int? lotQTY { get; set; }
+        public int? StageCode { get; set; }
     }
 }
