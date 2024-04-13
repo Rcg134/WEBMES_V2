@@ -29,7 +29,6 @@
                 <div class="form-group">
                     <label>Stage</label>
                     <select id="LastActionPlanSelect" class="select2">
-                        <option value="0">Select Stage</option>
                         <option value="1">DA TO DA CURE</option>
                         <option value="2">PLASMA TO WIREBOND</option>
                         <option value="3">PLASMA TO MOLD</option>
@@ -47,11 +46,18 @@
                 <label for="txtMachineCode" class="form-label">Machine Code</label>
                 <input type="text" class="form-control" id="txtMachineCode">
             </div>
-            <div class="col-md-4">
+@*             <div class="col-md-4">
                 <label for="txtMagazineCode" class="form-label">Magazine Code</label>
                 <input type="text" class="form-control" id="txtMagazineCode">
-            </div>
+            </div> *@
            </div>
+
+
+
+
+        <div class="row p-3">
+            <div id="machineTableList"></div>
+        </div>
 
        </div>
    </div>
@@ -61,11 +67,102 @@
 {
 
     <script>
+        var lotAlias = ''
+        var lotQTY = 0
         //initialize select
         $('.select2').select2({
             width: '100%'
         });
 
+        $(function () {
+            $('#txtLotCode').focus();
+            $('#txtMachineCode').prop('disabled', true)
+        });
+
+ 
+
+
+        $('#txtLotCode').keypress(function (event) {
+            var selectedStage = $('#LastActionPlanSelect').val();
+            var lotAlias = $('#txtLotCode').val();
+
+            if (event.keyCode === 13) {
+                callLotChecker(lotAlias)
+            }
+        });
+
+
+
+        $('#txtMachineCode').keypress(function (event) {
+            var machineCode = $('#txtMachineCode').val();
+
+            if (event.keyCode === 13) {
+                callLotChecker(lotAlias, 
+                               lotQTY, 
+                               machineCode)
+            }
+        });
+
+
+        function callLotChecker(paramLotAlias) {
+            return new Promise(function (resolve, reject) {
+                $.ajax({
+                    type: "GET",
+                    url: "/PlasmaMagazine/CheckLot",
+                    data: {
+                        LotAlias: paramLotAlias
+                    },
+                    dataType: "json",
+                    success: function (response) {
+                        if (response.status !== 1) {
+                            alert(response.message); 
+                            return;
+                        }
+
+                        var lotAlias = response.details.lotAlias;
+                        var lotQTY = response.details.qty;
+
+                        $('#txtLotCode').prop('disabled', true);
+                        $('#txtMachineCode').prop('disabled', false);
+                        $('#txtMachineCode').focus();
+              
+                    },
+                    error: function (xhr, status, error) {
+                        alert("AJAX error: " + error);
+                    }
+                });
+            });
+        }
+
+
+        function callMachineChecker(paramLot,
+                                    paramLotQTY
+                                    paramMachineCode) {
+            // showSkeletonLoading('billedListTableForm', 5, 5)
+            $.ajax({
+                type: "GET",
+                url: "/PlasmaMagazine/CheckMachine",
+                data: {
+                    MachineCode: paramMachineCode,
+
+                },
+                dataType: "json",
+                success: function (response) {
+                    if (response.status !== 1) {
+                        alert(response.message)
+                        return;
+                    }
+                    //if machine code is exist
+                    $('#txtMachineCode').prop('disabled', true)
+                    alert(response.message)
+
+                },
+                error: function (xhr, status, error) {
+                    alert("error")
+                    // callErrorPage('An error occurred while fetching data');
+                }
+            });
+        }
 
     </script>
 

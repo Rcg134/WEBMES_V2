@@ -2,6 +2,8 @@ using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
 using WEBMES_V2.Models.Context;
+using WEBMES_V2.Models.DomainModels.Login;
+using WEBMES_V2.Models.ISQLRepository;
 using WEBMES_V2.Models.SQLRepositoryImplementation;
 using static WEBMES_V2.Models.ISQLRepository.ILoginRepository;
 
@@ -10,6 +12,8 @@ var builder = WebApplication.CreateBuilder(args);
 
 //------------------Service Registration----------------
 builder.Services.AddScoped<ILoginRepoConnection, SQLLoginRepository>();
+builder.Services.AddSingleton<IDapperConnection, DapperConnectionRepository>();
+builder.Services.AddScoped<IPlasmaMagazineRepository, PlasmaMagazineRepository>();
 //------------------------------------------------------
 
 

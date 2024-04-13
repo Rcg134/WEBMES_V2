@@ -7,8 +7,6 @@ public partial class MsStationMagazine
 {
     public int Id { get; set; }
 
-    public int? StationCode { get; set; }
-
     public int? MagazineCode { get; set; }
 
     public int? MagazineQty { get; set; }

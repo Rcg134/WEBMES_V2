@@ -2,7 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using WEBMES_V2.Models.Context;
 using WEBMES_V2.Models.DomainModels;
-using WEBMES_V2.Models.DTO;
+using WEBMES_V2.Models.DTO.LoginUserDTO;
 using static WEBMES_V2.Models.ISQLRepository.ILoginRepository;
 
 namespace WEBMES_V2.Models.SQLRepositoryImplementation

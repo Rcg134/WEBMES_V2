@@ -1,5 +1,5 @@
 ﻿using WEBMES_V2.Models.DomainModels;
-using WEBMES_V2.Models.DTO;
+using WEBMES_V2.Models.DTO.LoginUserDTO;
 
 namespace WEBMES_V2.Models.ISQLRepository
 {

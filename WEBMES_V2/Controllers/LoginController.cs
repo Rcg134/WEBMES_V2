@@ -6,7 +6,7 @@ using System.Security.Claims;
 using WEBMES_V2.Models;
 using WEBMES_V2.Models.DomainModels;
 using static WEBMES_V2.Models.ISQLRepository.ILoginRepository;
-using WEBMES_V2.Models.DTO;
+using WEBMES_V2.Models.DTO.LoginUserDTO;
 
 namespace WEBMES_V2.Controllers
 {
