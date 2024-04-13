@@ -43,6 +43,10 @@
                    <input type="text" class="form-control" id="txtLotCode">
                </div>
             <div class="col-md-4">
+                <label for="txtLotQTY" class="form-label">Lot QTY</label>
+                <input type="text" class="form-control" id="txtLotQTY">
+            </div>
+            <div class="col-md-4">
                 <label for="txtMachineCode" class="form-label">Machine Code</label>
                 <input type="text" class="form-control" id="txtMachineCode">
             </div>
@@ -67,8 +71,6 @@
 {
 
     <script>
-        var lotAlias = ''
-        var lotQTY = 0
         //initialize select
         $('.select2').select2({
             width: '100%'
@@ -77,6 +79,14 @@
         $(function () {
             $('#txtLotCode').focus();
             $('#txtMachineCode').prop('disabled', true)
+            $('#txtLotQTY').prop('disabled', true)
+
+            $('#txtMachineCode').keypress(function (event) {
+                if ((event.which >= 65 && event.which <= 90) || (event.which >= 97 && event.which <= 122)) {
+                    event.preventDefault();
+                }
+            });
+
         });
 
  
@@ -93,13 +103,16 @@
 
 
 
+
         $('#txtMachineCode').keypress(function (event) {
             var machineCode = $('#txtMachineCode').val();
+            var lotAlias =  $('#txtLotCode').val();
+            var lotQTY = $('#txtLotQTY').val();
 
             if (event.keyCode === 13) {
-                callLotChecker(lotAlias, 
-                               lotQTY, 
-                               machineCode)
+                callMachineChecker(lotAlias,
+                                   lotQTY, 
+                                   machineCode)
             }
         });
 
@@ -119,8 +132,9 @@
                             return;
                         }
 
-                        var lotAlias = response.details.lotAlias;
                         var lotQTY = response.details.qty;
+                        $('#txtLotQTY').val(lotQTY)
+
 
                         $('#txtLotCode').prop('disabled', true);
                         $('#txtMachineCode').prop('disabled', false);
@@ -136,7 +150,7 @@
 
 
         function callMachineChecker(paramLot,
-                                    paramLotQTY
+                                    paramLotQTY,
                                     paramMachineCode) {
             // showSkeletonLoading('billedListTableForm', 5, 5)
             $.ajax({
@@ -144,7 +158,8 @@
                 url: "/PlasmaMagazine/CheckMachine",
                 data: {
                     MachineCode: paramMachineCode,
-
+                    lotQTY: paramLotQTY,
+                    LotAlias : paramLot,
                 },
                 dataType: "json",
                 success: function (response) {

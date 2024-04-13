@@ -48,6 +48,7 @@ public partial class MesAtecContext : DbContext
             entity.Property(e => e.DateTimeStarted).HasColumnType("datetime");
             entity.Property(e => e.Lot).HasMaxLength(255);
             entity.Property(e => e.LotQty).HasColumnName("LotQTY");
+            entity.Property(e => e.MachineCode).HasMaxLength(255);
             entity.Property(e => e.StatusRemarks).HasMaxLength(255);
         });
 

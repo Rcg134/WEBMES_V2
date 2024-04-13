@@ -11,7 +11,7 @@ public partial class TrnLotMagazine
 
     public int? LotQty { get; set; }
 
-    public int? MachineCode { get; set; }
+    public string? MachineCode { get; set; }
 
     public int? TransactedBy { get; set; }
 

@@ -1,12 +1,12 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using WEBMES_V2.Models.DTO.PlasmaMagazineDTO;
+using WEBMES_V2.Models.DomainModels.PlasmaMagazine;
 using WEBMES_V2.Models.ISQLRepository;
-using WEBMES_V2.Models.StaticModels.Enums;
 using WEBMES_V2.Models.StaticModels.Generic;
 using static WEBMES_V2.Models.StaticModels.Enums.ActionForStageEnum;
 using static WEBMES_V2.Models.StaticModels.Enums.MagazineStageEnum;
 using static WEBMES_V2.Models.StaticModels.Enums.StatusEnum;
+using System.Security.Claims;
 
 namespace WEBMES_V2.Controllers
 {
@@ -81,7 +81,7 @@ namespace WEBMES_V2.Controllers
             var isExist = await _plasmaMagazineRepository
                                              .CheckMachine(stagelot);
 
-            var StatusCode = (int)StatusListEnum.InProcess;
+            var StatusCode = (StatusListEnum)2;
 
 
             //validate if not exist
@@ -95,7 +95,23 @@ namespace WEBMES_V2.Controllers
 
 
             //Insert in TRN_Lot_Magazine
-            //var isLotExist = 
+            var isLotExist = await _plasmaMagazineRepository
+                                            .CheckLotinTRN_Lot_Magazine(stagelot);
+
+            if (!isLotExist)
+            {
+                var insertLotDetails = new TrnLotMagazine
+                {
+                    Lot = stagelot.LotAlias,
+                    LotQty = stagelot.lotQTY,
+                    MachineCode = stagelot.MachineCode,
+                    TransactedBy = Convert.ToInt32(User.FindFirstValue(ClaimTypes.NameIdentifier)),
+                    DateTimeStarted = DateTime.Now,
+                    StatusRemarks = StatusCode.ToString()
+                };
+
+                await _plasmaMagazineRepository.Insert_TRN_Lot_Magazine(insertLotDetails);
+             }
 
 
             return Json(new
@@ -104,28 +120,5 @@ namespace WEBMES_V2.Controllers
                 message = "Machine is exist"
             });
         }
-
-
-        //public async Task<IActionResult> CheckMachine(StageLot stagelot)
-        //{
-
-        //    var isExist = await _plasmaMagazineRepository
-        //                                     .CheckMachine(stagelot);
-
-        //    //validate if not exist
-        //    if (!isExist)
-        //        return Json(new
-        //        {
-        //            status = 0,
-        //            detail = (object)null,
-        //            message = "Machine is not exist Please Contact Pre Assy to add machine"
-        //        });
-
-        //    return Json(new
-        //    {
-        //        status = 1,
-        //        message = "Machine is exist"
-        //    });
-        //}
     }
 }

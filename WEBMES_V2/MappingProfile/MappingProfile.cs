@@ -1,6 +1,8 @@
 ﻿using AutoMapper;
 using WEBMES_V2.Models.DomainModels.Login;
+using WEBMES_V2.Models.DomainModels.PlasmaMagazine;
 using WEBMES_V2.Models.DTO.LoginUserDTO;
+using WEBMES_V2.Models.DTO.PlasmaMagazineDTO;
 
 namespace WEBMES_V2.MappingProfile
 {
@@ -9,6 +11,7 @@ namespace WEBMES_V2.MappingProfile
         public MappingProfile()
         {
             CreateMap<UserDTO, User>().ReverseMap();
+            CreateMap<TrnLotMagazine, TrnLotMagazineDTO>().ReverseMap();
         }
     }
 }

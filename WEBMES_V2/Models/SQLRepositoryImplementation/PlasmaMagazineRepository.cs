@@ -1,8 +1,10 @@
-﻿using Dapper;
+﻿using AutoMapper;
+using Dapper;
 using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
 using System.Data;
 using WEBMES_V2.Models.Context;
+using WEBMES_V2.Models.DomainModels.PlasmaMagazine;
 using WEBMES_V2.Models.DTO.PlasmaMagazineDTO;
 using WEBMES_V2.Models.ISQLRepository;
 using WEBMES_V2.Models.StaticModels.Generic;
@@ -15,12 +17,15 @@ namespace WEBMES_V2.Models.SQLRepositoryImplementation
         #region Construnctor
         private readonly IDapperConnection _dapperConnection;
         private readonly MesAtecContext _mesAtecContext;
+        private readonly IMapper _mapper;
 
         public PlasmaMagazineRepository(IDapperConnection dapperConnection,
-                                        MesAtecContext  mesAtecContext)
+                                        MesAtecContext  mesAtecContext,
+                                        IMapper mapper)
         {
             this._dapperConnection = dapperConnection;
             this._mesAtecContext = mesAtecContext;
+            this._mapper = mapper;
         }
 
 
@@ -51,21 +56,33 @@ namespace WEBMES_V2.Models.SQLRepositoryImplementation
         #endregion
 
         #region Machine Checker
-        public async Task<bool> CheckMachine(StageLot stageLot)
+        public async Task<Boolean> CheckMachine(StageLot stageLot)
         {
             return await _mesAtecContext.PsEquipments
-                                     .AnyAsync(equipment => equipment.EquipmentId == stageLot.MachineCode);
+                                     .AnyAsync(equipment => equipment.EquipmentId == Convert.ToString(stageLot.MachineCode));
         }
         #endregion
 
-        public Task<lotCheckingDTO> CheckLotinTRN_Lot_Magazine(StageLot stageLot)
+        public async Task<Boolean> CheckLotinTRN_Lot_Magazine(StageLot stageLot)
         {
-            throw new NotImplementedException();
+   
+                var trnLotMagazineDetails = await _mesAtecContext.TrnLotMagazines
+                                                     .AsNoTracking()
+                                                     .SingleOrDefaultAsync(lot => lot.Lot == stageLot.LotAlias &&
+                                                                                  lot.MachineCode == stageLot.MachineCode);
+                if (trnLotMagazineDetails != null)
+                    return true;
+
+            return false;
         }
 
-        //public async Task<lotCheckingDTO> CheckLotinTRN_Lot_Magazine(StageLot stageLot)
-        //{
-        //    //return await _mesAtecContext.TrnLotMagazines.SingleOrDefaultAsync();
-        //}
+        public async Task<Boolean> Insert_TRN_Lot_Magazine(TrnLotMagazine insert_TRN_Lot_MagazineDT0)
+        {
+            await _mesAtecContext.TrnLotMagazines.AddAsync(insert_TRN_Lot_MagazineDT0);
+            await _mesAtecContext.SaveChangesAsync();
+            return true;
+        }
+
+   
     }
 }
