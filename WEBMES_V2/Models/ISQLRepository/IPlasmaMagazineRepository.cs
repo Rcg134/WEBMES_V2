@@ -10,6 +10,8 @@ namespace WEBMES_V2.Models.ISQLRepository
         Task<IEnumerable<lotCheckingDTO>> CheckLotStage(StageLot stageLot);
         Task<Boolean> CheckMachine(StageLot stageLot);
         Task<Boolean> CheckLotinTRN_Lot_Magazine(StageLot stageLot);
-        Task<Boolean> Insert_TRN_Lot_Magazine(TrnLotMagazine trnLotMagazine);
+        Task<TrnLotMagazine> Insert_TRN_Lot_Magazine(TrnLotMagazine trnLotMagazine);
+        Task<TrnLotMagazineDTO> Get_InsertedId(StageLot stageLot);
+        Task<IEnumerable<TrnMagazineDetailDTO>> GetMachineList(int id);
     }
 }

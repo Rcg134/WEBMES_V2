@@ -7,6 +7,7 @@ using static WEBMES_V2.Models.StaticModels.Enums.ActionForStageEnum;
 using static WEBMES_V2.Models.StaticModels.Enums.MagazineStageEnum;
 using static WEBMES_V2.Models.StaticModels.Enums.StatusEnum;
 using System.Security.Claims;
+using WEBMES_V2.Models.DTO.PlasmaMagazineDTO;
 
 namespace WEBMES_V2.Controllers
 {
@@ -105,6 +106,9 @@ namespace WEBMES_V2.Controllers
 
             var StatusCode = (StatusListEnum)2;
 
+            var insertedId = new TrnLotMagazine();
+            var insertedIdDTO = new TrnLotMagazineDTO();
+
 
             //validate if not exist
             if (!isExist)
@@ -116,10 +120,11 @@ namespace WEBMES_V2.Controllers
                 });
 
 
-            //Insert in TRN_Lot_Magazine
+            //Check if lot exist in TRN_Lot_Magazine
             var isLotExist = await _plasmaMagazineRepository
                                             .CheckLotinTRN_Lot_Magazine(stagelot);
 
+            //if Lot does not exist then insert into TRN_Lot_Magazine then get Inserted ID
             if (!isLotExist)
             {
                 var insertLotDetails = new TrnLotMagazine
@@ -132,21 +137,31 @@ namespace WEBMES_V2.Controllers
                     StatusRemarks = StatusCode.ToString()
                 };
 
-                await _plasmaMagazineRepository.Insert_TRN_Lot_Magazine(insertLotDetails);
-             }
+                insertedId = await _plasmaMagazineRepository.Insert_TRN_Lot_Magazine(insertLotDetails);
 
+                return Json(new
+                {
+                    status = 1,
+                    id = insertedId,
+                    message = "Machine is exist"
+                });
+            }
+
+            //if lot already existed in TRN_Lot_Magazine get the Id
+            insertedIdDTO = await _plasmaMagazineRepository.Get_InsertedId(stagelot);
 
             return Json(new
             {
                 status = 1,
+                id = insertedIdDTO.Id,
                 message = "Machine is exist"
             });
         }
 
-        public async Task<IActionResult> _MachineTrackInList(StageLot stagelot)
+        public async Task<IActionResult> _MachineTrackInList(int id)
         {
-
-          return PartialView();
+          var machineList = await _plasmaMagazineRepository.GetMachineList(id);
+          return PartialView(machineList);
         }
     }
 }

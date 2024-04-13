@@ -1,6 +1,54 @@
-﻿
-@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
-@{
-}
+﻿@model IEnumerable<WEBMES_V2.Models.DTO.PlasmaMagazineDTO.TrnMagazineDetailDTO>;
+
+<div class="row mb-2">
+    <div class="col-md-12">
+            <label for="txtMagazineCode" class="form-label">Magazine Code</label>
+            <input type="text" class="form-control" id="txtMagazineCode">
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+    
+        <!-- Your table goes here -->
+        <div class="table-responsive">
+            <table class="table table-hover" id="AppliedAndNotAppliedTable">
+                <thead>
+                    <tr>
+
+                        <th class="fixed-cell-width">ID</th>
+                        <th class="fixed-cell-width">Magazine Code</th>
+                        <th class="fixed-cell-width">Magazine Qty</th>
+                        <th class="fixed-cell-width">Status</th>
+                        <th class="fixed-cell-width">Station</th>
+                        <th class="fixed-cell-width">Date Time Scanned</th>
+                        <th class="fixed-cell-width">Scanned By</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @if (Model.Any())
+                    {
+                        foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>@item.Id</td>
+                                <td>@item.MagazineCode</td>
+                                <td>@item.MagazineQty</td>
+                                <td>@item.StatusId</td>
+                                <td>@item.StationId</td>
+                                <td>@item.DateTimeScanned?.ToString("MM/dd/yyyy HH:mm:ss")</td>
+                                <td>@item.ScannedBy</td>
+                            </tr>
+                        }
+                    }
+                    else
+                    {
+                        <tr>
+                            <td colspan="9" class="text-center">No data</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

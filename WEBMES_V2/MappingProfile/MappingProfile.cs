@@ -12,6 +12,8 @@ namespace WEBMES_V2.MappingProfile
         {
             CreateMap<UserDTO, User>().ReverseMap();
             CreateMap<TrnLotMagazine, TrnLotMagazineDTO>().ReverseMap();
+            CreateMap<TrnMagazineDetail, TrnMagazineDetailDTO>().ReverseMap();
+            CreateMap<TrnMagazineDetail, Insert_TrnMagazineDTO>().ReverseMap();
         }
     }
 }

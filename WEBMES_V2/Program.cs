@@ -36,6 +36,7 @@ builder.Services.AddDbContext<CentralAccessContext>(option =>
 });
 
 builder.Services.AddDbContext<MesAtecContext>(option =>
+
 {
     option.UseSqlServer(builder.Configuration.GetConnectionString("MES_ATEC_Connection"));
 });

@@ -20,7 +20,7 @@ namespace WEBMES_V2.Models.SQLRepositoryImplementation
         private readonly IMapper _mapper;
 
         public PlasmaMagazineRepository(IDapperConnection dapperConnection,
-                                        MesAtecContext  mesAtecContext,
+                                        MesAtecContext mesAtecContext,
                                         IMapper mapper)
         {
             this._dapperConnection = dapperConnection;
@@ -39,14 +39,14 @@ namespace WEBMES_V2.Models.SQLRepositoryImplementation
 
             var lotstageDetails = await sqlConnection.QueryAsync<lotCheckingDTO>(
                                                                           PlasmaMagazine.usp_Current_Station_Check,
-                                                                          new 
+                                                                          new
                                                                           {
-                                                                           lotAlias = stageLot.LotAlias
+                                                                              lotAlias = stageLot.LotAlias
                                                                           },
                                                                           commandType: CommandType.StoredProcedure
                                                                           );
 
-            if (lotstageDetails != null )
+            if (lotstageDetails != null)
             {
                 return lotstageDetails;
             }
@@ -54,7 +54,6 @@ namespace WEBMES_V2.Models.SQLRepositoryImplementation
             return null;
         }
         #endregion
-
         #region Machine Checker
         public async Task<Boolean> CheckMachine(StageLot stageLot)
         {
@@ -62,27 +61,46 @@ namespace WEBMES_V2.Models.SQLRepositoryImplementation
                                      .AnyAsync(equipment => equipment.EquipmentId == Convert.ToString(stageLot.MachineCode));
         }
         #endregion
-
         public async Task<Boolean> CheckLotinTRN_Lot_Magazine(StageLot stageLot)
         {
-   
-                var trnLotMagazineDetails = await _mesAtecContext.TrnLotMagazines
-                                                     .AsNoTracking()
-                                                     .SingleOrDefaultAsync(lot => lot.Lot == stageLot.LotAlias &&
-                                                                                  lot.MachineCode == stageLot.MachineCode);
-                if (trnLotMagazineDetails != null)
-                    return true;
+
+            var trnLotMagazineDetails = await _mesAtecContext.TrnLotMagazines
+                                                 .AsNoTracking()
+                                                 .SingleOrDefaultAsync(lot => lot.Lot == stageLot.LotAlias &&
+                                                                              lot.MachineCode == stageLot.MachineCode);
+            if (trnLotMagazineDetails != null)
+                return true;
 
             return false;
         }
 
-        public async Task<Boolean> Insert_TRN_Lot_Magazine(TrnLotMagazine insert_TRN_Lot_MagazineDT0)
+        public async Task<TrnLotMagazine> Insert_TRN_Lot_Magazine(TrnLotMagazine insert_TRN_Lot_MagazineDT0)
         {
             await _mesAtecContext.TrnLotMagazines.AddAsync(insert_TRN_Lot_MagazineDT0);
             await _mesAtecContext.SaveChangesAsync();
-            return true;
+            return insert_TRN_Lot_MagazineDT0;
         }
 
-   
+        public async Task<TrnLotMagazineDTO> Get_InsertedId(StageLot stageLot)
+        {
+            var GetId = await _mesAtecContext
+                                        .TrnLotMagazines
+                                        .FirstOrDefaultAsync(id => id.Lot == stageLot.LotAlias);
+
+            if (GetId != null)
+                return _mapper.Map<TrnLotMagazineDTO>(GetId);
+
+            return null;
+        }
+
+        public async Task<IEnumerable<TrnMagazineDetailDTO>> GetMachineList(int id)
+        {
+
+            return await _mesAtecContext
+                       .TrnMagazineDetails
+                       .Where(magazine => magazine.TrnLotMagazineId == id)
+                       .Select(mag => _mapper.Map<TrnMagazineDetailDTO>(mag))
+                       .ToListAsync();
+        }
     }
 }

@@ -40,7 +40,7 @@
            <div class="row p-3">
                <div class="col-md-4">
                    <label for="txtLotCode" class="form-label">Lot Code</label>
-                   <input type="text" class="form-control" id="txtLotCode">
+                    <input type="text" class="form-control" id="txtLotCode" value="DUMMYLOT.1-A">
                </div>
             <div class="col-md-4">
                 <label for="txtLotQTY" class="form-label">Lot QTY</label>
@@ -48,20 +48,12 @@
             </div>
             <div class="col-md-4">
                 <label for="txtMachineCode" class="form-label">Machine Code</label>
-                <input type="text" class="form-control" id="txtMachineCode">
+                <input type="text" class="form-control" id="txtMachineCode" value="TPTA001">
             </div>
-@*             <div class="col-md-4">
-                <label for="txtMagazineCode" class="form-label">Magazine Code</label>
-                <input type="text" class="form-control" id="txtMagazineCode">
-            </div> *@
            </div>
 
-
-
-
-        <div class="row p-3">
-            <div id="machineTableList"></div>
-        </div>
+          @* Table *@
+            <div class="p-3" id="machineTableList"></div>
 
        </div>
    </div>
@@ -89,7 +81,7 @@
 
         });
 
-
+        //When user hit enter or barcode scanner
         $('#txtLotCode').keypress(function (event) { 
             var selectedStage = $('#LastActionPlanSelect').val();
             var lotAlias = $('#txtLotCode').val();
@@ -101,7 +93,7 @@
         });
 
 
-
+        //When user hit enter or barcode scanner
         $('#txtMachineCode').keypress(function (event) {
             var machineCode = $('#txtMachineCode').val();
             var lotAlias =  $('#txtLotCode').val();
@@ -114,7 +106,7 @@
             }
         });
 
-
+        //Function for checking Lot for specific stage
         function callLotChecker(paramLotAlias,
                                 paramSelectedStage) {
             return new Promise(function (resolve, reject) {
@@ -148,11 +140,10 @@
             });
         }
 
-
+        //Function for checking Maachine if existing in PS_Equipment table
         function callMachineChecker(paramLot,
                                     paramLotQTY,
                                     paramMachineCode) {
-            // showSkeletonLoading('billedListTableForm', 5, 5)
             $.ajax({
                 type: "GET",
                 url: "/PlasmaMagazine/CheckMachine",
@@ -169,8 +160,32 @@
                     }
                     //if machine code is exist
                     $('#txtMachineCode').prop('disabled', true)
-                    alert(response.message)
+                    callMachineList(response.id);
 
+                },
+                error: function (xhr, status, error) {
+                    alert("error")
+                    // callErrorPage('An error occurred while fetching data');
+                }
+            });
+        }
+
+
+        function callMachineList(paramId) {
+            showSkeletonLoading('machineTableList', 10, 20)
+            $.ajax({
+                type: "GET",
+                url: "/PlasmaMagazine/_MachineTrackInList",
+                data: {
+                    id : paramId
+                },
+                dataType: "html",
+                success: function (response) {
+
+                    $("#machineTableList").html('');
+                    $("#machineTableList").html(response);
+                    $('#txtMagazineCode').focus();
+                    
                 },
                 error: function (xhr, status, error) {
                     alert("error")
