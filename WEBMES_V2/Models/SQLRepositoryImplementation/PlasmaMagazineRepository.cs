@@ -1,4 +1,5 @@
-﻿using AutoMapper;
+﻿
+using AutoMapper;
 using Dapper;
 using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
@@ -73,14 +74,12 @@ namespace WEBMES_V2.Models.SQLRepositoryImplementation
 
             return false;
         }
-
         public async Task<TrnLotMagazine> Insert_TRN_Lot_Magazine(TrnLotMagazine insert_TRN_Lot_MagazineDT0)
         {
             await _mesAtecContext.TrnLotMagazines.AddAsync(insert_TRN_Lot_MagazineDT0);
             await _mesAtecContext.SaveChangesAsync();
             return insert_TRN_Lot_MagazineDT0;
         }
-
         public async Task<TrnLotMagazineDTO> Get_InsertedId(StageLot stageLot)
         {
             var GetId = await _mesAtecContext
@@ -92,8 +91,7 @@ namespace WEBMES_V2.Models.SQLRepositoryImplementation
 
             return null;
         }
-
-        public async Task<IEnumerable<TrnMagazineDetailViewDTO>> GetMagazineList(int id)
+        public async Task<IEnumerable<TrnMagazineDetailViewDTO>> GetMagazineList(StageLot stageLot)
         {
 
             await using SqlConnection sqlConnection = _dapperConnection
@@ -103,7 +101,8 @@ namespace WEBMES_V2.Models.SQLRepositoryImplementation
                                                                           PlasmaMagazine.usp_Get_Magazine_List,
                                                                           new
                                                                           {
-                                                                              transactionId = id
+                                                                              transactionId = stageLot.id,
+                                                                              StageCode = stageLot.StageCode
                                                                           },
                                                                           commandType: CommandType.StoredProcedure
                                                                           );
@@ -116,8 +115,6 @@ namespace WEBMES_V2.Models.SQLRepositoryImplementation
             return null;
     
         }
-
-
         public async Task<MsStationMagazineDTO> Get_Magazine_MS_Station_Magazine(StageLot stageLot)
         {
             var magazineDetail = await _mesAtecContext
@@ -131,7 +128,6 @@ namespace WEBMES_V2.Models.SQLRepositoryImplementation
 
             return null;
         }
-
         public async Task<TrnMagazineDetailDTO> Get_Magazine_Trn_MagazineDetail(StageLot stageLot)
         {
             var magazineDetail = await _mesAtecContext
@@ -146,9 +142,20 @@ namespace WEBMES_V2.Models.SQLRepositoryImplementation
 
             return null;
         }
-
         public async Task<InsertValidate> Insert_Magazine_Trn_MagazineDetail_and_History(TrnMagazineDetailDTO trnMagazineDetailDTO)
         {
+            var isExistinTrnMagazineDetails = await _mesAtecContext
+                                                           .TrnMagazineDetails
+                                                           .AnyAsync(isExist => isExist.TrnLotMagazineId == trnMagazineDetailDTO.TrnLotMagazineId &&
+                                                                                isExist.MagazineCode == trnMagazineDetailDTO.MagazineCode);
+
+            if(isExistinTrnMagazineDetails)
+                return new InsertValidate()
+                {
+                    isInserted = false,
+                    message = "Magazine already trackIn in this stage"
+                };
+
             var insertDetails = _mapper.Map<TrnMagazineDetail>(trnMagazineDetailDTO);
             var insertDetailsHistory = _mapper.Map<TrnMagazineDetailsHistory>(trnMagazineDetailDTO);
             _mesAtecContext.TrnMagazineDetails.Add(insertDetails);
@@ -161,6 +168,27 @@ namespace WEBMES_V2.Models.SQLRepositoryImplementation
             };
         }
 
- 
+        public async Task<InsertValidate> TrackOut(StageLot stageLot)
+        {
+            await using SqlConnection sqlConnection = _dapperConnection
+                                                                  .CreateConnection();
+
+            var isSuccess = await sqlConnection.QueryFirstOrDefaultAsync<InsertValidate>(
+                                                                            PlasmaMagazine.usp_Update_Magazine_Status,
+                                                                            new
+                                                                            {
+                                                                                StatusId = stageLot.StatusCode,
+                                                                                TransactionId = stageLot.TRN_Lot_Magzine_Id
+                                                                            },
+                                                                            commandType: CommandType.StoredProcedure
+                                                                            );
+                                                                            
+            if (isSuccess != null)
+            {
+                return isSuccess;
+            }
+
+            return null;
+        }
     }
 }

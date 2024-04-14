@@ -58,7 +58,7 @@ namespace WEBMES_V2.Controllers
                     {
                         status = 2,
                         details = (object)null,
-                        message = $"Lot is yet process in DA Cure Or Not yet Trackin in Plasma"
+                        message = $"Lot is not yet process in DA Cure or not yet TrackIn in Plasma"
                     });
                 }
 
@@ -142,7 +142,7 @@ namespace WEBMES_V2.Controllers
                 return Json(new
                 {
                     status = 1,
-                    id = insertedId,
+                    id = insertedId.Id,
                     statusRemarks = insertedIdDTO.StatusRemarks,
                     message = "Machine is exist"
                 });
@@ -160,9 +160,9 @@ namespace WEBMES_V2.Controllers
             });
         }
 
-        public async Task<IActionResult> _MagazineTrackInList(int id)
+        public async Task<IActionResult> _MagazineTrackInList(StageLot stageLot)
         {
-          var magazineList = await _plasmaMagazineRepository.GetMagazineList(id);
+          var magazineList = await _plasmaMagazineRepository.GetMagazineList(stageLot);
           return PartialView(magazineList);
         }
 
@@ -187,7 +187,7 @@ namespace WEBMES_V2.Controllers
                 MagazineCode = stagelot.MagazineCode,
                 MagazineQty = getMagazineDetail.MagazineQty,
                 StationId = stagelot.StageCode,
-                StatusId = Convert.ToInt32(stagelot.StatusRemarks),
+                StatusId = (int)StatusListEnum.InProcess,
                 CurrentScannedQty = 0,
                 DateTimeScanned = DateTime.Now,
                 ScannedBy = Convert.ToInt32(User.FindFirstValue(ClaimTypes.NameIdentifier)),
@@ -199,6 +199,16 @@ namespace WEBMES_V2.Controllers
 
             return Json(insertDTO);
         }
+
+
+        public async Task<IActionResult> TrackOut(StageLot stagelot)
+        {
+            stagelot.StatusCode = (int)StatusListEnum.LotComplete;
+            var trackOutDetail = await _plasmaMagazineRepository.TrackOut(stagelot);
+
+            return Json(trackOutDetail);
+        }
+        
 
     }
 }

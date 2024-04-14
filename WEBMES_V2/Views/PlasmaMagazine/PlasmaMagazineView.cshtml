@@ -30,8 +30,8 @@
                     <label>Stage</label>
                     <select id="LastActionPlanSelect" class="select2">
                         <option value="6">DA TO DA CURE</option>
-                        <option value="7">PLASMA TO WIREBOND</option>
-                        <option value="7">PLASMA TO MOLD</option>
+                        <option value="306">PLASMA TO WIREBOND</option>
+                        <option value="306">PLASMA TO MOLD</option>
                     </select>
                 </div>
             </div>
@@ -98,11 +98,13 @@
             var machineCode = $('#txtMachineCode').val();
             var lotAlias =  $('#txtLotCode').val();
             var lotQTY = $('#txtLotQTY').val();
+            var selectedStage = $('#LastActionPlanSelect').val();
 
             if (event.keyCode === 13) {
                 callMachineChecker(lotAlias,
                                    lotQTY, 
-                                   machineCode)
+                                   machineCode,
+                                   selectedStage)
             }
         });
 
@@ -134,7 +136,7 @@
               
                     },
                     error: function (xhr, status, error) {
-                        alert("AJAX error: " + error);
+                        alert("Error Please contact IT for the solution")
                     }
                 });
             });
@@ -143,14 +145,15 @@
         //Function for checking Maachine if existing in PS_Equipment table
         function callMachineChecker(paramLot,
                                     paramLotQTY,
-                                    paramMachineCode) {
+                                    paramMachineCode,
+                                    paramSelectedStage) {
             $.ajax({
                 type: "GET",
                 url: "/PlasmaMagazine/CheckMachine",
                 data: {
                     MachineCode: paramMachineCode,
                     lotQTY: paramLotQTY,
-                    LotAlias : paramLot,
+                    LotAlias : paramLot
                 },
                 dataType: "json",
                 success: function (response) {
@@ -161,26 +164,29 @@
                     //if machine code is exist 
                     $('#txtMachineCode').prop('disabled', true)
                     //Callback
-                    callMachineList(response.id,
-                                    response.statusRemarks);
+                    callMagazineList(response.id,
+                                     response.statusRemarks,
+                                     paramSelectedStage);
 
                 },
                 error: function (xhr, status, error) {
-                    alert("error")
+                    alert("Error Please contact IT for the solution")
                     // callErrorPage('An error occurred while fetching data');
                 }
             });
         }
 
-
-        function callMachineList(paramId,
-                                 paramStatusRemarks) {
+        //Call Magazine List
+        function callMagazineList(paramId,
+                                  paramStatusRemarks,
+                                  paramSelectedStage) {
             showSkeletonLoading('magazineTableList', 10, 20)
             $.ajax({
                 type: "GET",
                 url: "/PlasmaMagazine/_MagazineTrackInList",
                 data: {
-                    id : paramId
+                    id : paramId,
+                    StageCode: paramSelectedStage
                 },
                 dataType: "html",
                 success: function (response) {
@@ -188,6 +194,18 @@
                     $("#magazineTableList").html('');
                     $("#magazineTableList").html(response);
                     $('#txtMagazineCode').focus();
+
+                    //Check if Magazine qty exceed in lot
+                    var sum = 0;
+                    var lotTotalQTY = $('#txtLotQTY').val();
+                    var magazineTotalQTY = 0
+                    $('#MagazineListTable tr').each(function () {
+                        magazineTotalQTY = parseInt($(this).find('td:eq(1)').text());
+                        if (!isNaN(magazineTotalQTY)) {
+                            sum += magazineTotalQTY;
+                        }
+                    });
+                    $('#txtQTYMagazineNeeded').text(`${sum} / ${lotTotalQTY}`);
 
 
                     //Callback for magazine functionalty
@@ -198,16 +216,39 @@
 
                         if (event.keyCode === 13) {
                             //Callback to validate the magazine
+
+                            if (sum >= lotTotalQTY) {
+                                alert("Magazine will be exceed")
+                                return;
+                            }
+
                             callValidateAndInsertMagazine(magazineCode, 
                                                           paramId, 
                                                           paramStatusRemarks,
                                                           selectedStage,
-                                                          remarksMagazine);
+                                                          remarksMagazine,
+                                                          paramSelectedStage);
                         }
-                    });      
+                    });
+
+
+
+                    //When track out click
+                    $('#btnTrackOut').click(function () {
+                        //Validate if magazine is qty is enough
+                        if (sum <= lotTotalQTY) {
+                            alert("Magazine is not enough for lot quantity")
+                            return;
+                        }
+
+                        callTrackout(paramId, 
+                                     paramStatusRemarks, 
+                                     paramSelectedStage)
+                    });
+
                 },
                 error: function (xhr, status, error) {
-                    alert("error")
+                    alert("Error Please contact IT for the solution")
                     // callErrorPage('An error occurred while fetching data');
                 }
             });
@@ -218,7 +259,8 @@
                                                paramId,
                                                paramStatusRemarks, 
                                                paramselectedStage,
-                                               paramRemarks) {
+                                               paramRemarks,
+                                               paramSelectedStage) {
             
             $.ajax({
                 type: "GET",
@@ -233,12 +275,53 @@
                 dataType: "json",
                 success: function (response) {
 
-                    alert(response.message)
+                    if (!response.isInserted) 
+                    {
+                        alert(response.message);
+                        return;
+                    }
 
+                    callMagazineList(paramId,
+                                     paramStatusRemarks,
+                                     paramSelectedStage);
+                   
+                    
    
                 },
                 error: function (xhr, status, error) {
-                    alert("error")
+                    alert("Error Please contact IT for the solution")
+                    // callErrorPage('An error occurred while fetching data');
+                }
+            });
+        }
+
+
+
+        function callTrackout(paramId,
+                              paramStatusRemarks,
+                              paramSelectedStage) {
+
+            $.ajax({
+                type: "GET",
+                url: "/PlasmaMagazine/TrackOut",
+                data: {
+                    TRN_Lot_Magzine_Id: paramId,
+                },
+                dataType: "json",
+                success: function (response) {
+
+                    if (!response.isInserted) {
+                        alert(response.message);
+                        return;
+                    }
+
+                    callMagazineList(paramId,
+                                     paramStatusRemarks,
+                                     paramSelectedStage);
+
+                },
+                error: function (xhr, status, error) {
+                    alert("Error Please contact IT for the solution")
                     // callErrorPage('An error occurred while fetching data');
                 }
             });

@@ -1,13 +1,21 @@
 ﻿@model IEnumerable<WEBMES_V2.Models.DTO.PlasmaMagazineDTO.TrnMagazineDetailViewDTO>;
 
 <div class="row mb-2">
-    <div class="col-md-6">
+    <div class="col-md-3">
             <label for="txtMagazineCode" class="form-label">Magazine Code</label>
             <input type="text" class="form-control" id="txtMagazineCode">
     </div>
-    <div class="col-md-6">
+    <div class="col-md-5">
         <label for="txtMagazineRemarks" class="form-label">Remarks</label>
+
         <input type="text" class="form-control" id="txtMagazineRemarks">
+    </div>
+    <div class="col-md-3">
+        <label for="txtQTYMagazineNeeded" class="form-label">Magazine Needed</label>
+        <label id="txtQTYMagazineNeeded" class="form-label d-block "></label>
+    </div>
+    <div class="col-md-1">
+        <button type="button" id="btnTrackOut" class="btn btn-success">Track Out</button>
     </div>
 </div>
 
@@ -16,7 +24,7 @@
     
         <!-- Your table goes here -->
         <div class="table-responsive">
-            <table class="table table-hover" id="AppliedAndNotAppliedTable">
+            <table class="table table-hover" id="MagazineListTable">
                 <thead>
                     <tr>
 
@@ -25,6 +33,7 @@
                         <th class="fixed-cell-width">Status</th>
                         <th class="fixed-cell-width">Station</th>
                         <th class="fixed-cell-width">Date Time Scanned</th>
+                        <th class="fixed-cell-width">Remarks</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -37,14 +46,15 @@
                                 <td>@item.MagazineQty</td>
                                 <td>@item.StatusId</td>
                                 <td>@item.StationId</td>
-                                <td>@item.DateTimeScanned?.ToString("MM/dd/yyyy HH:mm:ss")</td>
+                                <td>@item.DateTimeScanned?.ToString("MM/dd/yyyy")</td>
+                                <td>@item.Remarks</td>
                             </tr>
                         }
                     }
                     else
                     {
                         <tr>
-                            <td colspan="5" class="text-center">No data</td>
+                            <td colspan="6" class="text-center">No data</td>
                         </tr>
                     }
                 </tbody>
