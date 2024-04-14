@@ -104,7 +104,7 @@ namespace WEBMES_V2.Controllers
             var isExist = await _plasmaMagazineRepository
                                              .CheckMachine(stagelot);
 
-            var StatusCode = (StatusListEnum)2;
+            var StatusCode = (int)StatusListEnum.InProcess;
 
             var insertedId = new TrnLotMagazine();
             var insertedIdDTO = new TrnLotMagazineDTO();
@@ -143,6 +143,7 @@ namespace WEBMES_V2.Controllers
                 {
                     status = 1,
                     id = insertedId,
+                    statusRemarks = insertedIdDTO.StatusRemarks,
                     message = "Machine is exist"
                 });
             }
@@ -154,14 +155,50 @@ namespace WEBMES_V2.Controllers
             {
                 status = 1,
                 id = insertedIdDTO.Id,
+                statusRemarks = insertedIdDTO.StatusRemarks,
                 message = "Machine is exist"
             });
         }
 
-        public async Task<IActionResult> _MachineTrackInList(int id)
+        public async Task<IActionResult> _MagazineTrackInList(int id)
         {
-          var machineList = await _plasmaMagazineRepository.GetMachineList(id);
-          return PartialView(machineList);
+          var magazineList = await _plasmaMagazineRepository.GetMagazineList(id);
+          return PartialView(magazineList);
         }
+
+        public async Task<IActionResult> ValidateandInsertMagazine(StageLot stagelot)
+        {
+            var getMagazineDetail = await _plasmaMagazineRepository.Get_Magazine_MS_Station_Magazine(stagelot);
+
+            //if Magazine is not exist in Trn_MagazineDetail table
+            if (getMagazineDetail == null) 
+            {
+                return Json(new
+                {
+                    status = 0,
+                    message = "Magazine is not existing please contact IT do add this magazine"
+                });
+            }
+
+
+            var trnMagazineDTO = new TrnMagazineDetailDTO
+            {
+                TrnLotMagazineId = stagelot.id,
+                MagazineCode = stagelot.MagazineCode,
+                MagazineQty = getMagazineDetail.MagazineQty,
+                StationId = stagelot.StageCode,
+                StatusId = Convert.ToInt32(stagelot.StatusRemarks),
+                CurrentScannedQty = 0,
+                DateTimeScanned = DateTime.Now,
+                ScannedBy = Convert.ToInt32(User.FindFirstValue(ClaimTypes.NameIdentifier)),
+                Remarks = stagelot.Remarks
+            };
+
+            var insertDTO = await _plasmaMagazineRepository
+                                             .Insert_Magazine_Trn_MagazineDetail_and_History(trnMagazineDTO);
+
+            return Json(insertDTO);
+        }
+
     }
 }

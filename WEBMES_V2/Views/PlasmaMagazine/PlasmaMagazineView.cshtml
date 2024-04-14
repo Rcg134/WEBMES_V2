@@ -53,7 +53,7 @@
            </div>
 
           @* Table *@
-            <div class="p-3" id="machineTableList"></div>
+            <div class="p-3" id="magazineTableList"></div>
 
        </div>
    </div>
@@ -158,9 +158,11 @@
                         alert(response.message)
                         return;
                     }
-                    //if machine code is exist
+                    //if machine code is exist 
                     $('#txtMachineCode').prop('disabled', true)
-                    callMachineList(response.id);
+                    //Callback
+                    callMachineList(response.id,
+                                    response.statusRemarks);
 
                 },
                 error: function (xhr, status, error) {
@@ -171,21 +173,38 @@
         }
 
 
-        function callMachineList(paramId) {
-            showSkeletonLoading('machineTableList', 10, 20)
+        function callMachineList(paramId,
+                                 paramStatusRemarks) {
+            showSkeletonLoading('magazineTableList', 10, 20)
             $.ajax({
                 type: "GET",
-                url: "/PlasmaMagazine/_MachineTrackInList",
+                url: "/PlasmaMagazine/_MagazineTrackInList",
                 data: {
                     id : paramId
                 },
                 dataType: "html",
                 success: function (response) {
 
-                    $("#machineTableList").html('');
-                    $("#machineTableList").html(response);
+                    $("#magazineTableList").html('');
+                    $("#magazineTableList").html(response);
                     $('#txtMagazineCode').focus();
-                    
+
+
+                    //Callback for magazine functionalty
+                    $('#txtMagazineCode').keypress(function (event) {
+                        var magazineCode = $('#txtMagazineCode').val();
+                        var selectedStage = $('#LastActionPlanSelect').val();
+                        var remarksMagazine = $('#txtMagazineRemarks').val();
+
+                        if (event.keyCode === 13) {
+                            //Callback to validate the magazine
+                            callValidateAndInsertMagazine(magazineCode, 
+                                                          paramId, 
+                                                          paramStatusRemarks,
+                                                          selectedStage,
+                                                          remarksMagazine);
+                        }
+                    });      
                 },
                 error: function (xhr, status, error) {
                     alert("error")
@@ -193,6 +212,40 @@
                 }
             });
         }
+
+
+        function callValidateAndInsertMagazine(magazine, 
+                                               paramId,
+                                               paramStatusRemarks, 
+                                               paramselectedStage,
+                                               paramRemarks) {
+            
+            $.ajax({
+                type: "GET",
+                url: "/PlasmaMagazine/ValidateandInsertMagazine",
+                data: {
+                    id: paramId,
+                    MagazineCode: magazine,
+                    StatusRemarks: paramStatusRemarks,
+                    StageCode: paramselectedStage,
+                    Remarks: paramRemarks
+                },
+                dataType: "json",
+                success: function (response) {
+
+                    alert(response.message)
+
+   
+                },
+                error: function (xhr, status, error) {
+                    alert("error")
+                    // callErrorPage('An error occurred while fetching data');
+                }
+            });
+        }
+
+
+
 
     </script>
 

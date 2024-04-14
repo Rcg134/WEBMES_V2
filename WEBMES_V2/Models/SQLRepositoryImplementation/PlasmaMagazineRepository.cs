@@ -93,14 +93,74 @@ namespace WEBMES_V2.Models.SQLRepositoryImplementation
             return null;
         }
 
-        public async Task<IEnumerable<TrnMagazineDetailDTO>> GetMachineList(int id)
+        public async Task<IEnumerable<TrnMagazineDetailViewDTO>> GetMagazineList(int id)
         {
 
-            return await _mesAtecContext
-                       .TrnMagazineDetails
-                       .Where(magazine => magazine.TrnLotMagazineId == id)
-                       .Select(mag => _mapper.Map<TrnMagazineDetailDTO>(mag))
-                       .ToListAsync();
+            await using SqlConnection sqlConnection = _dapperConnection
+                                                                         .CreateConnection();
+
+            var magazineDetails = await sqlConnection.QueryAsync<TrnMagazineDetailViewDTO>(
+                                                                          PlasmaMagazine.usp_Get_Magazine_List,
+                                                                          new
+                                                                          {
+                                                                              transactionId = id
+                                                                          },
+                                                                          commandType: CommandType.StoredProcedure
+                                                                          );
+
+            if (magazineDetails != null)
+            {
+                return magazineDetails;
+            }
+
+            return null;
+    
         }
+
+
+        public async Task<MsStationMagazineDTO> Get_Magazine_MS_Station_Magazine(StageLot stageLot)
+        {
+            var magazineDetail = await _mesAtecContext
+                                           .MsStationMagazines
+                                           .FirstOrDefaultAsync(mag => mag.MagazineCode == stageLot.MagazineCode);
+
+            if (magazineDetail != null)
+            {
+                return _mapper.Map<MsStationMagazineDTO>(magazineDetail);
+            }
+
+            return null;
+        }
+
+        public async Task<TrnMagazineDetailDTO> Get_Magazine_Trn_MagazineDetail(StageLot stageLot)
+        {
+            var magazineDetail = await _mesAtecContext
+                                       .TrnMagazineDetails
+                                       .FirstOrDefaultAsync(mag => mag.TrnLotMagazineId == stageLot.TRN_Lot_Magzine_Id &&
+                                                                   mag.MagazineCode == stageLot.MagazineCode);
+
+            if (magazineDetail != null)
+            {
+                return _mapper.Map<TrnMagazineDetailDTO>(magazineDetail);
+            }
+
+            return null;
+        }
+
+        public async Task<InsertValidate> Insert_Magazine_Trn_MagazineDetail_and_History(TrnMagazineDetailDTO trnMagazineDetailDTO)
+        {
+            var insertDetails = _mapper.Map<TrnMagazineDetail>(trnMagazineDetailDTO);
+            var insertDetailsHistory = _mapper.Map<TrnMagazineDetailsHistory>(trnMagazineDetailDTO);
+            _mesAtecContext.TrnMagazineDetails.Add(insertDetails);
+            _mesAtecContext.TrnMagazineDetailsHistories.Add(insertDetailsHistory);
+            await _mesAtecContext.SaveChangesAsync();
+            return new InsertValidate()
+            {
+                isInserted = true,
+                message =  ""
+            };
+        }
+
+ 
     }
 }

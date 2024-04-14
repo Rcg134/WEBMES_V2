@@ -9,7 +9,7 @@ public partial class TrnMagazineDetail
 
     public int? TrnLotMagazineId { get; set; }
 
-    public int? MagazineCode { get; set; }
+    public string? MagazineCode { get; set; }
 
     public int? MagazineQty { get; set; }
 
@@ -22,4 +22,6 @@ public partial class TrnMagazineDetail
     public DateTime? DateTimeScanned { get; set; }
 
     public int? ScannedBy { get; set; }
+
+    public string? Remarks { get; set; }
 }
