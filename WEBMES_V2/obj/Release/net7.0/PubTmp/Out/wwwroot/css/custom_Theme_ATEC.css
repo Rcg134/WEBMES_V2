@@ -1,0 +1,127 @@
+﻿/*for text border*/
+.form-control:focus {
+    border-color: #fd6f01;
+}
+
+
+.select2 option:hover {
+    background-color: red;
+}
+
+/*override*/
+.select2-container--default .select2-results__option--highlighted[aria-selected], .select2-container--default .select2-results__option--highlighted[aria-selected]:hover {
+    background-color: #fd6f01;
+    color: #fff;
+}
+
+
+.text {
+    color: white
+}
+
+    .text:hover {
+        color: whitesmoke
+    }
+
+.table-hover tbody tr:hover {
+    color: #fff;
+    background-color: #fd6f01
+}
+
+
+
+.alert{
+    border-color:transparent;
+}
+
+.alert-danger {
+    background-color: palevioletred;
+}
+
+/*Custom Button primary*/
+.ATEC-button-primary {
+    color: white;
+    background-color: #FD6F01;
+    width: 100%;
+    border: none;
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    border-radius: 50px;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 17px;
+    transition: box-shadow .5s ease;
+    z-index: 0;
+}
+
+
+.ATEC-button-primary:hover {
+    background-color: #FD6F01;
+    box-shadow: 0px 4px 5px black;
+}
+
+
+.medicard-button-primary:active {
+    transform: scale(0.95);
+}
+
+/*Custom Button warning*/
+.ATEC-button-warning {
+    background-color: white;
+    color: #981D97;
+    border-color: #981D97;
+    border-style: solid;
+    border-width: 1px;
+    padding: 6px;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 1s ease, color 1s ease;
+}
+
+    .medicard-button-warning:hover {
+        background-color: #981D97;
+        color: white;
+    }
+
+    .medicard-button-warning:active {
+        transform: scale(0.95);
+    }
+
+
+
+/*Custom Button Blue*/
+.ATEC-button-blue {
+    background-color: white;
+    color: #0026ff;
+    border-color: #0026ff;
+    border-style: solid;
+    border-width: 1px;
+    padding: 6px;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 1s ease, color 1s ease;
+}
+
+    .medicard-button-blue:hover {
+        background-color: #0026ff;
+        color: white;
+    }
+
+    .medicard-button-blue:active {
+        transform: scale(0.95);
+    }
+
+
+
+.ATEC-theme-color {
+    background-color: #FD6F01;
+}
+
+
+.active {
+    background-color: #981D97;
+    color: #ffff;
+    font-weight:bold;
+}

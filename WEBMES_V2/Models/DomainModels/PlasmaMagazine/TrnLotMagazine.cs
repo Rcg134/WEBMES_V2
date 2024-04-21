@@ -15,7 +15,9 @@ public partial class TrnLotMagazine
 
     public int? TransactedBy { get; set; }
 
-    public DateTime? DateTimeStarted { get; set; }
+    public DateTime? DateTimeTrackIn { get; set; }
+
+    public DateTime? DateTimeTrackOut { get; set; }
 
     public string? StatusRemarks { get; set; }
 }

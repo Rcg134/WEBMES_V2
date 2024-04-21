@@ -6,6 +6,10 @@
 
         public string? MagazineCode { get; set; }
 
+        public int? PackageId { get; set; }
+
+        public string? LeadCount { get; set; }
+
         public int? MagazineQty { get; set; }
 
         public int? LifeSpanDay { get; set; }

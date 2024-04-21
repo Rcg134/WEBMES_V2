@@ -6,9 +6,11 @@
 
         public int? TrnLotMagazineId { get; set; }
 
-        public int? MagazineCode { get; set; }
+        public string? MagazineCode { get; set; }
 
         public int? MagazineQty { get; set; }
+
+        public int? PackageId { get; set; }
 
         public int? StatusId { get; set; }
 
@@ -16,8 +18,12 @@
 
         public int? CurrentScannedQty { get; set; }
 
-        public DateTime? DateTimeScanned { get; set; }
+        public DateTime? DateTimeTrackIn { get; set; }
+
+        public DateTime? DateTimeTrackOut { get; set; }
 
         public int? ScannedBy { get; set; }
+
+        public string? Remarks { get; set; }
     }
 }

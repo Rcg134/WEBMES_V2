@@ -1,0 +1,65 @@
+﻿body {
+    background: #fff;
+    height: 100vh;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.card {
+    background: linear-gradient(10deg, #BB1900, #FD6F01, #FFB000);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 15px;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+
+.card-header {
+    background: none;
+    border-bottom: none;
+}
+
+.form-group label {
+    color: #333;
+}
+
+.form-control {
+    background: rgba(255, 255, 255, 0.7);
+    border: none;
+    border-radius: 8px;
+    color: #333;
+}
+
+.container {
+    width: 1000px;
+}
+
+.card-logo {
+    border-radius: 50%;
+    max-width: 80px;
+    max-height: 80px;
+    margin-bottom: 10px;
+    margin-top: 10px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.login-form {
+    display: block;
+    animation: slideInRight 0.5s forwards;
+}
+
+@keyframes slideInRight {
+    0% {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+
+    100% {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}

@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using WEBMES_V2.Models.DomainModels.PlasmaMagazine;
 
+
 namespace WEBMES_V2.Models.Context;
 
 public partial class MesAtecContext : DbContext
@@ -39,17 +40,26 @@ public partial class MesAtecContext : DbContext
         {
             entity.ToTable("MS_Station_Magazine");
 
+            entity.Property(e => e.CustomerId).HasColumnName("CustomerID");
+            entity.Property(e => e.LeadCount).HasMaxLength(255);
             entity.Property(e => e.MagazineCode).HasMaxLength(255);
             entity.Property(e => e.MagazineQty).HasColumnName("MagazineQTY");
+            entity.Property(e => e.PackageId)
+                .HasMaxLength(255)
+                .HasColumnName("PackageID");
             entity.Property(e => e.TimeCreated).HasColumnType("datetime");
         });
-
 
         modelBuilder.Entity<TrnLotMagazine>(entity =>
         {
             entity.ToTable("TRN_Lot_Magazine");
 
-            entity.Property(e => e.DateTimeStarted).HasColumnType("datetime");
+            entity.Property(e => e.DateTimeTrackIn)
+                .HasColumnType("datetime")
+                .HasColumnName("DateTime_TrackIn");
+            entity.Property(e => e.DateTimeTrackOut)
+                .HasColumnType("datetime")
+                .HasColumnName("DateTime_TrackOut");
             entity.Property(e => e.Lot).HasMaxLength(255);
             entity.Property(e => e.LotQty).HasColumnName("LotQTY");
             entity.Property(e => e.MachineCode).HasMaxLength(255);
@@ -61,19 +71,12 @@ public partial class MesAtecContext : DbContext
             entity.ToTable("TRN_MagazineDetails");
 
             entity.Property(e => e.CurrentScannedQty).HasColumnName("Current_Scanned_QTY");
-            entity.Property(e => e.DateTimeScanned).HasColumnType("datetime");
-            entity.Property(e => e.MagazineCode).HasMaxLength(255);
-            entity.Property(e => e.MagazineQty).HasColumnName("MagazineQTY");
-            entity.Property(e => e.ScannedBy).HasColumnName("Scanned_By");
-            entity.Property(e => e.TrnLotMagazineId).HasColumnName("TRN_Lot_Magazine_Id");
-        });
-
-        modelBuilder.Entity<TrnMagazineDetailsHistory>(entity =>
-        {
-            entity.ToTable("Trn_MagazineDetails_History");
-
-            entity.Property(e => e.CurrentScannedQty).HasColumnName("Current_Scanned_QTY");
-            entity.Property(e => e.DateTimeScanned).HasColumnType("datetime");
+            entity.Property(e => e.DateTimeTrackIn)
+                .HasColumnType("datetime")
+                .HasColumnName("DateTime_TrackIn");
+            entity.Property(e => e.DateTimeTrackOut)
+                .HasColumnType("datetime")
+                .HasColumnName("DateTime_TrackOut");
             entity.Property(e => e.MagazineCode).HasMaxLength(255);
             entity.Property(e => e.MagazineQty).HasColumnName("MagazineQTY");
             entity.Property(e => e.ScannedBy).HasColumnName("Scanned_By");

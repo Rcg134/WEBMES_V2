@@ -8,6 +8,8 @@ using static WEBMES_V2.Models.StaticModels.Enums.MagazineStageEnum;
 using static WEBMES_V2.Models.StaticModels.Enums.StatusEnum;
 using System.Security.Claims;
 using WEBMES_V2.Models.DTO.PlasmaMagazineDTO;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
+using Microsoft.AspNetCore.Http;
 
 namespace WEBMES_V2.Controllers
 {
@@ -15,10 +17,13 @@ namespace WEBMES_V2.Controllers
     public class PlasmaMagazineController : Controller
     {
         private readonly IPlasmaMagazineRepository _plasmaMagazineRepository;
+        private readonly IXMLConverter _xMLConverter;
 
-        public PlasmaMagazineController(IPlasmaMagazineRepository plasmaMagazineRepository)
+        public PlasmaMagazineController(IPlasmaMagazineRepository plasmaMagazineRepository,
+                                        IXMLConverter xMLConverter)
         {
             this._plasmaMagazineRepository = plasmaMagazineRepository;
+            this._xMLConverter = xMLConverter;
         }
 
         public IActionResult PlasmaMagazineView()
@@ -133,7 +138,7 @@ namespace WEBMES_V2.Controllers
                     LotQty = stagelot.lotQTY,
                     MachineCode = stagelot.MachineCode,
                     TransactedBy = Convert.ToInt32(User.FindFirstValue(ClaimTypes.NameIdentifier)),
-                    DateTimeStarted = DateTime.Now,
+                    DateTimeTrackIn = DateTime.Now,
                     StatusRemarks = StatusCode.ToString()
                 };
 
@@ -189,7 +194,7 @@ namespace WEBMES_V2.Controllers
                 StationId = stagelot.StageCode,
                 StatusId = (int)StatusListEnum.InProcess,
                 CurrentScannedQty = 0,
-                DateTimeScanned = DateTime.Now,
+                DateTimeTrackIn = DateTime.Now,
                 ScannedBy = Convert.ToInt32(User.FindFirstValue(ClaimTypes.NameIdentifier)),
                 Remarks = stagelot.Remarks
             };
@@ -200,7 +205,6 @@ namespace WEBMES_V2.Controllers
             return Json(insertDTO);
         }
 
-
         public async Task<IActionResult> TrackOut(StageLot stagelot)
         {
             stagelot.StatusCode = (int)StatusListEnum.LotComplete;
@@ -208,7 +212,44 @@ namespace WEBMES_V2.Controllers
 
             return Json(trackOutDetail);
         }
-        
+
+
+        public async Task<IActionResult> MagazineMaintenance(StageLot stagelot,
+                                                             bool isExcelEmpty = true,
+                                                             string Filename = "")
+        {
+            if (isExcelEmpty == false)
+            {
+                ModelState.AddModelError(string.Empty, "Import Excel");
+               
+            }
+
+            if (!string.IsNullOrEmpty(Filename))
+            {
+                ViewBag.Success = $"{Filename} has been Succesfully Inserted";
+            }
+           
+            //var magazineList = await _plasmaMagazineRepository.GetMagazineList(stagelot);
+            return View();
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> MagazineExcelInsert(IFormFile formFile)
+        {
+            if (formFile == null)
+            {
+                ModelState.AddModelError(string.Empty, "Import Excel");
+                return RedirectToAction("MagazineMaintenance" , new { isExcelEmpty  = false });
+            }
+
+            var toList = _xMLConverter.ExcelFileToList(formFile);
+            var toXML = _xMLConverter.ConvertToXml(toList);
+            var insertXML = _plasmaMagazineRepository.Insert_XML_MS_Station_Magazine(toXML);
+           
+            return RedirectToAction("MagazineMaintenance", new {
+                                                                  isExcelEmpty = true,
+                                                                  Filename = formFile.FileName});
+        }
 
     }
 }

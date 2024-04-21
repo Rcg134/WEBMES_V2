@@ -1,4 +1,5 @@
 ﻿using Microsoft.Data.SqlClient;
+using System.Xml.Linq;
 using WEBMES_V2.Models.DomainModels.PlasmaMagazine;
 using WEBMES_V2.Models.DTO.PlasmaMagazineDTO;
 using WEBMES_V2.Models.StaticModels.Generic;
@@ -17,5 +18,7 @@ namespace WEBMES_V2.Models.ISQLRepository
         Task<TrnMagazineDetailDTO> Get_Magazine_Trn_MagazineDetail(StageLot stageLot);
         Task<InsertValidate> Insert_Magazine_Trn_MagazineDetail_and_History(TrnMagazineDetailDTO trnMagazineDetailDTO);
         Task<InsertValidate> TrackOut(StageLot stageLot);
+        Task<Boolean> Insert_XML_MS_Station_Magazine(XDocument MagazineXML);
+
     }
 }

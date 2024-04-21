@@ -1,0 +1,61 @@
+﻿
+@{
+    var successMsg = ViewBag.Success;
+}
+
+<div class="card ATEC-theme-color mb-3">
+    <div class="card-header text-white">
+        <H3>MAGAZINE MAINTENANCE</H3>
+    </div>
+</div>
+
+
+
+<div class="card pb-3">
+    <div class="card-body">
+        @* Validation *@
+        @if (!ViewData.ModelState.IsValid)
+        {
+            <div class="mb-3">
+                <div class="alert alert-danger">
+                    <ul>
+                        @foreach (var modelError in ViewData.ModelState.Values.SelectMany(v => v.Errors))
+                        {
+                            <li>@modelError.ErrorMessage</li>
+                        }
+                    </ul>
+                </div>
+            </div>
+        }
+
+        @if (!string.IsNullOrEmpty(successMsg))
+        {
+            <div class="mb-3">
+                <div class="alert alert-success">
+                    <p>@successMsg</p>
+                </div>
+            </div>
+        }
+
+  
+
+        @using (Html.BeginForm("MagazineExcelInsert", "PlasmaMagazine", FormMethod.Post, new { enctype = "multipart/form-data" }))
+        {
+            <div class="row p-3">
+              <div class="col-md-6">
+                  <label for="formFile" class="form-label">Import Magazine Excel File (.xlsx only)</label>
+                    <input class="form-control" type="file" id="formFile" name="formFile" accept=".xlsx">
+                </div>
+            </div>
+            <div class="row p-3">
+              <div class="col-md-6">
+                  <button type="submit" class="btn btn-primary">Upload</button>
+              </div>
+            </div>
+        }
+
+        @* Table *@
+        <div class="p-3" id="magazineTableList"></div>
+
+    </div>
+</div>

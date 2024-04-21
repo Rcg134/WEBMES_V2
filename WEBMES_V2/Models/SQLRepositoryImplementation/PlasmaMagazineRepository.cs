@@ -4,6 +4,7 @@ using Dapper;
 using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
 using System.Data;
+using System.Xml.Linq;
 using WEBMES_V2.Models.Context;
 using WEBMES_V2.Models.DomainModels.PlasmaMagazine;
 using WEBMES_V2.Models.DTO.PlasmaMagazineDTO;
@@ -167,7 +168,6 @@ namespace WEBMES_V2.Models.SQLRepositoryImplementation
                 message =  ""
             };
         }
-
         public async Task<InsertValidate> TrackOut(StageLot stageLot)
         {
             await using SqlConnection sqlConnection = _dapperConnection
@@ -189,6 +189,29 @@ namespace WEBMES_V2.Models.SQLRepositoryImplementation
             }
 
             return null;
+        }
+
+        public async Task<bool> Insert_XML_MS_Station_Magazine(XDocument MagazineXML)
+        {
+            await using SqlConnection sqlConnection = _dapperConnection
+                                                    .CreateConnection();
+
+            var lotstageDetails = await sqlConnection.QueryAsync<lotCheckingDTO>(
+                                                                          PlasmaMagazine.usp_MS_Station_Magazine_XML_Insert,
+                                                                          new
+                                                                          {
+                                                                              XMLdoc = MagazineXML
+                                                                          },
+                                                                          commandType: CommandType.StoredProcedure
+                                                                          );
+
+            if (lotstageDetails != null)
+            {
+                return true;
+            }
+
+            return false;
+
         }
     }
 }

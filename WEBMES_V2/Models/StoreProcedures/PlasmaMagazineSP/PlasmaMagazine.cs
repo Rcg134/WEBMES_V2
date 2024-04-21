@@ -7,5 +7,11 @@
         public static string usp_Get_Magazine_List = "usp_Get_Magazine_List";
 
         public static string usp_Update_Magazine_Status = "usp_Update_Magazine_Status";
+
+        public static string usp_MS_Customer_Select = "usp_MS_Customer_Select";
+
+        public static string usp_MS_Station_Magazine_XML_Insert = "usp_MS_Station_Magazine_XML_Insert";
+
+
     }
 }

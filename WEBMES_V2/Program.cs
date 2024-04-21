@@ -14,6 +14,8 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddScoped<ILoginRepoConnection, SQLLoginRepository>();
 builder.Services.AddSingleton<IDapperConnection, DapperConnectionRepository>();
 builder.Services.AddScoped<IPlasmaMagazineRepository, PlasmaMagazineRepository>();
+builder.Services.AddScoped<IXMLConverter, XMLConverter>();
+
 //------------------------------------------------------
 
 

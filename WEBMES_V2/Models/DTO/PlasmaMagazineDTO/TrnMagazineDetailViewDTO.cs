@@ -10,11 +10,15 @@
 
         public int? MagazineQty { get; set; }
 
-        public string? StatusId { get; set; }
+        public int? PackageId { get; set; }
 
-        public string? StationId { get; set; }
+        public int? StatusId { get; set; }
 
-        public int? CurrentScannedQty { get; set; }
+        public int? StationId { get; set; }
+
+        public int? DateTimeTrackIn { get; set; }
+
+        public int? DateTimeTrackOut { get; set; }
 
         public DateTime? DateTimeScanned { get; set; }
 
