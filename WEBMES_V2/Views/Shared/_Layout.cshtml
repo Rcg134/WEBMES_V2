@@ -97,29 +97,26 @@
 
                                 <ul class="nav nav-treeview">
 
+                                <li class="nav-item sub-item">
+                                <a class="nav-link" asp-area="" asp-controller="PlasmaMagazine" asp-action="PlasmaMagazineView">
+                                        <i class="fas fa-circle nav-icon"></i>
+                                        <p>Plasma</p>
+                                    </a>
+                                </li>
 
-
-                                    <li class="nav-item sub-item">
-                                    <a class="nav-link" asp-area="" asp-controller="PlasmaMagazine" asp-action="PlasmaMagazineView">
-                                            <i class="fas fa-circle nav-icon"></i>
-                                            <p>Plasma</p>
-                                        </a>
-                                    </li>
+                                <li class="nav-item sub-item">
+                                    <a class="nav-link" asp-area="" asp-controller="PlasmaMagazine" asp-action="MagazineHistory">
+                                        <i class="fas fa-circle nav-icon"></i>
+                                        <p>History</p>
+                                    </a>
+                                </li>
 
                                 <li class="nav-item sub-item">
                                     <a class="nav-link" asp-area="" asp-controller="PlasmaMagazine" asp-action="MagazineMaintenance">
                                         <i class="fas fa-circle nav-icon"></i>
-                                        <p>Maintenance For Magazine</p>
+                                        <p>Maintenance</p>
                                     </a>
                                 </li>
-                                    @*
-                                    <li class="nav-item">
-                                    <a class="nav-link" asp-area="" asp-controller="Maintenance" asp-action="PlanOwnerList">
-                                    <i class="fas fa-circle nav-icon"></i>
-                                    <p>Action Plan Owner</p>
-                                    </a>
-                                    </li> *@
-
                                 </ul>
                         </li>
 
@@ -243,7 +240,37 @@
     @await RenderSectionAsync("Scripts", required: false)
 
 
+    <script>
+        //Show current click item
+        $(document).ready(function () {
+            var neededClass = localStorage.getItem('needClass');
+            var neededId = localStorage.getItem('neededId');
+            var activeClass = localStorage.getItem('link');
 
+            //Set class for click Nav-item
+            if (neededClass !== null) {
+                $(`#${neededId}`).addClass(neededClass)
+            }
+            //Set active class click for sub-item
+            if (activeClass !== null) {
+                $(`a[href="${activeClass}"]`).parent('li').addClass('active');
+            }
+
+            //Set in local storage
+            $('.nav-item').on('click', function () {
+                var Id = $(this).attr('id');
+                localStorage.setItem('needClass', 'menu-is-opening menu-open');
+                localStorage.setItem('neededId', Id);
+            });
+
+            $('.sub-item').on('click', function () {
+                var href = $(this).find('a').attr('href');
+                localStorage.setItem('link', href);
+
+            });
+        });
+
+    </script>
 
 </body>
 </html>

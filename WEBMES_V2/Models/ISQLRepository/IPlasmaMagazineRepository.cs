@@ -20,6 +20,7 @@ namespace WEBMES_V2.Models.ISQLRepository
         Task<InsertValidate> Insert_Magazine_Trn_MagazineDetail_and_History(TrnMagazineDetailDTO trnMagazineDetailDTO);
         Task<InsertValidate> TrackOut(StageLot stageLot);
         Task<Boolean> Insert_XML_MS_Station_Magazine(XDocument MagazineXML);
+        Task<IEnumerable<MagazineHistoryDTO>> Get_Magazine_History(SearchData searchData);
 
     }
 }

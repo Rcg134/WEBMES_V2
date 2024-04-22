@@ -28,4 +28,6 @@ public partial class TrnMagazineDetailsHistory
     public int? ScannedBy { get; set; }
 
     public string? Remarks { get; set; }
+
+    public bool? ValidationErrorCount { get; set; }
 }

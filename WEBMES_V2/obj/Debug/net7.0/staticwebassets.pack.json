@@ -5,6 +5,10 @@
       "PackagePath": "staticwebassets\\WEBMES_V2.bundle.scp.css"
     },
     {
+      "Id": "C:\\Users\\russe\\Documents\\GitHub\\WEBMES_V2\\WEBMES_V2\\wwwroot\\DownloadableFiles\\Magazine_Template.xlsx",
+      "PackagePath": "staticwebassets\\DownloadableFiles\\Magazine_Template.xlsx"
+    },
+    {
       "Id": "C:\\Users\\russe\\Documents\\GitHub\\WEBMES_V2\\WEBMES_V2\\wwwroot\\css\\adminlte_ATEC_Theme.css",
       "PackagePath": "staticwebassets\\css\\adminlte_ATEC_Theme.css"
     },

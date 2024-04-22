@@ -1,4 +1,8 @@
 ﻿
+@{
+    ViewBag.Title = "PLASMA";
+}
+
 <div class="card ATEC-theme-color mb-3">
        <div class="card-header text-white">
                <H3>PLASMA</H3>
@@ -35,6 +39,7 @@
                     </select>
                 </div>
             </div>
+ 
          </div>
 
            <div class="row p-3">
@@ -59,6 +64,13 @@
 
           @* Table *@
             <div class="p-3" id="magazineTableList"></div>
+
+
+        <div class="row p-3 d-none" id="divCancel">
+           <div class="col-md-3">
+                <a asp-controller="PlasmaMagazine" class="btn btn-warning asp-action="PlasmaMagazineView">Cancel</a>
+           </div>
+        </div>
 
        </div>
    </div>
@@ -145,7 +157,8 @@
                         $('#txtLotCode').prop('disabled', true);
                         $('#txtMachineCode').prop('disabled', false);
                         $('#txtMachineCode').focus();
-              
+
+                        $('#divCancel').removeClass('d-none')
                     },
                     error: function (xhr, status, error) {
                         alert("Error Please contact IT for the solution")
@@ -286,7 +299,8 @@
                     $('#ChoosePackageModal').modal('show');
                     //Initialization Select
                     $('.select2').select2({
-                        width: '100%'
+                        width: '100%',
+                        dropdownParent: $('#ChoosePackageModal')
                     });
 
 
@@ -346,7 +360,7 @@
                         alert(response.message);
                         return;
                     }
-
+                    $('#ChoosePackageModal').modal('hide');
                     callMagazineList(paramId,
                                      paramStatusRemarks,
                                      paramSelectedStage);
@@ -378,6 +392,9 @@
 
                     if (!response.isInserted) {
                         alert(response.message);
+                        callMagazineList(paramId,
+                            paramStatusRemarks,
+                            paramSelectedStage);
                         return;
                     }
 

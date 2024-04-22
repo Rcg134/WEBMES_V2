@@ -1,7 +1,56 @@
 {
   "Version": 1,
   "WorkspaceRootPath": "C:\\Users\\russe\\Documents\\GitHub\\WEBMES_V2\\",
-  "Documents": [],
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{53F2C0E6-7B97-409C-BB71-0F774320914E}|WEBMES_V2\\WEBMES_V2.csproj|c:\\users\\russe\\documents\\github\\webmes_v2\\webmes_v2\\wwwroot\\css\\custom_theme_atec.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
+      "RelativeMoniker": "D:0:0:{53F2C0E6-7B97-409C-BB71-0F774320914E}|WEBMES_V2\\WEBMES_V2.csproj|solutionrelative:webmes_v2\\wwwroot\\css\\custom_theme_atec.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{53F2C0E6-7B97-409C-BB71-0F774320914E}|WEBMES_V2\\WEBMES_V2.csproj|c:\\users\\russe\\documents\\github\\webmes_v2\\webmes_v2\\wwwroot\\css\\custom.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
+      "RelativeMoniker": "D:0:0:{53F2C0E6-7B97-409C-BB71-0F774320914E}|WEBMES_V2\\WEBMES_V2.csproj|solutionrelative:webmes_v2\\wwwroot\\css\\custom.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{53F2C0E6-7B97-409C-BB71-0F774320914E}|WEBMES_V2\\WEBMES_V2.csproj|c:\\users\\russe\\documents\\github\\webmes_v2\\webmes_v2\\wwwroot\\css\\adminlte_atec_theme.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
+      "RelativeMoniker": "D:0:0:{53F2C0E6-7B97-409C-BB71-0F774320914E}|WEBMES_V2\\WEBMES_V2.csproj|solutionrelative:webmes_v2\\wwwroot\\css\\adminlte_atec_theme.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{53F2C0E6-7B97-409C-BB71-0F774320914E}|WEBMES_V2\\WEBMES_V2.csproj|c:\\users\\russe\\documents\\github\\webmes_v2\\webmes_v2\\views\\login\\loginview.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{53F2C0E6-7B97-409C-BB71-0F774320914E}|WEBMES_V2\\WEBMES_V2.csproj|solutionrelative:webmes_v2\\views\\login\\loginview.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{53F2C0E6-7B97-409C-BB71-0F774320914E}|WEBMES_V2\\WEBMES_V2.csproj|c:\\users\\russe\\documents\\github\\webmes_v2\\webmes_v2\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{53F2C0E6-7B97-409C-BB71-0F774320914E}|WEBMES_V2\\WEBMES_V2.csproj|solutionrelative:webmes_v2\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{53F2C0E6-7B97-409C-BB71-0F774320914E}|WEBMES_V2\\WEBMES_V2.csproj|c:\\users\\russe\\documents\\github\\webmes_v2\\webmes_v2\\views\\plasmamagazine\\magazinehistory.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{53F2C0E6-7B97-409C-BB71-0F774320914E}|WEBMES_V2\\WEBMES_V2.csproj|solutionrelative:webmes_v2\\views\\plasmamagazine\\magazinehistory.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{53F2C0E6-7B97-409C-BB71-0F774320914E}|WEBMES_V2\\WEBMES_V2.csproj|c:\\users\\russe\\documents\\github\\webmes_v2\\webmes_v2\\views\\plasmamagazine\\plasmamagazineview.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{53F2C0E6-7B97-409C-BB71-0F774320914E}|WEBMES_V2\\WEBMES_V2.csproj|solutionrelative:webmes_v2\\views\\plasmamagazine\\plasmamagazineview.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{53F2C0E6-7B97-409C-BB71-0F774320914E}|WEBMES_V2\\WEBMES_V2.csproj|c:\\users\\russe\\documents\\github\\webmes_v2\\webmes_v2\\controllers\\plasmamagazinecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{53F2C0E6-7B97-409C-BB71-0F774320914E}|WEBMES_V2\\WEBMES_V2.csproj|solutionrelative:webmes_v2\\controllers\\plasmamagazinecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{53F2C0E6-7B97-409C-BB71-0F774320914E}|WEBMES_V2\\WEBMES_V2.csproj|c:\\users\\russe\\documents\\github\\webmes_v2\\webmes_v2\\models\\sqlrepositoryimplementation\\plasmamagazinerepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{53F2C0E6-7B97-409C-BB71-0F774320914E}|WEBMES_V2\\WEBMES_V2.csproj|solutionrelative:webmes_v2\\models\\sqlrepositoryimplementation\\plasmamagazinerepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{53F2C0E6-7B97-409C-BB71-0F774320914E}|WEBMES_V2\\WEBMES_V2.csproj|c:\\users\\russe\\documents\\github\\webmes_v2\\webmes_v2\\views\\plasmamagazine\\_magazinehistorytable.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{53F2C0E6-7B97-409C-BB71-0F774320914E}|WEBMES_V2\\WEBMES_V2.csproj|solutionrelative:webmes_v2\\views\\plasmamagazine\\_magazinehistorytable.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{53F2C0E6-7B97-409C-BB71-0F774320914E}|WEBMES_V2\\WEBMES_V2.csproj|c:\\users\\russe\\documents\\github\\webmes_v2\\webmes_v2\\models\\dto\\plasmamagazinedto\\magazinehistorydto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{53F2C0E6-7B97-409C-BB71-0F774320914E}|WEBMES_V2\\WEBMES_V2.csproj|solutionrelative:webmes_v2\\models\\dto\\plasmamagazinedto\\magazinehistorydto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{53F2C0E6-7B97-409C-BB71-0F774320914E}|WEBMES_V2\\WEBMES_V2.csproj|c:\\users\\russe\\documents\\github\\webmes_v2\\webmes_v2\\models\\staticmodels\\generic\\searchdata.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{53F2C0E6-7B97-409C-BB71-0F774320914E}|WEBMES_V2\\WEBMES_V2.csproj|solutionrelative:webmes_v2\\models\\staticmodels\\generic\\searchdata.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
   "DocumentGroupContainers": [
     {
       "Orientation": 0,
@@ -9,7 +58,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": -1,
+          "SelectedChildIndex": 2,
           "Children": [
             {
               "$type": "Bookmark",
@@ -18,6 +67,162 @@
             {
               "$type": "Bookmark",
               "Name": "ST:1:0:{e8b06f52-6d01-11d2-aa7d-00c04f990343}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "custom_Theme_ATEC.css",
+              "DocumentMoniker": "C:\\Users\\russe\\Documents\\GitHub\\WEBMES_V2\\WEBMES_V2\\wwwroot\\css\\custom_Theme_ATEC.css",
+              "RelativeDocumentMoniker": "WEBMES_V2\\wwwroot\\css\\custom_Theme_ATEC.css",
+              "ToolTip": "C:\\Users\\russe\\Documents\\GitHub\\WEBMES_V2\\WEBMES_V2\\wwwroot\\css\\custom_Theme_ATEC.css",
+              "RelativeToolTip": "WEBMES_V2\\wwwroot\\css\\custom_Theme_ATEC.css",
+              "ViewState": "AQIAAGgAAAAAAAAAAAASwH4AAAABAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
+              "WhenOpened": "2024-04-22T11:36:29.852Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "custom.css",
+              "DocumentMoniker": "C:\\Users\\russe\\Documents\\GitHub\\WEBMES_V2\\WEBMES_V2\\wwwroot\\css\\custom.css",
+              "RelativeDocumentMoniker": "WEBMES_V2\\wwwroot\\css\\custom.css",
+              "ToolTip": "C:\\Users\\russe\\Documents\\GitHub\\WEBMES_V2\\WEBMES_V2\\wwwroot\\css\\custom.css",
+              "RelativeToolTip": "WEBMES_V2\\wwwroot\\css\\custom.css",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAwAAAAQAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
+              "WhenOpened": "2024-04-22T11:36:24.688Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "adminlte_ATEC_Theme.css",
+              "DocumentMoniker": "C:\\Users\\russe\\Documents\\GitHub\\WEBMES_V2\\WEBMES_V2\\wwwroot\\css\\adminlte_ATEC_Theme.css",
+              "RelativeDocumentMoniker": "WEBMES_V2\\wwwroot\\css\\adminlte_ATEC_Theme.css",
+              "ToolTip": "C:\\Users\\russe\\Documents\\GitHub\\WEBMES_V2\\WEBMES_V2\\wwwroot\\css\\adminlte_ATEC_Theme.css",
+              "RelativeToolTip": "WEBMES_V2\\wwwroot\\css\\adminlte_ATEC_Theme.css",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABIAAAAUAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
+              "WhenOpened": "2024-04-22T11:36:18.879Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "LoginView.cshtml",
+              "DocumentMoniker": "C:\\Users\\russe\\Documents\\GitHub\\WEBMES_V2\\WEBMES_V2\\Views\\Login\\LoginView.cshtml",
+              "RelativeDocumentMoniker": "WEBMES_V2\\Views\\Login\\LoginView.cshtml",
+              "ToolTip": "C:\\Users\\russe\\Documents\\GitHub\\WEBMES_V2\\WEBMES_V2\\Views\\Login\\LoginView.cshtml",
+              "RelativeToolTip": "WEBMES_V2\\Views\\Login\\LoginView.cshtml",
+              "ViewState": "AQIAADYAAAAAAAAAAAAAAD8AAAA8AAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-04-22T11:34:13.786Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "_Layout.cshtml",
+              "DocumentMoniker": "C:\\Users\\russe\\Documents\\GitHub\\WEBMES_V2\\WEBMES_V2\\Views\\Shared\\_Layout.cshtml",
+              "RelativeDocumentMoniker": "WEBMES_V2\\Views\\Shared\\_Layout.cshtml",
+              "ToolTip": "C:\\Users\\russe\\Documents\\GitHub\\WEBMES_V2\\WEBMES_V2\\Views\\Shared\\_Layout.cshtml",
+              "RelativeToolTip": "WEBMES_V2\\Views\\Shared\\_Layout.cshtml",
+              "ViewState": "AQIAAOUAAAAAAAAAAADwvwcBAAAPAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-04-22T11:32:50.617Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "SearchData.cs",
+              "DocumentMoniker": "C:\\Users\\russe\\Documents\\GitHub\\WEBMES_V2\\WEBMES_V2\\Models\\StaticModels\\Generic\\SearchData.cs",
+              "RelativeDocumentMoniker": "WEBMES_V2\\Models\\StaticModels\\Generic\\SearchData.cs",
+              "ToolTip": "C:\\Users\\russe\\Documents\\GitHub\\WEBMES_V2\\WEBMES_V2\\Models\\StaticModels\\Generic\\SearchData.cs",
+              "RelativeToolTip": "WEBMES_V2\\Models\\StaticModels\\Generic\\SearchData.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAqwAIAAAAbAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-04-22T10:52:20.692Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "MagazineHistoryDTO.cs",
+              "DocumentMoniker": "C:\\Users\\russe\\Documents\\GitHub\\WEBMES_V2\\WEBMES_V2\\Models\\DTO\\PlasmaMagazineDTO\\MagazineHistoryDTO.cs",
+              "RelativeDocumentMoniker": "WEBMES_V2\\Models\\DTO\\PlasmaMagazineDTO\\MagazineHistoryDTO.cs",
+              "ToolTip": "C:\\Users\\russe\\Documents\\GitHub\\WEBMES_V2\\WEBMES_V2\\Models\\DTO\\PlasmaMagazineDTO\\MagazineHistoryDTO.cs",
+              "RelativeToolTip": "WEBMES_V2\\Models\\DTO\\PlasmaMagazineDTO\\MagazineHistoryDTO.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAqwAkAAAArAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-04-22T10:26:55.688Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "PlasmaMagazineView.cshtml",
+              "DocumentMoniker": "C:\\Users\\russe\\Documents\\GitHub\\WEBMES_V2\\WEBMES_V2\\Views\\PlasmaMagazine\\PlasmaMagazineView.cshtml",
+              "RelativeDocumentMoniker": "WEBMES_V2\\Views\\PlasmaMagazine\\PlasmaMagazineView.cshtml",
+              "ToolTip": "C:\\Users\\russe\\Documents\\GitHub\\WEBMES_V2\\WEBMES_V2\\Views\\PlasmaMagazine\\PlasmaMagazineView.cshtml",
+              "RelativeToolTip": "WEBMES_V2\\Views\\PlasmaMagazine\\PlasmaMagazineView.cshtml",
+              "ViewState": "AQIAALsAAAAAAAAAAAAAAM8AAAA8AAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-04-22T10:20:52.743Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "_MagazineHistoryTable.cshtml",
+              "DocumentMoniker": "C:\\Users\\russe\\Documents\\GitHub\\WEBMES_V2\\WEBMES_V2\\Views\\PlasmaMagazine\\_MagazineHistoryTable.cshtml",
+              "RelativeDocumentMoniker": "WEBMES_V2\\Views\\PlasmaMagazine\\_MagazineHistoryTable.cshtml",
+              "ToolTip": "C:\\Users\\russe\\Documents\\GitHub\\WEBMES_V2\\WEBMES_V2\\Views\\PlasmaMagazine\\_MagazineHistoryTable.cshtml",
+              "RelativeToolTip": "WEBMES_V2\\Views\\PlasmaMagazine\\_MagazineHistoryTable.cshtml",
+              "ViewState": "AQIAABsAAAAAAAAAAAAAACgAAAAVAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-04-22T10:17:07.263Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "PlasmaMagazineRepository.cs",
+              "DocumentMoniker": "C:\\Users\\russe\\Documents\\GitHub\\WEBMES_V2\\WEBMES_V2\\Models\\SQLRepositoryImplementation\\PlasmaMagazineRepository.cs",
+              "RelativeDocumentMoniker": "WEBMES_V2\\Models\\SQLRepositoryImplementation\\PlasmaMagazineRepository.cs",
+              "ToolTip": "C:\\Users\\russe\\Documents\\GitHub\\WEBMES_V2\\WEBMES_V2\\Models\\SQLRepositoryImplementation\\PlasmaMagazineRepository.cs",
+              "RelativeToolTip": "WEBMES_V2\\Models\\SQLRepositoryImplementation\\PlasmaMagazineRepository.cs",
+              "ViewState": "AQIAAEIAAAAAAAAAAAApwPEAAAAwAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-04-22T10:12:19.699Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "PlasmaMagazineController.cs",
+              "DocumentMoniker": "C:\\Users\\russe\\Documents\\GitHub\\WEBMES_V2\\WEBMES_V2\\Controllers\\PlasmaMagazineController.cs",
+              "RelativeDocumentMoniker": "WEBMES_V2\\Controllers\\PlasmaMagazineController.cs",
+              "ToolTip": "C:\\Users\\russe\\Documents\\GitHub\\WEBMES_V2\\WEBMES_V2\\Controllers\\PlasmaMagazineController.cs",
+              "RelativeToolTip": "WEBMES_V2\\Controllers\\PlasmaMagazineController.cs",
+              "ViewState": "AQIAAPQAAAAAAAAAAAAkwAIBAABHAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-04-22T09:31:56.575Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "MagazineHistory.cshtml",
+              "DocumentMoniker": "C:\\Users\\russe\\Documents\\GitHub\\WEBMES_V2\\WEBMES_V2\\Views\\PlasmaMagazine\\MagazineHistory.cshtml",
+              "RelativeDocumentMoniker": "WEBMES_V2\\Views\\PlasmaMagazine\\MagazineHistory.cshtml",
+              "ToolTip": "C:\\Users\\russe\\Documents\\GitHub\\WEBMES_V2\\WEBMES_V2\\Views\\PlasmaMagazine\\MagazineHistory.cshtml",
+              "RelativeToolTip": "WEBMES_V2\\Views\\PlasmaMagazine\\MagazineHistory.cshtml",
+              "ViewState": "AQIAABsAAAAAAAAAAAAAACEAAAAQAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-04-22T09:21:19.585Z",
+              "EditorCaption": ""
             }
           ]
         }

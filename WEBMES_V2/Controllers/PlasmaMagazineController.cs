@@ -10,6 +10,9 @@ using System.Security.Claims;
 using WEBMES_V2.Models.DTO.PlasmaMagazineDTO;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Hosting.Server;
+using Microsoft.AspNetCore.Hosting;
+using static System.Collections.Specialized.BitVector32;
 
 namespace WEBMES_V2.Controllers
 {
@@ -18,14 +21,18 @@ namespace WEBMES_V2.Controllers
     {
         private readonly IPlasmaMagazineRepository _plasmaMagazineRepository;
         private readonly IXMLConverter _xMLConverter;
+        private readonly IDownloadFile _downloadFile;
 
         public PlasmaMagazineController(IPlasmaMagazineRepository plasmaMagazineRepository,
-                                        IXMLConverter xMLConverter)
+                                        IXMLConverter xMLConverter,
+                                        IDownloadFile downloadFile)
         {
             this._plasmaMagazineRepository = plasmaMagazineRepository;
             this._xMLConverter = xMLConverter;
+            this._downloadFile = downloadFile;
         }
 
+        #region Plasma
         public IActionResult PlasmaMagazineView()
         {
             return View();
@@ -189,7 +196,7 @@ namespace WEBMES_V2.Controllers
                 return Json(new
                 {
                     status = 0,
-                    message = "Magazine is not existing please contact IT do add this magazine"
+                    message = "Select Package"
                 });
             }
 
@@ -221,8 +228,40 @@ namespace WEBMES_V2.Controllers
 
             return Json(trackOutDetail);
         }
+        #endregion
+
+        #region Magazine History
+        public async Task<IActionResult> MagazineHistory(string searchValue)
+        {
+            ViewBag.SearchData = searchValue;
+
+            if (string.IsNullOrEmpty(searchValue))
+            {
+                var search = new SearchData
+                {
+                    searchValue = searchValue
+                };
+                return View(search);
+            }
+
+            return View();
+        }
 
 
+        public async Task<IActionResult> _MagazineHistoryTable(SearchData searchData)
+        {
+            var magazineHistoryList = await _plasmaMagazineRepository.Get_Magazine_History(searchData);
+            return PartialView(magazineHistoryList);
+        }
+        [HttpPost]
+        public async Task<IActionResult> SearchList(SearchData searchData)
+        {
+            var removeSpace = !string.IsNullOrEmpty(searchData.searchValue) ? searchData.searchValue.Trim() : "";
+      
+            return RedirectToAction("MagazineHistory" , new { searchValue = removeSpace });
+        }
+
+        #endregion
 
 
 
@@ -263,6 +302,21 @@ namespace WEBMES_V2.Controllers
                                                                   isExcelEmpty = true,
                                                                   Filename = formFile.FileName});
         }
+
+
+        public async Task<ActionResult> DownloadFile()
+        {
+            var pathFile = "Magazine_Template.xlsx";
+
+            var fileContent =await _downloadFile.Get_Template_For_Magazine(pathFile);
+
+            return File(fileContent, "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", pathFile);
+        }
         #endregion 
+
+
+
+
     }
 }
+

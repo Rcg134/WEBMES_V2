@@ -192,7 +192,6 @@ namespace WEBMES_V2.Models.SQLRepositoryImplementation
 
             return null;
         }
-
         public async Task<bool> Insert_XML_MS_Station_Magazine(XDocument MagazineXML)
         {
             await using SqlConnection sqlConnection = _dapperConnection
@@ -215,7 +214,6 @@ namespace WEBMES_V2.Models.SQLRepositoryImplementation
             return false;
 
         }
-
         public async Task<IEnumerable<MsStationMagazineDTO>> Get_Package_List(StageLot stageLot)
         {
             var packageDetails =  _mesAtecContext
@@ -232,5 +230,26 @@ namespace WEBMES_V2.Models.SQLRepositoryImplementation
 
         }
 
+        public async Task<IEnumerable<MagazineHistoryDTO>> Get_Magazine_History(SearchData searchData)
+        {
+            await using SqlConnection sqlConnection = _dapperConnection
+                                                        .CreateConnection();
+
+            var magazineHistoryDetails = await sqlConnection.QueryAsync<MagazineHistoryDTO>(
+                                                                            PlasmaMagazine.usp_Magazine_History_Search,
+                                                                            new
+                                                                            {
+                                                                                SearchData = searchData.searchValue
+                                                                            },
+                                                                            commandType: CommandType.StoredProcedure
+                                                                            );
+
+            if (magazineHistoryDetails != null)
+            {
+                return magazineHistoryDetails;
+            }
+
+            return null;
+        }
     }
 }
