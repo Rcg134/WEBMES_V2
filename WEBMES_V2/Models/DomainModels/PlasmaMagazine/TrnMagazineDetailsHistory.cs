@@ -19,11 +19,11 @@ public partial class TrnMagazineDetailsHistory
 
     public int? StationId { get; set; }
 
-    public int? DateTimeTrackIn { get; set; }
+    public int? CurrentScannedQty { get; set; }
 
-    public int? DateTimeTrackOut { get; set; }
+    public DateTime? DateTimeTrackIn { get; set; }
 
-    public DateTime? DateTimeScanned { get; set; }
+    public DateTime? DateTimeTrackOut { get; set; }
 
     public int? ScannedBy { get; set; }
 

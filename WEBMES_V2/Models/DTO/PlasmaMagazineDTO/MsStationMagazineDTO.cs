@@ -4,9 +4,11 @@
     {
         public int Id { get; set; }
 
+        public int? CustomerId { get; set; }
+
         public string? MagazineCode { get; set; }
 
-        public int? PackageId { get; set; }
+        public string? PackageId { get; set; }
 
         public string? LeadCount { get; set; }
 

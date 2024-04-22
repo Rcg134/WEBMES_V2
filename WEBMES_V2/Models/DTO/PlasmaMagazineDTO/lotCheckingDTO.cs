@@ -6,6 +6,8 @@ namespace WEBMES_V2.Models.DTO.PlasmaMagazineDTO
     {
         public string? LotAlias { get; set; }
         public int? LotCode { get; set; }
+        public int? CustomerCode  { get; set; }
+        public string? CustomerName { get; set; }
         public int? StageCode { get; set; }
         public string? StageID { get; set; }
         public string? Sequence { get; set; }

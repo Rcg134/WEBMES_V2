@@ -3,6 +3,7 @@ using AutoMapper;
 using Dapper;
 using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
+using System.Collections.Immutable;
 using System.Data;
 using System.Xml.Linq;
 using WEBMES_V2.Models.Context;
@@ -94,7 +95,6 @@ namespace WEBMES_V2.Models.SQLRepositoryImplementation
         }
         public async Task<IEnumerable<TrnMagazineDetailViewDTO>> GetMagazineList(StageLot stageLot)
         {
-
             await using SqlConnection sqlConnection = _dapperConnection
                                                                          .CreateConnection();
 
@@ -114,13 +114,13 @@ namespace WEBMES_V2.Models.SQLRepositoryImplementation
             }
 
             return null;
-    
+
         }
         public async Task<MsStationMagazineDTO> Get_Magazine_MS_Station_Magazine(StageLot stageLot)
         {
             var magazineDetail = await _mesAtecContext
                                            .MsStationMagazines
-                                           .FirstOrDefaultAsync(mag => mag.MagazineCode == stageLot.MagazineCode);
+                                           .FirstOrDefaultAsync(mag => mag.Id == stageLot.PackageTransId);
 
             if (magazineDetail != null)
             {
@@ -145,28 +145,30 @@ namespace WEBMES_V2.Models.SQLRepositoryImplementation
         }
         public async Task<InsertValidate> Insert_Magazine_Trn_MagazineDetail_and_History(TrnMagazineDetailDTO trnMagazineDetailDTO)
         {
-            var isExistinTrnMagazineDetails = await _mesAtecContext
-                                                           .TrnMagazineDetails
-                                                           .AnyAsync(isExist => isExist.TrnLotMagazineId == trnMagazineDetailDTO.TrnLotMagazineId &&
-                                                                                isExist.MagazineCode == trnMagazineDetailDTO.MagazineCode);
+         
+                var isExistinTrnMagazineDetails = await _mesAtecContext
+                                                               .TrnMagazineDetails
+                                                               .AnyAsync(isExist => isExist.TrnLotMagazineId == trnMagazineDetailDTO.TrnLotMagazineId &&
+                                                                                    isExist.MagazineCode == trnMagazineDetailDTO.MagazineCode);
 
-            if(isExistinTrnMagazineDetails)
+                if (isExistinTrnMagazineDetails)
+                    return new InsertValidate()
+                    {
+                        isInserted = false,
+                        message = "Magazine already trackIn in this stage"
+                    };
+
+                var insertDetails = _mapper.Map<TrnMagazineDetail>(trnMagazineDetailDTO);
+                var insertDetailsHistory = _mapper.Map<TrnMagazineDetailsHistory>(trnMagazineDetailDTO);
+                _mesAtecContext.TrnMagazineDetails.Add(insertDetails);
+                _mesAtecContext.TrnMagazineDetailsHistories.Add(insertDetailsHistory);
+                await _mesAtecContext.SaveChangesAsync();
                 return new InsertValidate()
                 {
-                    isInserted = false,
-                    message = "Magazine already trackIn in this stage"
+                    isInserted = true,
+                    message = ""
                 };
 
-            var insertDetails = _mapper.Map<TrnMagazineDetail>(trnMagazineDetailDTO);
-            var insertDetailsHistory = _mapper.Map<TrnMagazineDetailsHistory>(trnMagazineDetailDTO);
-            _mesAtecContext.TrnMagazineDetails.Add(insertDetails);
-            _mesAtecContext.TrnMagazineDetailsHistories.Add(insertDetailsHistory);
-            await _mesAtecContext.SaveChangesAsync();
-            return new InsertValidate()
-            {
-                isInserted = true,
-                message =  ""
-            };
         }
         public async Task<InsertValidate> TrackOut(StageLot stageLot)
         {
@@ -213,5 +215,22 @@ namespace WEBMES_V2.Models.SQLRepositoryImplementation
             return false;
 
         }
+
+        public async Task<IEnumerable<MsStationMagazineDTO>> Get_Package_List(StageLot stageLot)
+        {
+            var packageDetails =  _mesAtecContext
+                                         .MsStationMagazines
+                                         .Where(package => package.CustomerId == stageLot.CustomerID)
+                                         .AsNoTracking();
+            if (packageDetails != null)
+            {
+                var packageList = await packageDetails.ToListAsync();
+                return _mapper.Map<IEnumerable<MsStationMagazineDTO>>(packageList);
+            }
+
+            return null;
+
+        }
+
     }
 }

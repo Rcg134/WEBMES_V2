@@ -1,0 +1,43 @@
+﻿@{
+    var PackageList = ViewBag.packageList;
+}
+
+<!-- Modal -->
+<div class="modal fade" id="ChoosePackageModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header ATEC-theme-color text-white">
+                <h5 class="modal-title" id="exampleModalLabel">Select Package</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="row pl-4 pr-4">
+                    <div class="col-md-12">
+
+                        <div id="erroDiv" class="mb-3" style="display: none;">
+                            <div class="alert alert-danger">
+                                <label id="errorMessage"></label>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Package Type</label>
+                            <select id="packageListSelect" class="select2">
+                                @foreach (var item in PackageList)
+                                {
+                                    <option value="@item.Id">@item.PackageId (@item.LeadCount)</option>
+                                }
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" id="btnAddMagazineSave" class="btn btn-success">Add</button>
+            </div>
+        </div>
+    </div>
+</div>

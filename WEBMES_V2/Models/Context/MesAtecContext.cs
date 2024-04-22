@@ -83,6 +83,24 @@ public partial class MesAtecContext : DbContext
             entity.Property(e => e.TrnLotMagazineId).HasColumnName("TRN_Lot_Magazine_Id");
         });
 
+
+        modelBuilder.Entity<TrnMagazineDetailsHistory>(entity =>
+        {
+            entity.ToTable("Trn_MagazineDetails_History");
+
+            entity.Property(e => e.CurrentScannedQty).HasColumnName("Current_Scanned_QTY");
+            entity.Property(e => e.DateTimeTrackIn)
+                .HasColumnType("datetime")
+                .HasColumnName("DateTime_TrackIn");
+            entity.Property(e => e.DateTimeTrackOut)
+                .HasColumnType("datetime")
+                .HasColumnName("DateTime_TrackOut");
+            entity.Property(e => e.MagazineCode).HasMaxLength(255);
+            entity.Property(e => e.MagazineQty).HasColumnName("MagazineQTY");
+            entity.Property(e => e.ScannedBy).HasColumnName("Scanned_By");
+            entity.Property(e => e.TrnLotMagazineId).HasColumnName("TRN_Lot_Magazine_Id");
+        });
+
         modelBuilder.Entity<PsEquipment>(entity =>
         {
             entity.HasKey(e => e.EquipmentCode);

@@ -38,15 +38,20 @@
          </div>
 
            <div class="row p-3">
-               <div class="col-md-4">
+               <div class="col-md-3">
                    <label for="txtLotCode" class="form-label">Lot Code</label>
                     <input type="text" class="form-control" id="txtLotCode" value="DUMMYLOT.1-A">
                </div>
-            <div class="col-md-4">
+            <div class="col-md-3">
+                <label for="txtCustomer" class="form-label">Customer</label>
+                <input type="text" class="form-control" id="txtCustomerNameId" disabled="disabled">
+                <input type="hidden" id="txtCustomerId">
+            </div>
+            <div class="col-md-3">
                 <label for="txtLotQTY" class="form-label">Lot QTY</label>
                 <input type="text" class="form-control" id="txtLotQTY">
             </div>
-            <div class="col-md-4">
+            <div class="col-md-3">
                 <label for="txtMachineCode" class="form-label">Machine Code</label>
                 <input type="text" class="form-control" id="txtMachineCode" value="TPTA001">
             </div>
@@ -57,6 +62,8 @@
 
        </div>
    </div>
+
+<div id="packageModal"></div>
 
 @section Scripts 
  
@@ -127,7 +134,12 @@
                         }
 
                         var lotQTY = response.details.qty;
+                        var CustomerCode = response.details.customerCode;
+                        var CustomerName = response.details.customerName;
+
                         $('#txtLotQTY').val(lotQTY)
+                        $('#txtCustomerId').val(CustomerCode)
+                        $('#txtCustomerNameId').val(CustomerName)
 
 
                         $('#txtLotCode').prop('disabled', true);
@@ -210,9 +222,7 @@
 
                     //Callback for magazine functionalty
                     $('#txtMagazineCode').keypress(function (event) {
-                        var magazineCode = $('#txtMagazineCode').val();
-                        var selectedStage = $('#LastActionPlanSelect').val();
-                        var remarksMagazine = $('#txtMagazineRemarks').val();
+
 
                         if (event.keyCode === 13) {
                             //Callback to validate the magazine
@@ -222,12 +232,14 @@
                                 return;
                             }
 
-                            callValidateAndInsertMagazine(magazineCode, 
-                                                          paramId, 
-                                                          paramStatusRemarks,
-                                                          selectedStage,
-                                                          remarksMagazine,
-                                                          paramSelectedStage);
+                            var customerCode = $('#txtCustomerId').val()
+
+                            callModalForPackage(customerCode, 
+                                               paramId, 
+                                               paramStatusRemarks, 
+                                               paramSelectedStage)
+
+
                         }
                     });
 
@@ -255,12 +267,65 @@
         }
 
 
+        function callModalForPackage(paramCustomerId, 
+                                     paramId, 
+                                     paramStatusRemarks, 
+                                     paramSelectedStage) {
+
+            $.ajax({
+                type: "GET",
+                url: "/PlasmaMagazine/_PackageModal",
+                data: {
+                    CustomerID : paramCustomerId
+                },
+                dataType: "html",
+                success: function (response) {
+
+                    $("#packageModal").html('');
+                    $('#packageModal').append(response);
+                    $('#ChoosePackageModal').modal('show');
+                    //Initialization Select
+                    $('.select2').select2({
+                        width: '100%'
+                    });
+
+
+                    var magazineCode = $('#txtMagazineCode').val();
+                    var selectedStage = $('#LastActionPlanSelect').val();
+                    var remarksMagazine = $('#txtMagazineRemarks').val();
+
+
+                    $("#btnAddMagazineSave").click(function () {
+                        var selectedPackageId = $('#packageListSelect').val();
+
+                        callValidateAndInsertMagazine(magazineCode,
+                                                      paramId,
+                                                      paramStatusRemarks,
+                                                      selectedStage,
+                                                      remarksMagazine,
+                                                      paramSelectedStage,
+                                                      selectedPackageId);
+                    });
+
+
+
+
+                },
+                error: function (xhr, status, error) {
+                    alert("Error Please contact IT for the solution")
+                    // callErrorPage('An error occurred while fetching data');
+                }
+            });
+        }
+
+
         function callValidateAndInsertMagazine(magazine, 
                                                paramId,
                                                paramStatusRemarks, 
                                                paramselectedStage,
                                                paramRemarks,
-                                               paramSelectedStage) {
+                                               paramSelectedStage,
+                                               selectedPackageId) {
             
             $.ajax({
                 type: "GET",
@@ -270,7 +335,8 @@
                     MagazineCode: magazine,
                     StatusRemarks: paramStatusRemarks,
                     StageCode: paramselectedStage,
-                    Remarks: paramRemarks
+                    Remarks: paramRemarks,
+                    PackageTransId: selectedPackageId
                 },
                 dataType: "json",
                 success: function (response) {

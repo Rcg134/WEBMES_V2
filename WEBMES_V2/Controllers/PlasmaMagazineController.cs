@@ -171,12 +171,20 @@ namespace WEBMES_V2.Controllers
           return PartialView(magazineList);
         }
 
+        public async Task<IActionResult> _PackageModal(StageLot stageLot)
+        {
+            var packageList = await _plasmaMagazineRepository.Get_Package_List(stageLot);
+            ViewBag.packageList = packageList;
+            return PartialView();
+        }
+
+
         public async Task<IActionResult> ValidateandInsertMagazine(StageLot stagelot)
         {
             var getMagazineDetail = await _plasmaMagazineRepository.Get_Magazine_MS_Station_Magazine(stagelot);
 
             //if Magazine is not exist in Trn_MagazineDetail table
-            if (getMagazineDetail == null) 
+            if (getMagazineDetail == null)
             {
                 return Json(new
                 {
@@ -192,6 +200,7 @@ namespace WEBMES_V2.Controllers
                 MagazineCode = stagelot.MagazineCode,
                 MagazineQty = getMagazineDetail.MagazineQty,
                 StationId = stagelot.StageCode,
+                PackageId = stagelot.PackageTransId,
                 StatusId = (int)StatusListEnum.InProcess,
                 CurrentScannedQty = 0,
                 DateTimeTrackIn = DateTime.Now,
@@ -214,6 +223,10 @@ namespace WEBMES_V2.Controllers
         }
 
 
+
+
+
+        #region Magazine Maintenance
         public async Task<IActionResult> MagazineMaintenance(StageLot stagelot,
                                                              bool isExcelEmpty = true,
                                                              string Filename = "")
@@ -250,6 +263,6 @@ namespace WEBMES_V2.Controllers
                                                                   isExcelEmpty = true,
                                                                   Filename = formFile.FileName});
         }
-
+        #endregion 
     }
 }
