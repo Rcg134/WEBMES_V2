@@ -50,6 +50,19 @@ namespace WEBMES_V2.Controllers
         {
             var StageCode = stagelot.StageCode;
 
+            var ishold =await _plasmaMagazineRepository.CheckLotStageiFHold(stagelot);
+
+            if (ishold)
+            {
+                return Json(new
+                {
+                    status = 3,
+                    details = (object)null,
+                    message = $"Lot is currently hold"
+                });
+            }
+
+
             var lotDetails = await _plasmaMagazineRepository
                                             .CheckLotStage(stagelot);
 
@@ -225,7 +238,6 @@ namespace WEBMES_V2.Controllers
         {
             stagelot.StatusCode = (int)StatusListEnum.LotComplete;
             var trackOutDetail = await _plasmaMagazineRepository.TrackOut(stagelot);
-
             return Json(trackOutDetail);
         }
         #endregion

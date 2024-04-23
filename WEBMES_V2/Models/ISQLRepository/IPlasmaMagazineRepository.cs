@@ -8,6 +8,7 @@ namespace WEBMES_V2.Models.ISQLRepository
 {
     public interface IPlasmaMagazineRepository
     {
+        Task<Boolean> CheckLotStageiFHold(StageLot stageLot);
         Task<IEnumerable<lotCheckingDTO>> CheckLotStage(StageLot stageLot);
         Task<Boolean> CheckMachine(StageLot stageLot);
         Task<Boolean> CheckLotinTRN_Lot_Magazine(StageLot stageLot);

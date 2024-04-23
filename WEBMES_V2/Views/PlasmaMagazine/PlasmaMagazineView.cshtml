@@ -398,6 +398,12 @@
                         return;
                     }
 
+                    if (response.isRefresh == 1) 
+                    {
+                        alert(response.message);
+                        location.reload();
+                    }
+
                     callMagazineList(paramId,
                                      paramStatusRemarks,
                                      paramSelectedStage);

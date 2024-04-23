@@ -4,5 +4,7 @@
     {
         public bool isInserted { get; set; }
         public string? message { get; set; }
+
+        public int? isRefresh { get; set; }
     }
 }

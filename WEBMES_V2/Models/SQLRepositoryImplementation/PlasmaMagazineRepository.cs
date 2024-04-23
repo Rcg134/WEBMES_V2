@@ -35,6 +35,28 @@ namespace WEBMES_V2.Models.SQLRepositoryImplementation
         #endregion
 
         #region Lot Checker
+
+        public async Task<Boolean> CheckLotStageiFHold(StageLot stageLot)
+        {
+            await using SqlConnection sqlConnection = _dapperConnection
+                                                                .CreateConnection();
+
+            var statusCode = await sqlConnection.QueryFirstOrDefaultAsync<StageLot>(
+                                                                  PlasmaMagazine.usp_Check_Lot_If_Hold,
+                                                                  new
+                                                                  {
+                                                                      Lot = stageLot.LotAlias,
+                                                                  },
+                                                                  commandType: CommandType.StoredProcedure
+                                                                  );
+
+            if (statusCode.StatusCode == 4)
+            {
+                return true;
+            }
+
+            return false;
+        }
         public async Task<IEnumerable<lotCheckingDTO>> CheckLotStage(StageLot stageLot)
         {
             await using SqlConnection sqlConnection = _dapperConnection
@@ -78,6 +100,7 @@ namespace WEBMES_V2.Models.SQLRepositoryImplementation
         }
         public async Task<TrnLotMagazine> Insert_TRN_Lot_Magazine(TrnLotMagazine insert_TRN_Lot_MagazineDT0)
         {
+            insert_TRN_Lot_MagazineDT0.StatusRemarks = "0";
             await _mesAtecContext.TrnLotMagazines.AddAsync(insert_TRN_Lot_MagazineDT0);
             await _mesAtecContext.SaveChangesAsync();
             return insert_TRN_Lot_MagazineDT0;
@@ -229,7 +252,6 @@ namespace WEBMES_V2.Models.SQLRepositoryImplementation
             return null;
 
         }
-
         public async Task<IEnumerable<MagazineHistoryDTO>> Get_Magazine_History(SearchData searchData)
         {
             await using SqlConnection sqlConnection = _dapperConnection
@@ -251,5 +273,7 @@ namespace WEBMES_V2.Models.SQLRepositoryImplementation
 
             return null;
         }
+
+   
     }
 }
