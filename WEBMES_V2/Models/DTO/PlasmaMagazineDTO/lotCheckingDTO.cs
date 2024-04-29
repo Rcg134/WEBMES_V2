@@ -14,6 +14,11 @@ namespace WEBMES_V2.Models.DTO.PlasmaMagazineDTO
         public int? StatusCode { get; set; }
         public string? StatusID { get; set; }
         public int? QTY { get; set; }
+        public string? PackageType { get; set; }
+        public string? LeadType { get; set; }
+        public string? PackageID { get; set; }
+        public string? MagazineQTY { get; set; }
+        
 
     }
 }

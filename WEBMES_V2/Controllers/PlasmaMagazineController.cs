@@ -105,6 +105,7 @@ namespace WEBMES_V2.Controllers
                                              lot.StatusCode == (int)StatusListEnum.InProcess || 
                                              lot.StatusCode == (int)StatusListEnum.LotComplete);
 
+
             //validate if  null and stage is not in process in DA Stage
             if (isProcess == null)
             {
@@ -149,6 +150,9 @@ namespace WEBMES_V2.Controllers
             var isLotExist = await _plasmaMagazineRepository
                                             .CheckLotinTRN_Lot_Magazine(stagelot);
 
+            //Check TrackOut QTY
+            var trackOutQTY = await _plasmaMagazineRepository.Get_CurrentTrackoutQTY(stagelot);
+
             //if Lot does not exist then insert into TRN_Lot_Magazine then get Inserted ID
             if (!isLotExist)
             {
@@ -163,12 +167,13 @@ namespace WEBMES_V2.Controllers
                 };
 
                 insertedId = await _plasmaMagazineRepository.Insert_TRN_Lot_Magazine(insertLotDetails);
-
+            
                 return Json(new
                 {
                     status = 1,
                     id = insertedId.Id,
                     statusRemarks = insertedIdDTO.StatusRemarks,
+                    TrackoutQTY = trackOutQTY,
                     message = "Machine is exist"
                 });
             }
@@ -181,6 +186,7 @@ namespace WEBMES_V2.Controllers
                 status = 1,
                 id = insertedIdDTO.Id,
                 statusRemarks = insertedIdDTO.StatusRemarks,
+                TrackoutQTY = trackOutQTY,
                 message = "Machine is exist"
             });
         }
@@ -209,7 +215,7 @@ namespace WEBMES_V2.Controllers
                 return Json(new
                 {
                     status = 0,
-                    message = "Select Package"
+                    message = "Package is not registered please upload it"
                 });
             }
 
@@ -242,6 +248,7 @@ namespace WEBMES_V2.Controllers
         }
         #endregion
 
+
         #region Magazine History
         public async Task<IActionResult> MagazineHistory(string searchValue)
         {
@@ -259,7 +266,6 @@ namespace WEBMES_V2.Controllers
             return View();
         }
 
-
         public async Task<IActionResult> _MagazineHistoryTable(SearchData searchData)
         {
             var magazineHistoryList = await _plasmaMagazineRepository.Get_Magazine_History(searchData);
@@ -274,7 +280,6 @@ namespace WEBMES_V2.Controllers
         }
 
         #endregion
-
 
 
         #region Magazine Maintenance

@@ -12,6 +12,7 @@
         public int? StageCode { get; set; }
         public int? TRN_Lot_Magzine_Id { get; set; }
         public int? CustomerID { get; set; }
+        public int? CurrentTrackOutQTY { get; set; }
 
         public string? MagazineCode { get; set; }
         public string? StatusRemarks { get; set; }

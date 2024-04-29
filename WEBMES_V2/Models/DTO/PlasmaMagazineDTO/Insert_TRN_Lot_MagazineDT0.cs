@@ -19,5 +19,7 @@
 
         public string? StatusRemarks { get; set; }
 
+        public int? CurrentTrackOutQty { get; set; }
+
     }
 }

@@ -1,23 +1,28 @@
 ﻿@model IEnumerable<WEBMES_V2.Models.DTO.PlasmaMagazineDTO.TrnMagazineDetailViewDTO>;
 
 <div class="row mb-2">
-    <div class="col-md-3">
+    <div class="col-md-2">
             <label for="txtMagazineCode" class="form-label">Magazine Code</label>
             <input type="text" class="form-control" id="txtMagazineCode">
     </div>
-    <div class="col-md-5">
+    <div class="col-md-3">
         <label for="txtMagazineRemarks" class="form-label">Remarks</label>
 
         <input type="text" class="form-control" id="txtMagazineRemarks">
     </div>
-    <div class="col-md-3">
+    <div class="col-md-2">
         <label for="txtQTYMagazineNeeded" class="form-label">Magazine Needed</label>
         <label id="txtQTYMagazineNeeded" class="form-label d-block "></label>
     </div>
-    <div class="col-md-1">
+    <div class="col-md-2">
+        <label for="txtMagazineTrackOutQTY" class="form-label">Magazine TrackOut</label>
+        <label id="txtMagazineTrackOutQTY" class="form-label d-block "></label>
+    </div>
+    <div class="col-md-3">
         <button type="button" id="btnTrackOut" class="btn btn-success">Track Out</button>
     </div>
 </div>
+
 
 <div class="row">
     <div class="col-md-12">
@@ -54,12 +59,7 @@
                             </tr>
                         }
                     }
-                    else
-                    {
-                        <tr>
-                            <td colspan="8" class="text-center">No data</td>
-                        </tr>
-                    }
+  
                 </tbody>
             </table>
         </div>

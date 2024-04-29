@@ -16,7 +16,5 @@
         public static string usp_MS_Station_Magazine_XML_Insert = "usp_MS_Station_Magazine_XML_Insert";
 
         public static string usp_Magazine_History_Search= "usp_Magazine_History_Search";
-
-
     }
 }

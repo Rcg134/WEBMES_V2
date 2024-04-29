@@ -20,4 +20,6 @@ public partial class TrnLotMagazine
     public DateTime? DateTimeTrackOut { get; set; }
 
     public string? StatusRemarks { get; set; }
+
+    public int? CurrentTrackOutQty { get; set; }
 }

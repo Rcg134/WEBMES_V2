@@ -14,6 +14,7 @@ namespace WEBMES_V2.Models.ISQLRepository
         Task<Boolean> CheckLotinTRN_Lot_Magazine(StageLot stageLot);
         Task<TrnLotMagazine> Insert_TRN_Lot_Magazine(TrnLotMagazine trnLotMagazine);
         Task<TrnLotMagazineDTO> Get_InsertedId(StageLot stageLot);
+        Task<int> Get_CurrentTrackoutQTY(StageLot stageLot);
         Task<IEnumerable<TrnMagazineDetailViewDTO>> GetMagazineList(StageLot stageLot);
         Task<MsStationMagazineDTO> Get_Magazine_MS_Station_Magazine(StageLot stageLot);
         Task<TrnMagazineDetailDTO> Get_Magazine_Trn_MagazineDetail(StageLot stageLot);

@@ -10,6 +10,9 @@ C:\Users\russe\Documents\GitHub\WEBMES_V2\WEBMES_V2\obj\Release\net7.0\PubTmp\Ou
 C:\Users\russe\Documents\GitHub\WEBMES_V2\WEBMES_V2\obj\Release\net7.0\PubTmp\Out\Azure.Identity.dll
 C:\Users\russe\Documents\GitHub\WEBMES_V2\WEBMES_V2\obj\Release\net7.0\PubTmp\Out\BCrypt.Net-Core.dll
 C:\Users\russe\Documents\GitHub\WEBMES_V2\WEBMES_V2\obj\Release\net7.0\PubTmp\Out\Dapper.dll
+C:\Users\russe\Documents\GitHub\WEBMES_V2\WEBMES_V2\obj\Release\net7.0\PubTmp\Out\EPPlus.dll
+C:\Users\russe\Documents\GitHub\WEBMES_V2\WEBMES_V2\obj\Release\net7.0\PubTmp\Out\EPPlus.Interfaces.dll
+C:\Users\russe\Documents\GitHub\WEBMES_V2\WEBMES_V2\obj\Release\net7.0\PubTmp\Out\EPPlus.System.Drawing.dll
 C:\Users\russe\Documents\GitHub\WEBMES_V2\WEBMES_V2\obj\Release\net7.0\PubTmp\Out\Microsoft.Bcl.AsyncInterfaces.dll
 C:\Users\russe\Documents\GitHub\WEBMES_V2\WEBMES_V2\obj\Release\net7.0\PubTmp\Out\Microsoft.Data.SqlClient.dll
 C:\Users\russe\Documents\GitHub\WEBMES_V2\WEBMES_V2\obj\Release\net7.0\PubTmp\Out\Microsoft.EntityFrameworkCore.dll
@@ -24,6 +27,7 @@ C:\Users\russe\Documents\GitHub\WEBMES_V2\WEBMES_V2\obj\Release\net7.0\PubTmp\Ou
 C:\Users\russe\Documents\GitHub\WEBMES_V2\WEBMES_V2\obj\Release\net7.0\PubTmp\Out\Microsoft.IdentityModel.Protocols.dll
 C:\Users\russe\Documents\GitHub\WEBMES_V2\WEBMES_V2\obj\Release\net7.0\PubTmp\Out\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
 C:\Users\russe\Documents\GitHub\WEBMES_V2\WEBMES_V2\obj\Release\net7.0\PubTmp\Out\Microsoft.IdentityModel.Tokens.dll
+C:\Users\russe\Documents\GitHub\WEBMES_V2\WEBMES_V2\obj\Release\net7.0\PubTmp\Out\Microsoft.IO.RecyclableMemoryStream.dll
 C:\Users\russe\Documents\GitHub\WEBMES_V2\WEBMES_V2\obj\Release\net7.0\PubTmp\Out\Microsoft.SqlServer.Server.dll
 C:\Users\russe\Documents\GitHub\WEBMES_V2\WEBMES_V2\obj\Release\net7.0\PubTmp\Out\Microsoft.Win32.SystemEvents.dll
 C:\Users\russe\Documents\GitHub\WEBMES_V2\WEBMES_V2\obj\Release\net7.0\PubTmp\Out\System.Configuration.ConfigurationManager.dll
@@ -31,6 +35,7 @@ C:\Users\russe\Documents\GitHub\WEBMES_V2\WEBMES_V2\obj\Release\net7.0\PubTmp\Ou
 C:\Users\russe\Documents\GitHub\WEBMES_V2\WEBMES_V2\obj\Release\net7.0\PubTmp\Out\System.IdentityModel.Tokens.Jwt.dll
 C:\Users\russe\Documents\GitHub\WEBMES_V2\WEBMES_V2\obj\Release\net7.0\PubTmp\Out\System.Memory.Data.dll
 C:\Users\russe\Documents\GitHub\WEBMES_V2\WEBMES_V2\obj\Release\net7.0\PubTmp\Out\System.Runtime.Caching.dll
+C:\Users\russe\Documents\GitHub\WEBMES_V2\WEBMES_V2\obj\Release\net7.0\PubTmp\Out\System.Security.Cryptography.Pkcs.dll
 C:\Users\russe\Documents\GitHub\WEBMES_V2\WEBMES_V2\obj\Release\net7.0\PubTmp\Out\System.Security.Cryptography.ProtectedData.dll
 C:\Users\russe\Documents\GitHub\WEBMES_V2\WEBMES_V2\obj\Release\net7.0\PubTmp\Out\System.Security.Permissions.dll
 C:\Users\russe\Documents\GitHub\WEBMES_V2\WEBMES_V2\obj\Release\net7.0\PubTmp\Out\System.Windows.Extensions.dll
@@ -50,10 +55,10 @@ C:\Users\russe\Documents\GitHub\WEBMES_V2\WEBMES_V2\obj\Release\net7.0\PubTmp\Ou
 C:\Users\russe\Documents\GitHub\WEBMES_V2\WEBMES_V2\obj\Release\net7.0\PubTmp\Out\runtimes\win-arm64\native\Microsoft.Data.SqlClient.SNI.dll
 C:\Users\russe\Documents\GitHub\WEBMES_V2\WEBMES_V2\obj\Release\net7.0\PubTmp\Out\runtimes\win-x64\native\Microsoft.Data.SqlClient.SNI.dll
 C:\Users\russe\Documents\GitHub\WEBMES_V2\WEBMES_V2\obj\Release\net7.0\PubTmp\Out\runtimes\win-x86\native\Microsoft.Data.SqlClient.SNI.dll
-C:\Users\russe\Documents\GitHub\WEBMES_V2\WEBMES_V2\obj\Release\net7.0\PubTmp\Out\runtimes\win\lib\net6.0\Microsoft.Win32.SystemEvents.dll
-C:\Users\russe\Documents\GitHub\WEBMES_V2\WEBMES_V2\obj\Release\net7.0\PubTmp\Out\runtimes\unix\lib\net6.0\System.Drawing.Common.dll
-C:\Users\russe\Documents\GitHub\WEBMES_V2\WEBMES_V2\obj\Release\net7.0\PubTmp\Out\runtimes\win\lib\net6.0\System.Drawing.Common.dll
+C:\Users\russe\Documents\GitHub\WEBMES_V2\WEBMES_V2\obj\Release\net7.0\PubTmp\Out\runtimes\win\lib\net7.0\Microsoft.Win32.SystemEvents.dll
+C:\Users\russe\Documents\GitHub\WEBMES_V2\WEBMES_V2\obj\Release\net7.0\PubTmp\Out\runtimes\win\lib\net7.0\System.Drawing.Common.dll
 C:\Users\russe\Documents\GitHub\WEBMES_V2\WEBMES_V2\obj\Release\net7.0\PubTmp\Out\runtimes\win\lib\net6.0\System.Runtime.Caching.dll
+C:\Users\russe\Documents\GitHub\WEBMES_V2\WEBMES_V2\obj\Release\net7.0\PubTmp\Out\runtimes\win\lib\net7.0\System.Security.Cryptography.Pkcs.dll
 C:\Users\russe\Documents\GitHub\WEBMES_V2\WEBMES_V2\obj\Release\net7.0\PubTmp\Out\runtimes\win\lib\net6.0\System.Security.Cryptography.ProtectedData.dll
 C:\Users\russe\Documents\GitHub\WEBMES_V2\WEBMES_V2\obj\Release\net7.0\PubTmp\Out\runtimes\win\lib\net6.0\System.Windows.Extensions.dll
 C:\Users\russe\Documents\GitHub\WEBMES_V2\WEBMES_V2\obj\Release\net7.0\PubTmp\Out\WEBMES_V2.deps.json

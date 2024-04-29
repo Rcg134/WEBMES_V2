@@ -12,6 +12,7 @@ using WEBMES_V2.Models.DTO.PlasmaMagazineDTO;
 using WEBMES_V2.Models.ISQLRepository;
 using WEBMES_V2.Models.StaticModels.Generic;
 using WEBMES_V2.Models.StoreProcedures.PlasmaMagazineSP;
+using static WEBMES_V2.Models.StaticModels.Enums.MagazineStageEnum;
 
 namespace WEBMES_V2.Models.SQLRepositoryImplementation
 {
@@ -35,7 +36,6 @@ namespace WEBMES_V2.Models.SQLRepositoryImplementation
         #endregion
 
         #region Lot Checker
-
         public async Task<Boolean> CheckLotStageiFHold(StageLot stageLot)
         {
             await using SqlConnection sqlConnection = _dapperConnection
@@ -101,10 +101,12 @@ namespace WEBMES_V2.Models.SQLRepositoryImplementation
         public async Task<TrnLotMagazine> Insert_TRN_Lot_Magazine(TrnLotMagazine insert_TRN_Lot_MagazineDT0)
         {
             insert_TRN_Lot_MagazineDT0.StatusRemarks = "0";
+            insert_TRN_Lot_MagazineDT0.CurrentTrackOutQty = 0;
             await _mesAtecContext.TrnLotMagazines.AddAsync(insert_TRN_Lot_MagazineDT0);
             await _mesAtecContext.SaveChangesAsync();
             return insert_TRN_Lot_MagazineDT0;
         }
+
         public async Task<TrnLotMagazineDTO> Get_InsertedId(StageLot stageLot)
         {
             var GetId = await _mesAtecContext
@@ -115,6 +117,17 @@ namespace WEBMES_V2.Models.SQLRepositoryImplementation
                 return _mapper.Map<TrnLotMagazineDTO>(GetId);
 
             return null;
+        }
+        public async Task<int> Get_CurrentTrackoutQTY(StageLot stageLot)
+        {
+            var GetQTY =  _mesAtecContext
+                                        .TrnMagazineDetailsHistories
+                                        .Where(history => history.StationId == stageLot.StageCode &&
+                                                          history.StatusId == 5)
+                                        .AsNoTracking().Count();
+
+            
+            return GetQTY;
         }
         public async Task<IEnumerable<TrnMagazineDetailViewDTO>> GetMagazineList(StageLot stageLot)
         {
@@ -168,18 +181,22 @@ namespace WEBMES_V2.Models.SQLRepositoryImplementation
         }
         public async Task<InsertValidate> Insert_Magazine_Trn_MagazineDetail_and_History(TrnMagazineDetailDTO trnMagazineDetailDTO)
         {
-         
-                var isExistinTrnMagazineDetails = await _mesAtecContext
-                                                               .TrnMagazineDetails
-                                                               .AnyAsync(isExist => isExist.TrnLotMagazineId == trnMagazineDetailDTO.TrnLotMagazineId &&
-                                                                                    isExist.MagazineCode == trnMagazineDetailDTO.MagazineCode);
 
-                if (isExistinTrnMagazineDetails)
+            var isExistinTrnMagazineDetails = await _mesAtecContext
+                                                           .TrnMagazineDetails
+                                                           .FirstOrDefaultAsync(isExist => isExist.TrnLotMagazineId == trnMagazineDetailDTO.TrnLotMagazineId &&
+                                                                                isExist.MagazineCode == trnMagazineDetailDTO.MagazineCode);
+
+
+            if (isExistinTrnMagazineDetails != null) 
+            { 
+                    var existedCurrentMagazineStation = Enum.GetName(typeof(StageEnum), (int)isExistinTrnMagazineDetails.StationId);
                     return new InsertValidate()
                     {
                         isInserted = false,
-                        message = "Magazine already trackIn in this stage"
+                        message = $"Magazine is already trackIn in {existedCurrentMagazineStation} stage "
                     };
+            }
 
                 var insertDetails = _mapper.Map<TrnMagazineDetail>(trnMagazineDetailDTO);
                 var insertDetailsHistory = _mapper.Map<TrnMagazineDetailsHistory>(trnMagazineDetailDTO);
@@ -203,7 +220,8 @@ namespace WEBMES_V2.Models.SQLRepositoryImplementation
                                                                             new
                                                                             {
                                                                                 StatusId = stageLot.StatusCode,
-                                                                                TransactionId = stageLot.TRN_Lot_Magzine_Id
+                                                                                TransactionId = stageLot.TRN_Lot_Magzine_Id,
+                                                                                StationId = stageLot.StageCode
                                                                             },
                                                                             commandType: CommandType.StoredProcedure
                                                                             );

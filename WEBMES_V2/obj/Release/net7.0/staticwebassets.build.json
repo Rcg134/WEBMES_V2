@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "xIt1TOVq1kkgRUVKGq97lwL5PeIRpPYhb5M5K8W84L8=",
+  "Hash": "9gFibMwLH0uL/B5TDdJcKS04tUEKPCvNUXmWGjRnL9g=",
   "Source": "WEBMES_V2",
   "BasePath": "_content/WEBMES_V2",
   "Mode": "Default",
@@ -148,6 +148,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\css\\site.css"
+    },
+    {
+      "Identity": "C:\\Users\\russe\\Documents\\GitHub\\WEBMES_V2\\WEBMES_V2\\wwwroot\\DownloadableFiles\\Magazine_Template.xlsx",
+      "SourceId": "WEBMES_V2",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\russe\\Documents\\GitHub\\WEBMES_V2\\WEBMES_V2\\wwwroot\\",
+      "BasePath": "_content/WEBMES_V2",
+      "RelativePath": "DownloadableFiles/Magazine_Template.xlsx",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\DownloadableFiles\\Magazine_Template.xlsx"
     },
     {
       "Identity": "C:\\Users\\russe\\Documents\\GitHub\\WEBMES_V2\\WEBMES_V2\\wwwroot\\favicon.ico",

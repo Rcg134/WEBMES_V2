@@ -32,10 +32,10 @@
             <div class="col-md-6">
                 <div class="form-group">
                     <label>Stage</label>
-                    <select id="LastActionPlanSelect" class="select2">
-                        <option value="6">DA TO DA CURE</option>
-                        <option value="306">PLASMA TO WIREBOND</option>
-                        <option value="306">PLASMA TO MOLD</option>
+                    <select id="stagePlanSelect" class="select2">
+                        <option value="7">DA TO DA CURE</option>
+                        <option value="8">PLASMA TO WIREBOND</option>
+                        <option value="12">PLASMA TO MOLD</option>
                     </select>
                 </div>
             </div>
@@ -44,24 +44,35 @@
 
            <div class="row p-3">
                <div class="col-md-3">
-                   <label for="txtLotCode" class="form-label">Lot Code</label>
+                   <label for="txtLotCode" class="form-label">Lot Number</label>
                     <input type="text" class="form-control" id="txtLotCode" value="DUMMYLOT.1-A">
                </div>
             <div class="col-md-3">
                 <label for="txtCustomer" class="form-label">Customer</label>
                 <input type="text" class="form-control" id="txtCustomerNameId" disabled="disabled">
-                <input type="hidden" id="txtCustomerId">
+                <input type="hidden" id="txtCustomerIdHidden">
             </div>
             <div class="col-md-3">
-                <label for="txtLotQTY" class="form-label">Lot QTY</label>
-                <input type="text" class="form-control" id="txtLotQTY">
+                <label for="txtPackageTypeId" class="form-label">Package Type</label>
+                <input type="text" class="form-control" id="txtPackageTypeId" disabled="disabled">
+                <input type="hidden" id="txtPackageIdHidden">
+                <input type="hidden" id="txtMagazineQTYHidden">
             </div>
             <div class="col-md-3">
-                <label for="txtMachineCode" class="form-label">Machine Code</label>
-                <input type="text" class="form-control" id="txtMachineCode" value="TPTA001">
+                <label for="txtLeadTypeId" class="form-label">Lead Type</label>
+                <input type="text" class="form-control" id="txtLeadTypeId" disabled="disabled">
             </div>
            </div>
-
+            <div class="row p-3">
+                 <div class="col-md-3">
+                     <label for="txtLotQTY" class="form-label">Lot QTY</label>
+                     <input type="text" class="form-control" id="txtLotQTY">
+                 </div>
+                 <div class="col-md-3">
+                     <label for="txtMachineCode" class="form-label">Machine Code</label>
+                     <input type="text" class="form-control" id="txtMachineCode" value="TPTA001">
+                 </div>
+            </div>
           @* Table *@
             <div class="p-3" id="magazineTableList"></div>
 
@@ -97,12 +108,11 @@
                     event.preventDefault();
                 }
             });
-
         });
 
         //When user hit enter or barcode scanner
-        $('#txtLotCode').keypress(function (event) { 
-            var selectedStage = $('#LastActionPlanSelect').val();
+        $('#txtLotCode').keypress(function (event) {
+            var selectedStage = $('#stagePlanSelect').val();
             var lotAlias = $('#txtLotCode').val();
 
             if (event.keyCode === 13) {
@@ -117,7 +127,7 @@
             var machineCode = $('#txtMachineCode').val();
             var lotAlias =  $('#txtLotCode').val();
             var lotQTY = $('#txtLotQTY').val();
-            var selectedStage = $('#LastActionPlanSelect').val();
+            var selectedStage = $('#stagePlanSelect').val();
 
             if (event.keyCode === 13) {
                 callMachineChecker(lotAlias,
@@ -144,15 +154,24 @@
                             alert(response.message); 
                             return;
                         }
-
                         var lotQTY = response.details.qty;
                         var CustomerCode = response.details.customerCode;
                         var CustomerName = response.details.customerName;
+                        var PackageType = response.details.packageType;
+                        var LeadType = response.details.leadType;
+                        var PackageID = response.details.packageID;
+                        var MagazineQTY = response.details.magazineQTY;
 
                         $('#txtLotQTY').val(lotQTY)
-                        $('#txtCustomerId').val(CustomerCode)
+                        $('#txtCustomerIdHidden').val(CustomerCode)
                         $('#txtCustomerNameId').val(CustomerName)
+                        $('#txtPackageTypeId').val(PackageType)
+                        $('#txtLeadTypeId').val(LeadType)
 
+
+                        $('#txtPackageIdHidden').val(PackageID)
+                        $('#txtMagazineQTYHidden').val(MagazineQTY)
+                        
 
                         $('#txtLotCode').prop('disabled', true);
                         $('#txtMachineCode').prop('disabled', false);
@@ -178,16 +197,20 @@
                 data: {
                     MachineCode: paramMachineCode,
                     lotQTY: paramLotQTY,
-                    LotAlias : paramLot
+                    LotAlias : paramLot,
+                    StageCode: paramSelectedStage
                 },
                 dataType: "json",
                 success: function (response) {
+                    console.log(response)
                     if (response.status !== 1) {
                         alert(response.message)
                         return;
                     }
                     //if machine code is exist 
                     $('#txtMachineCode').prop('disabled', true)
+                    localStorage.removeItem('trackOutQTY');
+                    localStorage.setItem('trackOutQTY', response.trackoutQTY);
                     //Callback
                     callMagazineList(response.id,
                                      response.statusRemarks,
@@ -223,15 +246,19 @@
                     //Check if Magazine qty exceed in lot
                     var sum = 0;
                     var lotTotalQTY = $('#txtLotQTY').val();
-                    var magazineTotalQTY = 0
-                    $('#MagazineListTable tr').each(function () {
-                        magazineTotalQTY = parseInt($(this).find('td:eq(1)').text());
-                        if (!isNaN(magazineTotalQTY)) {
-                            sum += magazineTotalQTY;
-                        }
-                    });
-                    $('#txtQTYMagazineNeeded').text(`${sum} / ${lotTotalQTY}`);
+                    var MagazinePerQTY = $('#txtMagazineQTYHidden').val();
 
+                    var result = lotTotalQTY / MagazinePerQTY;
+
+                    // Rounding up to the nearest whole number
+                    var roundedResult = Math.ceil(result);
+                    var paramTrackOut = localStorage.getItem('trackOutQTY');
+                    var magazineTotalQTY = parseInt(paramTrackOut);
+                    $('#MagazineListTable tr:not(:first)').each(function () {
+                        magazineTotalQTY++
+                    });
+                    $('#txtQTYMagazineNeeded').text(`${magazineTotalQTY} / ${roundedResult}`);
+                    $('#txtMagazineTrackOutQTY').text(paramTrackOut);
 
                     //Callback for magazine functionalty
                     $('#txtMagazineCode').keypress(function (event) {
@@ -240,18 +267,31 @@
                         if (event.keyCode === 13) {
                             //Callback to validate the magazine
 
-                            if (sum >= lotTotalQTY) {
-                                alert("Magazine will be exceed")
+                            if (magazineTotalQTY >= roundedResult) {
+                                alert("Magazine will exceed")
                                 return;
                             }
 
-                            var customerCode = $('#txtCustomerId').val()
+                            var customerCode = $('#txtCustomerIdHidden').val()
 
-                            callModalForPackage(customerCode, 
-                                               paramId, 
-                                               paramStatusRemarks, 
-                                               paramSelectedStage)
 
+                            // callModalForPackage(customerCode, 
+                            //                    paramId, 
+                            //                    paramStatusRemarks, 
+                            //                    paramSelectedStage)
+
+                            var packageID = $('#txtPackageIdHidden').val()
+                            var remarksMagazine = $('#txtMagazineRemarks').val();
+                            var selectedStage = $('#stagePlanSelect').val();
+                            var magazineCode = $('#txtMagazineCode').val();
+
+                            callValidateAndInsertMagazine(magazineCode,
+                                                          paramId,
+                                                          paramStatusRemarks,
+                                                          selectedStage,
+                                                          remarksMagazine,
+                                                          paramSelectedStage,
+                                                          packageID);
 
                         }
                     });
@@ -261,7 +301,7 @@
                     //When track out click
                     $('#btnTrackOut').click(function () {
                         //Validate if magazine is qty is enough
-                        if (sum <= lotTotalQTY) {
+                        if (magazineTotalQTY === 0) {
                             alert("Magazine is not enough for lot quantity")
                             return;
                         }
@@ -280,57 +320,61 @@
         }
 
 
-        function callModalForPackage(paramCustomerId, 
-                                     paramId, 
-                                     paramStatusRemarks, 
-                                     paramSelectedStage) {
+        // function callModalForPackage(paramCustomerId, 
+        //                              paramId, 
+        //                              paramStatusRemarks, 
+        //                              paramSelectedStage) {
 
-            $.ajax({
-                type: "GET",
-                url: "/PlasmaMagazine/_PackageModal",
-                data: {
-                    CustomerID : paramCustomerId
-                },
-                dataType: "html",
-                success: function (response) {
+        //     $.ajax({
+        //         type: "GET",
+        //         url: "/PlasmaMagazine/_PackageModal",
+        //         data: {
+        //             CustomerID : paramCustomerId
+        //         },
+        //         dataType: "html",
+        //         success: function (response) {
 
-                    $("#packageModal").html('');
-                    $('#packageModal').append(response);
-                    $('#ChoosePackageModal').modal('show');
-                    //Initialization Select
-                    $('.select2').select2({
-                        width: '100%',
-                        dropdownParent: $('#ChoosePackageModal')
-                    });
-
-
-                    var magazineCode = $('#txtMagazineCode').val();
-                    var selectedStage = $('#LastActionPlanSelect').val();
-                    var remarksMagazine = $('#txtMagazineRemarks').val();
+        //             $("#packageModal").html('');
+        //             $('#packageModal').append(response);
+        //             $('#ChoosePackageModal').modal('show');
+        //             //Initialization Select
+        //             $('.select2').select2({
+        //                 width: '100%',
+        //                 dropdownParent: $('#ChoosePackageModal')
+        //             });
 
 
-                    $("#btnAddMagazineSave").click(function () {
-                        var selectedPackageId = $('#packageListSelect').val();
-
-                        callValidateAndInsertMagazine(magazineCode,
-                                                      paramId,
-                                                      paramStatusRemarks,
-                                                      selectedStage,
-                                                      remarksMagazine,
-                                                      paramSelectedStage,
-                                                      selectedPackageId);
-                    });
+        //             var magazineCode = $('#txtMagazineCode').val();
+        //             var selectedStage = $('#stagePlanSelect').val();
+        //             var remarksMagazine = $('#txtMagazineRemarks').val();
 
 
+        //             $("#btnAddMagazineSave").click(function () {
+        //                 var selectedPackageId = $('#packageListSelect').val();
+
+        //                 callValidateAndInsertMagazine(magazineCode,
+        //                                               paramId,
+        //                                               paramStatusRemarks,
+        //                                               selectedStage,
+        //                                               remarksMagazine,
+        //                                               paramSelectedStage,
+        //                                               selectedPackageId);
+        //             });
 
 
-                },
-                error: function (xhr, status, error) {
-                    alert("Error Please contact IT for the solution")
-                    // callErrorPage('An error occurred while fetching data');
-                }
-            });
-        }
+
+
+        //         },
+        //         error: function (xhr, status, error) {
+        //             alert("Error Please contact IT for the solution")
+        //             // callErrorPage('An error occurred while fetching data');
+        //         }
+        //     });
+        // }
+
+        $('#stagePlanSelect').change(function () {
+            location.reload();
+        });
 
 
         function callValidateAndInsertMagazine(magazine, 
@@ -360,7 +404,7 @@
                         alert(response.message);
                         return;
                     }
-                    $('#ChoosePackageModal').modal('hide');
+                    alert(`${magazine} has been trackIn`);
                     callMagazineList(paramId,
                                      paramStatusRemarks,
                                      paramSelectedStage);
@@ -386,15 +430,17 @@
                 url: "/PlasmaMagazine/TrackOut",
                 data: {
                     TRN_Lot_Magzine_Id: paramId,
+                    StageCode: paramSelectedStage
                 },
                 dataType: "json",
                 success: function (response) {
 
                     if (!response.isInserted) {
                         alert(response.message);
+
                         callMagazineList(paramId,
-                            paramStatusRemarks,
-                            paramSelectedStage);
+                                         paramStatusRemarks,
+                                         paramSelectedStage);
                         return;
                     }
 
@@ -403,10 +449,8 @@
                         alert(response.message);
                         location.reload();
                     }
+                    location.reload();
 
-                    callMagazineList(paramId,
-                                     paramStatusRemarks,
-                                     paramSelectedStage);
 
                 },
                 error: function (xhr, status, error) {

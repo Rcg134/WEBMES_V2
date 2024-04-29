@@ -28,8 +28,4 @@
     <Folder Include="ScaffoldModelContext\" />
   </ItemGroup>
 
-  <ItemGroup>
-    <None Include="wwwroot\DownloadableFiles\Magazine_Template.xlsx" />
-  </ItemGroup>
-
 </Project>
