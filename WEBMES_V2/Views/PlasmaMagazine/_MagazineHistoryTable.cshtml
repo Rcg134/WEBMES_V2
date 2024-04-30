@@ -8,13 +8,15 @@
             <table class="table table-hover" id="MagazineListTable">
                 <thead>
                     <tr>
+                        <th class="fixed-cell-width">Lot Number</th>
                         <th class="fixed-cell-width">Magazine Code</th>
                         <th class="fixed-cell-width">Magazine Qty</th>
                         <th class="fixed-cell-width">Package</th>
                         <th class="fixed-cell-width">Status</th>
                         <th class="fixed-cell-width">Station</th>
-                        <th class="fixed-cell-width">TrackIn Date</th>
-                        <th class="fixed-cell-width">TrackOut Date</th>
+                        <th class="fixed-cell-width">Tracked In Date</th>
+                        <th class="fixed-cell-width">Tracked Out Date</th>
+                        <th class="fixed-cell-width">Duration In Stage</th>
                         <th class="fixed-cell-width">Scanned By</th>
                         <th class="fixed-cell-width">Remarks</th>
                     </tr>
@@ -24,7 +26,17 @@
                     {
                         foreach (var item in Model)
                         {
+                              TimeSpan? timeDifference = null;
+                              if (item.DateTime_TrackOut.HasValue)
+                              {
+                                  timeDifference = item.DateTime_TrackOut.Value - item.DateTime_TrackIn;
+                              }
+
+                             // Format the TimeSpan as "dd:hh:mm:ss"
+                             var formattedDifference = timeDifference.HasValue ? $"{(int)timeDifference.Value.TotalDays:00}:{timeDifference.Value.Hours:00}:{timeDifference.Value.Minutes:00}:{timeDifference.Value.Seconds:00}" : "";
+
                             <tr>
+                                <td>@item.Lot</td>
                                 <td>@item.MagazineCode</td>
                                 <td>@item.MagazineQty</td>
                                 <td>@item.PackageId</td>
@@ -32,6 +44,7 @@
                                 <td>@item.StageId</td>
                                 <td>@item.DateTime_TrackIn</td>
                                 <td>@(item.DateTime_TrackOut.HasValue ? item.DateTime_TrackOut.Value : "")</td>
+                                <td>@(item.DateTime_TrackOut.HasValue ? formattedDifference : "")</td>
                                 <td>@item.ScannedBy</td>
                                 <td>@item.Remarks</td>
                             </tr>
@@ -40,7 +53,7 @@
                     else
                     {
                         <tr>
-                            <td colspan="9" class="text-center">No search data</td>
+                            <td colspan="11" class="text-center">No search data</td>
                         </tr>
                     }
                 </tbody>

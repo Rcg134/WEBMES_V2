@@ -78,6 +78,21 @@ namespace WEBMES_V2.Models.SQLRepositoryImplementation
 
             return null;
         }
+
+
+        public async Task<TrnLotMagazineDTO> Check_Lot_if_Exist(StageLot stageLot)
+        {
+            var lotDetails = await _mesAtecContext
+                                         .TrnLotMagazines
+                                         .FirstOrDefaultAsync(lot => lot.Lot == stageLot.LotAlias);
+
+            if (lotDetails != null )
+                return _mapper.Map<TrnLotMagazineDTO>(lotDetails);
+
+            return null;
+
+        }
+
         #endregion
         #region Machine Checker
         public async Task<Boolean> CheckMachine(StageLot stageLot)
@@ -123,7 +138,9 @@ namespace WEBMES_V2.Models.SQLRepositoryImplementation
             var GetQTY =  _mesAtecContext
                                         .TrnMagazineDetailsHistories
                                         .Where(history => history.StationId == stageLot.StageCode &&
-                                                          history.StatusId == 5)
+                                                          history.StatusId == 5 &&
+                                                          history.DateTimeTrackOut != null &&
+                                                          history.TrnLotMagazineId == stageLot.TRN_Lot_Magzine_Id)
                                         .AsNoTracking().Count();
 
             
@@ -194,7 +211,7 @@ namespace WEBMES_V2.Models.SQLRepositoryImplementation
                     return new InsertValidate()
                     {
                         isInserted = false,
-                        message = $"Magazine is already trackIn in {existedCurrentMagazineStation} stage "
+                        message = $"Magazine {isExistinTrnMagazineDetails.MagazineCode} is already TRACKED IN in {existedCurrentMagazineStation} stage (already used)"
                     };
             }
 
@@ -221,7 +238,8 @@ namespace WEBMES_V2.Models.SQLRepositoryImplementation
                                                                             {
                                                                                 StatusId = stageLot.StatusCode,
                                                                                 TransactionId = stageLot.TRN_Lot_Magzine_Id,
-                                                                                StationId = stageLot.StageCode
+                                                                                StationId = stageLot.StageCode,
+                                                                                MagazineCode = stageLot.MagazineCode,
                                                                             },
                                                                             commandType: CommandType.StoredProcedure
                                                                             );
@@ -292,6 +310,5 @@ namespace WEBMES_V2.Models.SQLRepositoryImplementation
             return null;
         }
 
-   
     }
 }

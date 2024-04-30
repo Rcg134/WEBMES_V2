@@ -15,7 +15,9 @@
         <label id="txtQTYMagazineNeeded" class="form-label d-block "></label>
     </div>
     <div class="col-md-2">
-        <label for="txtMagazineTrackOutQTY" class="form-label">Magazine TrackOut</label>
+        <label for="txtMagazineTrackOutQTY" class="form-label">
+            Magazine transferred
+        </label>
         <label id="txtMagazineTrackOutQTY" class="form-label d-block "></label>
     </div>
     <div class="col-md-3">
@@ -38,7 +40,7 @@
                         <th class="fixed-cell-width">Lead Count</th>
                         <th class="fixed-cell-width">Status</th>
                         <th class="fixed-cell-width">Station</th>
-                        <th class="fixed-cell-width">TrackIn Date</th>
+                        <th class="fixed-cell-width">Transaction date and time</th>
                         <th class="fixed-cell-width">Remarks</th>
                     </tr>
                 </thead>
@@ -54,7 +56,7 @@
                                 <td>@item.LeadCount</td>
                                 <td>@item.StatusId</td>
                                 <td>@item.StationId</td>
-                                <td>@item.DateTimeTrackIn?.ToString("MM/dd/yyyy")</td>
+                                <td>@item.DateTimeTrackIn</td>
                                 <td>@item.Remarks</td>
                             </tr>
                         }

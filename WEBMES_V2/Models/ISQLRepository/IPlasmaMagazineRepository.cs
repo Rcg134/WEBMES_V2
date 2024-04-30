@@ -12,6 +12,7 @@ namespace WEBMES_V2.Models.ISQLRepository
         Task<IEnumerable<lotCheckingDTO>> CheckLotStage(StageLot stageLot);
         Task<Boolean> CheckMachine(StageLot stageLot);
         Task<Boolean> CheckLotinTRN_Lot_Magazine(StageLot stageLot);
+        Task<TrnLotMagazineDTO> Check_Lot_if_Exist(StageLot stageLot);
         Task<TrnLotMagazine> Insert_TRN_Lot_Magazine(TrnLotMagazine trnLotMagazine);
         Task<TrnLotMagazineDTO> Get_InsertedId(StageLot stageLot);
         Task<int> Get_CurrentTrackoutQTY(StageLot stageLot);

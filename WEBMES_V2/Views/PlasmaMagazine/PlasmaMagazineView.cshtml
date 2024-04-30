@@ -48,6 +48,10 @@
                     <input type="text" class="form-control" id="txtLotCode" value="DUMMYLOT.1-A">
                </div>
             <div class="col-md-3">
+                <label for="txtCustomer" class="form-label">Current Stage</label>
+                <input type="text" class="form-control" id="txtStage" disabled="disabled">
+            </div>
+            <div class="col-md-3">
                 <label for="txtCustomer" class="form-label">Customer</label>
                 <input type="text" class="form-control" id="txtCustomerNameId" disabled="disabled">
                 <input type="hidden" id="txtCustomerIdHidden">
@@ -58,12 +62,12 @@
                 <input type="hidden" id="txtPackageIdHidden">
                 <input type="hidden" id="txtMagazineQTYHidden">
             </div>
-            <div class="col-md-3">
-                <label for="txtLeadTypeId" class="form-label">Lead Type</label>
-                <input type="text" class="form-control" id="txtLeadTypeId" disabled="disabled">
-            </div>
            </div>
             <div class="row p-3">
+                 <div class="col-md-3">
+                     <label for="txtLeadTypeId" class="form-label">Lead Type</label>
+                     <input type="text" class="form-control" id="txtLeadTypeId" disabled="disabled">
+                 </div>
                  <div class="col-md-3">
                      <label for="txtLotQTY" class="form-label">Lot QTY</label>
                      <input type="text" class="form-control" id="txtLotQTY">
@@ -86,7 +90,7 @@
        </div>
    </div>
 
-<div id="packageModal"></div>
+<div id="trackeOutModal"></div>
 
 @section Scripts 
  
@@ -119,7 +123,7 @@
                 callLotChecker(lotAlias,
                               selectedStage)
             }
-        });
+         });
 
 
         //When user hit enter or barcode scanner
@@ -161,9 +165,13 @@
                         var LeadType = response.details.leadType;
                         var PackageID = response.details.packageID;
                         var MagazineQTY = response.details.magazineQTY;
+                        var stageID = response.details.stageID;
+                        var isMachineCodeExist = response.machineCode;
 
+                        console.log(response)
                         $('#txtLotQTY').val(lotQTY)
                         $('#txtCustomerIdHidden').val(CustomerCode)
+                        $('#txtStage').val(stageID)
                         $('#txtCustomerNameId').val(CustomerName)
                         $('#txtPackageTypeId').val(PackageType)
                         $('#txtLeadTypeId').val(LeadType)
@@ -171,10 +179,24 @@
 
                         $('#txtPackageIdHidden').val(PackageID)
                         $('#txtMagazineQTYHidden').val(MagazineQTY)
-                        
+                        console.log(isMachineCodeExist)
+                        if (isMachineCodeExist !== '') {
+                            console.log(isMachineCodeExist)
+                            var machineCode = $('#txtMachineCode').val();
+                            var lotAlias = $('#txtLotCode').val();
+                            var lotQTY = $('#txtLotQTY').val();
+                            var selectedStage = $('#stagePlanSelect').val();
+
+                                callMachineChecker(lotAlias,
+                                                   lotQTY,
+                                                   machineCode,
+                                                   selectedStage)
+                        }
 
                         $('#txtLotCode').prop('disabled', true);
+                        $('#stagePlanSelect').prop('disabled', true);
                         $('#txtMachineCode').prop('disabled', false);
+                 
                         $('#txtMachineCode').focus();
 
                         $('#divCancel').removeClass('d-none')
@@ -260,15 +282,27 @@
                     $('#txtQTYMagazineNeeded').text(`${magazineTotalQTY} / ${roundedResult}`);
                     $('#txtMagazineTrackOutQTY').text(paramTrackOut);
 
+                    //Callback if Lot magazine qty needed is already completed
+                    if (magazineTotalQTY === roundedResult) {
+                        $("#magazineTableList").html('');
+                        alert('This lot is already cpmpleted in ths stage')
+                        location.reload();
+                        return;
+                    }
+
                     //Callback for magazine functionalty
                     $('#txtMagazineCode').keypress(function (event) {
-
+                        var magazineCode = $('#txtMagazineCode').val();
 
                         if (event.keyCode === 13) {
                             //Callback to validate the magazine
+                            if (magazineCode === '') {
+                                alert("Please scan magazine")
+                                return;
+                            }
 
                             if (magazineTotalQTY >= roundedResult) {
-                                alert("Magazine will exceed")
+                                alert("This Magazine is already used for this LOT / STAGE")
                                 return;
                             }
 
@@ -283,7 +317,7 @@
                             var packageID = $('#txtPackageIdHidden').val()
                             var remarksMagazine = $('#txtMagazineRemarks').val();
                             var selectedStage = $('#stagePlanSelect').val();
-                            var magazineCode = $('#txtMagazineCode').val();
+                         
 
                             callValidateAndInsertMagazine(magazineCode,
                                                           paramId,
@@ -302,13 +336,13 @@
                     $('#btnTrackOut').click(function () {
                         //Validate if magazine is qty is enough
                         if (magazineTotalQTY === 0) {
-                            alert("Magazine is not enough for lot quantity")
+                            alert("Magazine QTY is not enough for Lot quantity")
                             return;
                         }
 
-                        callTrackout(paramId, 
-                                     paramStatusRemarks, 
-                                     paramSelectedStage)
+                        callModalForTrackout(paramId,
+                                             paramStatusRemarks, 
+                                             paramSelectedStage)
                     });
 
                 },
@@ -320,61 +354,94 @@
         }
 
 
-        // function callModalForPackage(paramCustomerId, 
-        //                              paramId, 
-        //                              paramStatusRemarks, 
-        //                              paramSelectedStage) {
+        function callModalForTrackout(paramId,
+                                      paramStatusRemarks,
+                                      paramSelectedStage) {
 
-        //     $.ajax({
-        //         type: "GET",
-        //         url: "/PlasmaMagazine/_PackageModal",
-        //         data: {
-        //             CustomerID : paramCustomerId
-        //         },
-        //         dataType: "html",
-        //         success: function (response) {
+            $.ajax({
+                type: "GET",
+                url: "/PlasmaMagazine/_TrackoutModal",
+                dataType: "html",
+                success: function (response) {
 
-        //             $("#packageModal").html('');
-        //             $('#packageModal').append(response);
-        //             $('#ChoosePackageModal').modal('show');
-        //             //Initialization Select
-        //             $('.select2').select2({
-        //                 width: '100%',
-        //                 dropdownParent: $('#ChoosePackageModal')
-        //             });
+                    $("#trackeOutModal").html('');
+                    $('#trackeOutModal').append(response);
+                    $('#TrackOutModal').modal('show');
 
 
-        //             var magazineCode = $('#txtMagazineCode').val();
-        //             var selectedStage = $('#stagePlanSelect').val();
-        //             var remarksMagazine = $('#txtMagazineRemarks').val();
-
-
-        //             $("#btnAddMagazineSave").click(function () {
-        //                 var selectedPackageId = $('#packageListSelect').val();
-
-        //                 callValidateAndInsertMagazine(magazineCode,
-        //                                               paramId,
-        //                                               paramStatusRemarks,
-        //                                               selectedStage,
-        //                                               remarksMagazine,
-        //                                               paramSelectedStage,
-        //                                               selectedPackageId);
-        //             });
+                    $('#txtMagazineCodeTrackOut').keypress(function (event) {
+                        if (event.keyCode === 13) {
+                            var magCode = $('#txtMagazineCodeTrackOut').val()
+                             
+                             callTrackout(magCode,
+                                 paramId,
+                                 paramStatusRemarks,
+                                 paramSelectedStage)
+                        }
+                    });
 
 
 
 
-        //         },
-        //         error: function (xhr, status, error) {
-        //             alert("Error Please contact IT for the solution")
-        //             // callErrorPage('An error occurred while fetching data');
-        //         }
-        //     });
-        // }
+                },
+                error: function (xhr, status, error) {
+                    alert("Error Please contact IT for the solution")
+                    // callErrorPage('An error occurred while fetching data');
+                }
+            });
+        }
 
-        $('#stagePlanSelect').change(function () {
-            location.reload();
-        });
+        function callModalForPackage(paramCustomerId,
+                                     paramId,
+                                     paramStatusRemarks,
+                                     paramSelectedStage) {
+
+            $.ajax({
+                type: "GET",
+                url: "/PlasmaMagazine/_PackageModal",
+                data: {
+                    CustomerID : paramCustomerId
+                },
+                dataType: "html",
+                success: function (response) {
+
+                    $("#trackeOutModal").html('');
+                    $('#trackeOutModal').append(response);
+                    $('#ChoosePackageModal').modal('show');
+                    //Initialization Select
+                    $('.select2').select2({
+                        width: '100%',
+                        dropdownParent: $('#ChoosePackageModal')
+                    });
+
+
+                    var magazineCode = $('#txtMagazineCode').val();
+                    var selectedStage = $('#stagePlanSelect').val();
+                    var remarksMagazine = $('#txtMagazineRemarks').val();
+
+
+                    $("#btnAddMagazineSave").click(function () {
+                        var selectedPackageId = $('#packageListSelect').val();
+
+                        callValidateAndInsertMagazine(magazineCode,
+                                                      paramId,
+                                                      paramStatusRemarks,
+                                                      selectedStage,
+                                                      remarksMagazine,
+                                                      paramSelectedStage,
+                                                      selectedPackageId);
+                    });
+
+
+
+
+                },
+                error: function (xhr, status, error) {
+                    alert("Error Please contact IT for the solution")
+                    // callErrorPage('An error occurred while fetching data');
+                }
+            });
+        }
 
 
         function callValidateAndInsertMagazine(magazine, 
@@ -404,7 +471,7 @@
                         alert(response.message);
                         return;
                     }
-                    alert(`${magazine} has been trackIn`);
+                    alert(`Magazine (${magazine}) has been TRACKED IN`);
                     callMagazineList(paramId,
                                      paramStatusRemarks,
                                      paramSelectedStage);
@@ -421,7 +488,8 @@
 
 
 
-        function callTrackout(paramId,
+        function callTrackout(magazineCode,
+                              paramId,
                               paramStatusRemarks,
                               paramSelectedStage) {
 
@@ -430,7 +498,8 @@
                 url: "/PlasmaMagazine/TrackOut",
                 data: {
                     TRN_Lot_Magzine_Id: paramId,
-                    StageCode: paramSelectedStage
+                    StageCode: paramSelectedStage,
+                    MagazineCode: magazineCode,
                 },
                 dataType: "json",
                 success: function (response) {
@@ -444,14 +513,16 @@
                         return;
                     }
 
-                    if (response.isRefresh == 1) 
-                    {
-                        alert(response.message);
-                        location.reload();
-                    }
-                    location.reload();
+                    var paramTrackOut = localStorage.getItem('trackOutQTY');
+                    var magazineTotalQTY = parseInt(paramTrackOut) + 1;
+                    localStorage.setItem('trackOutQTY', magazineTotalQTY);
 
-
+                    $('#txtMagazineCodeTrackOut').val('')
+                    $('#txtMagazineCodeTrackOut').focus();
+                    alert(response.message);
+                    callMagazineList(paramId,
+                        paramStatusRemarks,
+                        paramSelectedStage);
                 },
                 error: function (xhr, status, error) {
                     alert("Error Please contact IT for the solution")

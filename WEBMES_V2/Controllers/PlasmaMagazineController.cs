@@ -58,7 +58,7 @@ namespace WEBMES_V2.Controllers
                 {
                     status = 3,
                     details = (object)null,
-                    message = $"Lot is currently hold"
+                    message = $"Lot is currently on hold"
                 });
             }
 
@@ -96,11 +96,11 @@ namespace WEBMES_V2.Controllers
                 {
                     status = 0,
                     details = (object)null,
-                    message =  "Lot is not exist"
+                    message =  "Lot does not exist"
                 });
 
           
-            var isProcess = lotDetails
+               var isProcess = lotDetails
                      .FirstOrDefault(lot => lot.StageCode == StageCode && 
                                              lot.StatusCode == (int)StatusListEnum.InProcess || 
                                              lot.StatusCode == (int)StatusListEnum.LotComplete);
@@ -119,9 +119,22 @@ namespace WEBMES_V2.Controllers
                     message = $"Lot is currently in the {lotdetails.StatusID} stage"
                 });
             }
+            //Return Details if exist
+            var isExistDetails =await _plasmaMagazineRepository.Check_Lot_if_Exist(stagelot);
+
+            if (isExistDetails == null)
+            {
+                return Json(new
+                {
+                    status = 1,
+                    details = isProcess,
+                    machineCode = ""
+                });
+            }
 
             return Json(new {status = 1,
-                             details = isProcess });
+                             details = isProcess,
+                             machineCode = isExistDetails.MachineCode});
         }
 
         public async Task<IActionResult> CheckMachine(StageLot stagelot)
@@ -150,8 +163,7 @@ namespace WEBMES_V2.Controllers
             var isLotExist = await _plasmaMagazineRepository
                                             .CheckLotinTRN_Lot_Magazine(stagelot);
 
-            //Check TrackOut QTY
-            var trackOutQTY = await _plasmaMagazineRepository.Get_CurrentTrackoutQTY(stagelot);
+       
 
             //if Lot does not exist then insert into TRN_Lot_Magazine then get Inserted ID
             if (!isLotExist)
@@ -167,13 +179,17 @@ namespace WEBMES_V2.Controllers
                 };
 
                 insertedId = await _plasmaMagazineRepository.Insert_TRN_Lot_Magazine(insertLotDetails);
-            
+
+                //Check if lot is new TrackOut QTY
+                stagelot.TRN_Lot_Magzine_Id = insertedId.Id;
+                var trackOutnotExisIdtQTY = await _plasmaMagazineRepository.Get_CurrentTrackoutQTY(stagelot);
+
                 return Json(new
                 {
                     status = 1,
                     id = insertedId.Id,
                     statusRemarks = insertedIdDTO.StatusRemarks,
-                    TrackoutQTY = trackOutQTY,
+                    TrackoutQTY = trackOutnotExisIdtQTY,
                     message = "Machine is exist"
                 });
             }
@@ -181,12 +197,16 @@ namespace WEBMES_V2.Controllers
             //if lot already existed in TRN_Lot_Magazine get the Id
             insertedIdDTO = await _plasmaMagazineRepository.Get_InsertedId(stagelot);
 
+            //Check if lot is already existed TrackOut QTY
+            stagelot.TRN_Lot_Magzine_Id = insertedIdDTO.Id;
+            var trackOutExisIdtQTY = await _plasmaMagazineRepository.Get_CurrentTrackoutQTY(stagelot);
+
             return Json(new
             {
                 status = 1,
                 id = insertedIdDTO.Id,
                 statusRemarks = insertedIdDTO.StatusRemarks,
-                TrackoutQTY = trackOutQTY,
+                TrackoutQTY = trackOutExisIdtQTY,
                 message = "Machine is exist"
             });
         }
@@ -201,6 +221,13 @@ namespace WEBMES_V2.Controllers
         {
             var packageList = await _plasmaMagazineRepository.Get_Package_List(stageLot);
             ViewBag.packageList = packageList;
+            return PartialView();
+        }
+
+        public async Task<IActionResult> _TrackoutModal(StageLot stageLot)
+        {
+            ViewBag.transactioId = stageLot.id;
+            ViewBag.packageList = stageLot.id;
             return PartialView();
         }
 
