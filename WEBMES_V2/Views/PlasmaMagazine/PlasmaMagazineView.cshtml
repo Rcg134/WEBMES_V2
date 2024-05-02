@@ -73,7 +73,7 @@
                      <input type="text" class="form-control" id="txtLotQTY">
                  </div>
                  <div class="col-md-3">
-                     <label for="txtMachineCode" class="form-label">Machine Code</label>
+                     <label for="txtMachineCode" class="form-label">Machine ID</label>
                      <input type="text" class="form-control" id="txtMachineCode" value="TPTA001">
                  </div>
             </div>
@@ -283,9 +283,9 @@
                     $('#txtMagazineTrackOutQTY').text(paramTrackOut);
 
                     //Callback if Lot magazine qty needed is already completed
-                    if (magazineTotalQTY === roundedResult) {
+                    if (paramTrackOut == roundedResult) {
                         $("#magazineTableList").html('');
-                        alert('This lot is already cpmpleted in ths stage')
+                        alert('This lot is already completed in ths stage')
                         location.reload();
                         return;
                     }

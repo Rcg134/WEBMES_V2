@@ -27,6 +27,8 @@ public partial class MesAtecContext : DbContext
 
     public virtual DbSet<PsEquipment> PsEquipments { get; set; }
 
+    public virtual DbSet<MsStationListMagazine> MsStationListMagazines { get; set; }
+
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder.Entity<MsMagazineStatus>(entity =>
@@ -47,7 +49,11 @@ public partial class MesAtecContext : DbContext
             entity.Property(e => e.PackageId)
                 .HasMaxLength(255)
                 .HasColumnName("PackageID");
+            entity.Property(e => e.StationId).HasColumnName("StationID");
             entity.Property(e => e.TimeCreated).HasColumnType("datetime");
+            entity.Property(e => e.Torange).HasColumnName("TOrange");
+            entity.Property(e => e.Tred).HasColumnName("TRed");
+            entity.Property(e => e.Tyellow).HasColumnName("TYellow");
         });
 
         modelBuilder.Entity<TrnLotMagazine>(entity =>
@@ -118,6 +124,15 @@ public partial class MesAtecContext : DbContext
                 .HasMaxLength(50)
                 .HasColumnName("EquipmentID");
             entity.Property(e => e.ModifiedDate).HasColumnType("datetime");
+        });
+
+
+        modelBuilder.Entity<MsStationListMagazine>(entity =>
+        {
+            entity.ToTable("MS_Station_List_Magazine");
+
+            entity.Property(e => e.Description).HasMaxLength(125);
+            entity.Property(e => e.Name).HasMaxLength(125);
         });
 
 

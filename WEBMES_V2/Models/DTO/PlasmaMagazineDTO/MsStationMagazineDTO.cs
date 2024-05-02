@@ -14,7 +14,15 @@
 
         public int? MagazineQty { get; set; }
 
-        public int? LifeSpanDay { get; set; }
+        public double? LifeSpanDay { get; set; }
+
+        public int? StationId { get; set; }
+
+        public double? Tyellow { get; set; }
+
+        public double? Torange { get; set; }
+
+        public double? Tred { get; set; }
 
         public DateTime? TimeCreated { get; set; }
     }

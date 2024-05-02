@@ -66,7 +66,8 @@ namespace WEBMES_V2.Models.SQLRepositoryImplementation
                                                                           PlasmaMagazine.usp_Current_Station_Check,
                                                                           new
                                                                           {
-                                                                              lotAlias = stageLot.LotAlias
+                                                                              lotAlias = stageLot.LotAlias,
+                                                                              @StationID = stageLot.StageCode
                                                                           },
                                                                           commandType: CommandType.StoredProcedure
                                                                           );
@@ -121,7 +122,6 @@ namespace WEBMES_V2.Models.SQLRepositoryImplementation
             await _mesAtecContext.SaveChangesAsync();
             return insert_TRN_Lot_MagazineDT0;
         }
-
         public async Task<TrnLotMagazineDTO> Get_InsertedId(StageLot stageLot)
         {
             var GetId = await _mesAtecContext
@@ -171,6 +171,8 @@ namespace WEBMES_V2.Models.SQLRepositoryImplementation
         }
         public async Task<MsStationMagazineDTO> Get_Magazine_MS_Station_Magazine(StageLot stageLot)
         {
+            try { 
+
             var magazineDetail = await _mesAtecContext
                                            .MsStationMagazines
                                            .FirstOrDefaultAsync(mag => mag.Id == stageLot.PackageTransId);
@@ -180,6 +182,10 @@ namespace WEBMES_V2.Models.SQLRepositoryImplementation
                 return _mapper.Map<MsStationMagazineDTO>(magazineDetail);
             }
 
+            return null;
+            }
+
+            catch (Exception ex) { }
             return null;
         }
         public async Task<TrnMagazineDetailDTO> Get_Magazine_Trn_MagazineDetail(StageLot stageLot)
