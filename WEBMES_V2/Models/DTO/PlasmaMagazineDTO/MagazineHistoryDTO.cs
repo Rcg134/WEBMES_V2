@@ -12,6 +12,9 @@
         public DateTime? DateTime_TrackOut { get; set; }
         public string ScannedBy { get; set; }
         public string Remarks { get; set; }
+        public DateTime Due_Date { get; set; }
+       
+        public string Color { get; set; }
 
     }
 }

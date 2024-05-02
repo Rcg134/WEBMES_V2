@@ -1,0 +1,57 @@
+﻿@model IEnumerable<WEBMES_V2.Models.DTO.PlasmaMagazineDTO.MagazineHistoryDTO>;
+
+
+
+<div class="row p-3">
+    <div class="col-md-12">
+        <div class="table-responsive">
+            <table class="table table-hover" id="MagazineListTable">
+                <thead>
+                    <tr>
+                        <th class="fixed-cell-width">Lot Number</th>
+                        <th class="fixed-cell-width">Magazine Code</th>
+                        <th class="fixed-cell-width">Magazine Qty</th>
+                        <th class="fixed-cell-width">Package</th>
+                        <th class="fixed-cell-width">Status</th>
+                        <th class="fixed-cell-width">Station</th>
+                        <th class="fixed-cell-width">Tracked In Date and Time</th>
+                        <th class="fixed-cell-width">Tracked Out Date and Time</th>
+                        <th class="fixed-cell-width">Due Date</th>
+                        <th class="fixed-cell-width">Scanned By</th>
+                        <th class="fixed-cell-width">Remarks</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @if (Model.Any())
+                    {
+                        foreach (var item in Model)
+                        {   
+
+                            <tr style="background-color : @item.Color">
+                                <td>@item.Lot</td>
+                                <td>@item.MagazineCode</td>
+                                <td>@item.MagazineQty</td>
+                                <td>@item.PackageId</td>
+                                <td>@item.StatusId</td>
+                                <td>@item.StageId</td>
+                                <td>@item.DateTime_TrackIn</td>
+                                <td>@(item.DateTime_TrackOut.HasValue ? item.DateTime_TrackOut.Value : "")</td>
+                                <td class="font-weight-bold">@item.Due_Date</td>
+                                <td>@item.ScannedBy</td>
+                                <td>@item.Remarks</td>
+                            </tr>
+                        }
+                    }
+                    else
+                    {
+                        <tr>
+                            <td colspan="12" class="text-center">No search data</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+

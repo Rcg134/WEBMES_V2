@@ -24,6 +24,7 @@ namespace WEBMES_V2.Models.ISQLRepository
         Task<InsertValidate> TrackOut(StageLot stageLot);
         Task<Boolean> Insert_XML_MS_Station_Magazine(XDocument MagazineXML);
         Task<IEnumerable<MagazineHistoryDTO>> Get_Magazine_History(SearchData searchData);
+        Task<IEnumerable<MagazineHistoryDTO>> Get_Magazine_DashBoard(StageLot stageLot);
 
     }
 }

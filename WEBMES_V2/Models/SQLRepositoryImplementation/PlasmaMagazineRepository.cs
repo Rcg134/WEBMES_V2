@@ -316,5 +316,26 @@ namespace WEBMES_V2.Models.SQLRepositoryImplementation
             return null;
         }
 
+        public async Task<IEnumerable<MagazineHistoryDTO>> Get_Magazine_DashBoard(StageLot stageLot)
+        {
+            await using SqlConnection sqlConnection = _dapperConnection
+                                               .CreateConnection();
+
+            var magazineHistoryDetails = await sqlConnection.QueryAsync<MagazineHistoryDTO>(
+                                                                            PlasmaMagazine.usp_Magazine_DashBoard,
+                                                                            new
+                                                                            {
+                                                                                StageID = stageLot.StageCode
+                                                                            },
+                                                                            commandType: CommandType.StoredProcedure
+                                                                            );
+
+            if (magazineHistoryDetails != null)
+            {
+                return magazineHistoryDetails;
+            }
+
+            return null;
+        }
     }
 }

@@ -356,10 +356,25 @@ namespace WEBMES_V2.Controllers
 
             return File(fileContent, "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", pathFile);
         }
+        #endregion
+
+
+        #region Magazine Dashboard
+        public async Task<IActionResult> MagazineDashboard()
+        {
+         
+          return View();
+        }
+
+
+        public async Task<IActionResult> _MagazineDashboardListTable(StageLot stageLot)
+        {
+            var magazineList = await _plasmaMagazineRepository.Get_Magazine_DashBoard(stageLot);
+
+            return PartialView(magazineList);
+        }
+
         #endregion 
-
-
-
 
     }
 }
