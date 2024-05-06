@@ -18,7 +18,6 @@ builder.Services.AddScoped<IXMLConverter, XMLConverter>();
 builder.Services.AddScoped<IDownloadFile, DownloadFiles>();
 //------------------------------------------------------
 
-
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 

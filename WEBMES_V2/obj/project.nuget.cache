@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "iVdJB09ultVMgoC5D0473LA6/09FqwWg4BCfF8FU4aQjZMbpktzrIdRsE10ia5l2KyRUpoHOI+WCg5VyKaPmcA==",
+  "dgSpecHash": "UNXskuKqJgulgEx8laoD2PmD6G9J2+zOC3L+5nh7l7IiKlSV0Ib/fQtHn+Ip2rHMwGhQpgMaOpOxOjLWVSdZaw==",
   "success": true,
   "projectFilePath": "C:\\Users\\russe\\Documents\\GitHub\\WEBMES_V2\\WEBMES_V2\\WEBMES_V2.csproj",
   "expectedPackageFiles": [
@@ -80,7 +80,11 @@
     "C:\\Users\\russe\\.nuget\\packages\\system.text.encodings.web\\7.0.0\\system.text.encodings.web.7.0.0.nupkg.sha512",
     "C:\\Users\\russe\\.nuget\\packages\\system.text.json\\7.0.0\\system.text.json.7.0.0.nupkg.sha512",
     "C:\\Users\\russe\\.nuget\\packages\\system.threading.tasks.extensions\\4.5.4\\system.threading.tasks.extensions.4.5.4.nupkg.sha512",
-    "C:\\Users\\russe\\.nuget\\packages\\system.windows.extensions\\6.0.0\\system.windows.extensions.6.0.0.nupkg.sha512"
+    "C:\\Users\\russe\\.nuget\\packages\\system.windows.extensions\\6.0.0\\system.windows.extensions.6.0.0.nupkg.sha512",
+    "C:\\Users\\russe\\.nuget\\packages\\microsoft.netcore.app.ref\\7.0.18\\microsoft.netcore.app.ref.7.0.18.nupkg.sha512",
+    "C:\\Users\\russe\\.nuget\\packages\\microsoft.windowsdesktop.app.ref\\7.0.18\\microsoft.windowsdesktop.app.ref.7.0.18.nupkg.sha512",
+    "C:\\Users\\russe\\.nuget\\packages\\microsoft.aspnetcore.app.ref\\7.0.18\\microsoft.aspnetcore.app.ref.7.0.18.nupkg.sha512",
+    "C:\\Users\\russe\\.nuget\\packages\\microsoft.netcore.app.host.win-x64\\7.0.18\\microsoft.netcore.app.host.win-x64.7.0.18.nupkg.sha512"
   ],
   "logs": []
 }
