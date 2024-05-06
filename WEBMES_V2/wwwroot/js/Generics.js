@@ -52,9 +52,12 @@ function hideSkeletonLoading(formid) {
 
 
 function showNotif(message) {
-    $('#notificationAlert').removeClass('hide');
-    $('#notificationMessage').text(message);
-    setTimeout(function () {
-        $('#notificationAlert').addClass('hide');
-    }, 3000);
+    return new Promise((resolve, reject) => {
+        $('#notificationAlertid').removeClass('d-none');
+        $('#notificationMessage').text(message);
+        setTimeout(() => {
+            $('#notificationAlertid').addClass('d-none');
+            resolve(); // Resolve the promise after the notification is hidden
+        }, 3000);
+    });
 }

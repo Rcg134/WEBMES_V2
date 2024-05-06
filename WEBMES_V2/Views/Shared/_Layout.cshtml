@@ -129,45 +129,6 @@
 
 
 
-
-                        @*Maintenance *@
-@*                         <li class="nav-item" id="arMaintenance">
-                            <a href="#" class="nav-link">
-                                <i class="nav-icon fas fa-tools"></i>
-                                <p>
-                                    Maintenance
-                                    <i class="right fas fa-angle-left"></i>
-                                </p>
-                            </a>
-
-                            <ul class="nav nav-treeview">
-
-                                <li class="nav-item sub-item">
-                                    <a class="nav-link" asp-area="" asp-controller="Maintenance" asp-action="UserManagementView">
-                                        <i class="fas fa-circle nav-icon"></i>
-                                        <p>User Management</p>
-                                    </a>
-                                </li>
-
-
-                                <li class="nav-item sub-item">
-                                    <a class="nav-link" asp-area="" asp-controller="Maintenance" asp-action="ActionPlanList">
-                                        <i class="fas fa-circle nav-icon"></i>
-                                        <p>Action Plan</p>
-                                    </a>
-                                </li>
-
-                                <li class="nav-item sub-item">
-                                    <a class="nav-link" asp-area="" asp-controller="Maintenance" asp-action="PlanOwnerList">
-                                        <i class="fas fa-circle nav-icon"></i>
-                                        <p>Action Plan Owner</p>
-                                    </a>
-                                </li>
-
-                            </ul>
-                        </li> *@
-
-
                     </ul>
                 </nav>
                 <!-- /.sidebar-menu -->
@@ -183,6 +144,11 @@
                 <div class="container-fluid">
                     <div class="p-3">
                         <div id="renderBody">
+                            <!-- Notification Alert -->
+                            <div id="notificationAlertid" class="alert alert-danger notificationAlert d-none text-center" role="alert">
+                                <p id="notificationMessage"></p>
+                            </div>
+
                             @RenderBody()
                         </div>
 
@@ -195,10 +161,7 @@
                         </div>
 
 
-                        <!-- Notification Alert -->
-                        <div id="notificationAlert" class="notificationAlert alert alert-info hide" role="alert">
-                            <p id="notificationMessage"></p>
-                        </div>
+           
                     </div>
                 </div>
             </section>

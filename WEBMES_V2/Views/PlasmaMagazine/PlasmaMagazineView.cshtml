@@ -155,7 +155,7 @@
                     dataType: "json",
                     success: function (response) {
                         if (response.status !== 1) {
-                            alert(response.message); 
+                            showNotif(response.message)
                             return;
                         }
                         var lotQTY = response.details.qty;
@@ -168,7 +168,7 @@
                         var stageID = response.details.stageID;
                         var isMachineCodeExist = response.machineCode;
 
-                        console.log(response)
+
                         $('#txtLotQTY').val(lotQTY)
                         $('#txtCustomerIdHidden').val(CustomerCode)
                         $('#txtStage').val(stageID)
@@ -179,9 +179,7 @@
 
                         $('#txtPackageIdHidden').val(PackageID)
                         $('#txtMagazineQTYHidden').val(MagazineQTY)
-                        console.log(isMachineCodeExist)
                         if (isMachineCodeExist !== '') {
-                            console.log(isMachineCodeExist)
                             var machineCode = $('#txtMachineCode').val();
                             var lotAlias = $('#txtLotCode').val();
                             var lotQTY = $('#txtLotQTY').val();
@@ -224,9 +222,8 @@
                 },
                 dataType: "json",
                 success: function (response) {
-                    console.log(response)
                     if (response.status !== 1) {
-                        alert(response.message)
+                        showNotif(response.message)
                         return;
                     }
                     //if machine code is exist 
@@ -285,8 +282,10 @@
                     //Callback if Lot magazine qty needed is already completed
                     if (paramTrackOut == roundedResult) {
                         $("#magazineTableList").html('');
-                        alert('This lot is already completed in ths stage')
-                        location.reload();
+                        showNotif("This lot is already completed in ths stage")
+                            .then(() => {
+                                location.reload();
+                            })
                         return;
                     }
 
@@ -297,12 +296,12 @@
                         if (event.keyCode === 13) {
                             //Callback to validate the magazine
                             if (magazineCode === '') {
-                                alert("Please scan magazine")
+                                showNotif("Please scan magazine")
                                 return;
                             }
 
                             if (magazineTotalQTY >= roundedResult) {
-                                alert("This Magazine is already used for this LOT / STAGE")
+                                showNotif("This Magazine is already used for this LOT / STAGE")
                                 return;
                             }
 
@@ -336,7 +335,7 @@
                     $('#btnTrackOut').click(function () {
                         //Validate if magazine is qty is enough
                         if (magazineTotalQTY === 0) {
-                            alert("Magazine QTY is not enough for Lot quantity")
+                            showNotif("Magazine QTY is not enough for Lot quantity")
                             return;
                         }
 
@@ -468,10 +467,13 @@
 
                     if (!response.isInserted) 
                     {
-                        alert(response.message);
+                        showNotif(response.message)
+                            .then(() => {})
                         return;
                     }
-                    alert(`Magazine (${magazine}) has been TRACKED IN`);
+
+                    showNotif(`Magazine (${magazine}) has been TRACKED IN`)
+                        .then(() => { })
                     callMagazineList(paramId,
                                      paramStatusRemarks,
                                      paramSelectedStage);
@@ -505,8 +507,8 @@
                 success: function (response) {
 
                     if (!response.isInserted) {
-                        alert(response.message);
-
+  
+                        showNotif(response.message)
                         callMagazineList(paramId,
                                          paramStatusRemarks,
                                          paramSelectedStage);
@@ -519,7 +521,7 @@
 
                     $('#txtMagazineCodeTrackOut').val('')
                     $('#txtMagazineCodeTrackOut').focus();
-                    alert(response.message);
+                    showNotif(response.message)
                     callMagazineList(paramId,
                         paramStatusRemarks,
                         paramSelectedStage);
