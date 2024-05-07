@@ -70,24 +70,44 @@ namespace WEBMES_V2.Controllers
 
             //Check if user select Plasma to WB or plasma to mold , check if lot was tracked out in DA cure and trackin in Plasma
             if (StageCode == (int)StageEnum.DA_CURE) {
-                var isTrackoutInCure = lotDetails.Any(lot => lot.StageCode == (int)StageEnum.DA_CURE &&
-                                                             lot.StatusCode == (int)StatusListEnum.LotComplete);
+                var isTrackoutInCure = lotDetails.Any(lot => lot.StageCode == (int)StageEnum.DA &&
+                                                             lot.StatusCode == (int)StatusListEnum.InProcess);
 
-                var isTrackInInPlasma = lotDetails.Any(lot => lot.StageCode == (int)StageEnum.Plasma &&
-                                                              lot.StatusCode == (int)StatusListEnum.InProcess);
+                ////var isTrackInInPlasma = lotDetails.Any(lot => lot.StageCode == (int)StageEnum.Plasma &&
+                ////                                              lot.StatusCode == (int)StatusListEnum.InProcess);
 
-                if (!isTrackoutInCure ||
-                    !isTrackInInPlasma)
+                if (!isTrackoutInCure)
                 {
                     return Json(new
                     {
                         status = 2,
                         details = (object)null,
-                        message = $"Lot is not yet process in DA Cure or not yet TrackIn in Plasma"
+                        message = $"Lot is not yet Tracked In in Die Attach"
                     });
                 }
 
             }
+            else
+            {
+                var isTrackInInPlasma = lotDetails.Any(lot => lot.StageCode == (int)StageEnum.Plasma &&
+                                                       lot.StatusCode == (int)StatusListEnum.InProcess);
+
+
+                if (!isTrackInInPlasma)
+                {
+                    return Json(new
+                    {
+                        status = 2,
+                        details = (object)null,
+                        message = $"Lot is not yet Tracked In Plasma"
+                    });
+                }
+            }
+
+
+
+
+
 
             //validate if no record found
             if (lotDetails.Count() == 0 || 

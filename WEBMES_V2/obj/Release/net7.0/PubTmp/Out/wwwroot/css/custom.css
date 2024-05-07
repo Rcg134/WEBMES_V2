@@ -94,21 +94,12 @@ Custom Loading Screen*/
 
 
 /* Styles for the notification alert */
-#notificationAlert {
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    z-index: 9999;
-    display: none;
-    animation: slideInFromRight 0.5s ease-in-out forwards;
+.notificationAlert {
+    z-index: 1051;
 }
 
-@keyframes slideInFromRight {
-    0% {
-        transform: translateX(100%);
-    }
-
-    100% {
-        transform: translateX(0);
-    }
+.modal {
+    z-index: 1050; /* Set the z-index of the modal to a higher value than the alert */
 }
+
+

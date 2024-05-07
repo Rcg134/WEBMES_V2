@@ -4,6 +4,7 @@
     {
        public enum StageEnum
         {
+            DA = 6,
             DA_CURE = 7,
             Plasma = 306,
             Wirebond = 8,
