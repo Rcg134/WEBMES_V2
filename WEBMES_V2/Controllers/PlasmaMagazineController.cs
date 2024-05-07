@@ -13,6 +13,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Hosting.Server;
 using Microsoft.AspNetCore.Hosting;
 using static System.Collections.Specialized.BitVector32;
+using WEBMES_V2.Models.StaticModels.Dictionary;
 
 namespace WEBMES_V2.Controllers
 {
@@ -73,9 +74,6 @@ namespace WEBMES_V2.Controllers
                 var isTrackoutInCure = lotDetails.Any(lot => lot.StageCode == (int)StageEnum.DA &&
                                                              lot.StatusCode == (int)StatusListEnum.InProcess);
 
-                ////var isTrackInInPlasma = lotDetails.Any(lot => lot.StageCode == (int)StageEnum.Plasma &&
-                ////                                              lot.StatusCode == (int)StatusListEnum.InProcess);
-
                 if (!isTrackoutInCure)
                 {
                     return Json(new
@@ -106,9 +104,6 @@ namespace WEBMES_V2.Controllers
 
 
 
-
-
-
             //validate if no record found
             if (lotDetails.Count() == 0 || 
                 lotDetails == null)
@@ -119,11 +114,12 @@ namespace WEBMES_V2.Controllers
                     message =  "Lot does not exist"
                 });
 
+                //get current stage
+               var currentStageCode = StageDict.stageDict.ContainsKey((int)StageCode);
           
                var isProcess = lotDetails
-                     .FirstOrDefault(lot => lot.StageCode == StageCode && 
-                                             lot.StatusCode == (int)StatusListEnum.InProcess || 
-                                             lot.StatusCode == (int)StatusListEnum.LotComplete);
+                     .FirstOrDefault(lot => currentStageCode && 
+                                            lot.StatusCode == (int)StatusListEnum.InProcess);
 
 
             //validate if  null and stage is not in process in DA Stage
