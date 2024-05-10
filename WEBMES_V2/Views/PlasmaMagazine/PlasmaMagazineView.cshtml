@@ -1,18 +1,17 @@
-﻿
-@{
+﻿@{
     ViewBag.Title = "PLASMA";
 }
 
 <div class="card ATEC-theme-color mb-3">
-       <div class="card-header text-white">
-               <H3>PLASMA</H3>
-       </div>
-   </div>
-   
-   
-   
-   <div class="card pb-3">
-       <div class="card-body">
+    <div class="card-header text-white">
+        <H3>PLASMA</H3>
+    </div>
+</div>
+
+
+
+<div class="card pb-3">
+    <div class="card-body">
         @* Validation *@
         @if (!ViewData.ModelState.IsValid)
         {
@@ -28,7 +27,7 @@
             </div>
         }
 
-         <div class="row p-3">
+        <div class="row p-3">
             <div class="col-md-6">
                 <div class="form-group">
                     <label>Stage</label>
@@ -39,14 +38,14 @@
                     </select>
                 </div>
             </div>
- 
-         </div>
 
-           <div class="row p-3">
-               <div class="col-md-3">
-                   <label for="txtLotCode" class="form-label">Lot Number</label>
-                    <input type="text" class="form-control" id="txtLotCode" value="DUMMYLOT.1-A">
-               </div>
+        </div>
+
+        <div class="row p-3">
+            <div class="col-md-3">
+                <label for="txtLotCode" class="form-label">Lot Number</label>
+                <input type="text" class="form-control" id="txtLotCode">
+            </div>
             <div class="col-md-3">
                 <label for="txtCustomer" class="form-label">Current Stage</label>
                 <input type="text" class="form-control" id="txtStage" disabled="disabled">
@@ -62,38 +61,37 @@
                 <input type="hidden" id="txtPackageIdHidden">
                 <input type="hidden" id="txtMagazineQTYHidden">
             </div>
-           </div>
-            <div class="row p-3">
-                 <div class="col-md-3">
-                     <label for="txtLeadTypeId" class="form-label">Lead Type</label>
-                     <input type="text" class="form-control" id="txtLeadTypeId" disabled="disabled">
-                 </div>
-                 <div class="col-md-3">
-                     <label for="txtLotQTY" class="form-label">Lot QTY</label>
-                     <input type="text" class="form-control" id="txtLotQTY">
-                 </div>
-                 <div class="col-md-3">
-                     <label for="txtMachineCode" class="form-label">Machine ID</label>
-                     <input type="text" class="form-control" id="txtMachineCode" value="TPTA001">
-                 </div>
+        </div>
+        <div class="row p-3">
+            <div class="col-md-3">
+                <label for="txtLeadTypeId" class="form-label">Lead Type</label>
+                <input type="text" class="form-control" id="txtLeadTypeId" disabled="disabled">
             </div>
-          @* Table *@
-            <div class="p-3" id="magazineTableList"></div>
+            <div class="col-md-3">
+                <label for="txtLotQTY" class="form-label">Lot QTY</label>
+                <input type="text" class="form-control" id="txtLotQTY">
+            </div>
+            <div class="col-md-3">
+                <label for="txtMachineCode" class="form-label">Machine ID</label>
+                <input type="text" class="form-control" id="txtMachineCode">
+            </div>
+        </div>
+        @* Table *@
+        <div class="p-3" id="magazineTableList"></div>
 
 
         <div class="row p-3 d-none" id="divCancel">
-           <div class="col-md-3">
-                <a asp-controller="PlasmaMagazine" class="btn btn-warning asp-action="PlasmaMagazineView">Cancel</a>
-           </div>
+            <div class="col-md-3">
+                <a asp-controller="PlasmaMagazine" class="btn btn-warning asp-action=" PlasmaMagazineView">Cancel</a>
+            </div>
         </div>
 
-       </div>
-   </div>
+    </div>
+</div>
 
 <div id="trackeOutModal"></div>
 
-@section Scripts 
- 
+@section Scripts
 {
 
     <script>
@@ -106,12 +104,6 @@
             $('#txtLotCode').focus();
             $('#txtMachineCode').prop('disabled', true)
             $('#txtLotQTY').prop('disabled', true)
-
-            $('#txtMachineCode').keypress(function (event) {
-                if ((event.which >= 65 && event.which <= 90) || (event.which >= 97 && event.which <= 122)) {
-                    event.preventDefault();
-                }
-            });
         });
 
         //When user hit enter or barcode scanner
@@ -121,29 +113,29 @@
 
             if (event.keyCode === 13) {
                 callLotChecker(lotAlias,
-                              selectedStage)
+                    selectedStage)
             }
-         });
+        });
 
 
         //When user hit enter or barcode scanner
         $('#txtMachineCode').keypress(function (event) {
             var machineCode = $('#txtMachineCode').val();
-            var lotAlias =  $('#txtLotCode').val();
+            var lotAlias = $('#txtLotCode').val();
             var lotQTY = $('#txtLotQTY').val();
             var selectedStage = $('#stagePlanSelect').val();
 
             if (event.keyCode === 13) {
                 callMachineChecker(lotAlias,
-                                   lotQTY, 
-                                   machineCode,
-                                   selectedStage)
+                    lotQTY,
+                    machineCode,
+                    selectedStage)
             }
         });
 
         //Function for checking Lot for specific stage
         function callLotChecker(paramLotAlias,
-                                paramSelectedStage) {
+            paramSelectedStage) {
             return new Promise(function (resolve, reject) {
                 $.ajax({
                     type: "GET",
@@ -175,26 +167,28 @@
                         $('#txtCustomerNameId').val(CustomerName)
                         $('#txtPackageTypeId').val(PackageType)
                         $('#txtLeadTypeId').val(LeadType)
-
-
                         $('#txtPackageIdHidden').val(PackageID)
                         $('#txtMagazineQTYHidden').val(MagazineQTY)
+                        $('#txtMachineCode').val(isMachineCodeExist)
+
+
                         if (isMachineCodeExist !== '') {
+                            console.log(isMachineCodeExist);
                             var machineCode = $('#txtMachineCode').val();
                             var lotAlias = $('#txtLotCode').val();
                             var lotQTY = $('#txtLotQTY').val();
                             var selectedStage = $('#stagePlanSelect').val();
 
-                                callMachineChecker(lotAlias,
-                                                   lotQTY,
-                                                   machineCode,
-                                                   selectedStage)
+                            callMachineChecker(lotAlias,
+                                lotQTY,
+                                machineCode,
+                                selectedStage)
                         }
 
                         $('#txtLotCode').prop('disabled', true);
                         $('#stagePlanSelect').prop('disabled', true);
                         $('#txtMachineCode').prop('disabled', false);
-                 
+
                         $('#txtMachineCode').focus();
 
                         $('#divCancel').removeClass('d-none')
@@ -208,16 +202,16 @@
 
         //Function for checking Maachine if existing in PS_Equipment table
         function callMachineChecker(paramLot,
-                                    paramLotQTY,
-                                    paramMachineCode,
-                                    paramSelectedStage) {
+            paramLotQTY,
+            paramMachineCode,
+            paramSelectedStage) {
             $.ajax({
                 type: "GET",
                 url: "/PlasmaMagazine/CheckMachine",
                 data: {
                     MachineCode: paramMachineCode,
                     lotQTY: paramLotQTY,
-                    LotAlias : paramLot,
+                    LotAlias: paramLot,
                     StageCode: paramSelectedStage
                 },
                 dataType: "json",
@@ -232,8 +226,8 @@
                     localStorage.setItem('trackOutQTY', response.trackoutQTY);
                     //Callback
                     callMagazineList(response.id,
-                                     response.statusRemarks,
-                                     paramSelectedStage);
+                        response.statusRemarks,
+                        paramSelectedStage);
 
                 },
                 error: function (xhr, status, error) {
@@ -245,14 +239,14 @@
 
         //Call Magazine List
         function callMagazineList(paramId,
-                                  paramStatusRemarks,
-                                  paramSelectedStage) {
+            paramStatusRemarks,
+            paramSelectedStage) {
             showSkeletonLoading('magazineTableList', 10, 20)
             $.ajax({
                 type: "GET",
                 url: "/PlasmaMagazine/_MagazineTrackInList",
                 data: {
-                    id : paramId,
+                    id: paramId,
                     StageCode: paramSelectedStage
                 },
                 dataType: "html",
@@ -316,15 +310,15 @@
                             var packageID = $('#txtPackageIdHidden').val()
                             var remarksMagazine = $('#txtMagazineRemarks').val();
                             var selectedStage = $('#stagePlanSelect').val();
-                         
+
 
                             callValidateAndInsertMagazine(magazineCode,
-                                                          paramId,
-                                                          paramStatusRemarks,
-                                                          selectedStage,
-                                                          remarksMagazine,
-                                                          paramSelectedStage,
-                                                          packageID);
+                                paramId,
+                                paramStatusRemarks,
+                                selectedStage,
+                                remarksMagazine,
+                                paramSelectedStage,
+                                packageID);
 
                         }
                     });
@@ -340,8 +334,8 @@
                         }
 
                         callModalForTrackout(paramId,
-                                             paramStatusRemarks, 
-                                             paramSelectedStage)
+                            paramStatusRemarks,
+                            paramSelectedStage)
                     });
 
                 },
@@ -354,8 +348,8 @@
 
 
         function callModalForTrackout(paramId,
-                                      paramStatusRemarks,
-                                      paramSelectedStage) {
+            paramStatusRemarks,
+            paramSelectedStage) {
 
             $.ajax({
                 type: "GET",
@@ -371,11 +365,11 @@
                     $('#txtMagazineCodeTrackOut').keypress(function (event) {
                         if (event.keyCode === 13) {
                             var magCode = $('#txtMagazineCodeTrackOut').val()
-                             
-                             callTrackout(magCode,
-                                 paramId,
-                                 paramStatusRemarks,
-                                 paramSelectedStage)
+
+                            callTrackout(magCode,
+                                paramId,
+                                paramStatusRemarks,
+                                paramSelectedStage)
                         }
                     });
 
@@ -391,15 +385,15 @@
         }
 
         function callModalForPackage(paramCustomerId,
-                                     paramId,
-                                     paramStatusRemarks,
-                                     paramSelectedStage) {
+            paramId,
+            paramStatusRemarks,
+            paramSelectedStage) {
 
             $.ajax({
                 type: "GET",
                 url: "/PlasmaMagazine/_PackageModal",
                 data: {
-                    CustomerID : paramCustomerId
+                    CustomerID: paramCustomerId
                 },
                 dataType: "html",
                 success: function (response) {
@@ -423,12 +417,12 @@
                         var selectedPackageId = $('#packageListSelect').val();
 
                         callValidateAndInsertMagazine(magazineCode,
-                                                      paramId,
-                                                      paramStatusRemarks,
-                                                      selectedStage,
-                                                      remarksMagazine,
-                                                      paramSelectedStage,
-                                                      selectedPackageId);
+                            paramId,
+                            paramStatusRemarks,
+                            selectedStage,
+                            remarksMagazine,
+                            paramSelectedStage,
+                            selectedPackageId);
                     });
 
 
@@ -443,14 +437,14 @@
         }
 
 
-        function callValidateAndInsertMagazine(magazine, 
-                                               paramId,
-                                               paramStatusRemarks, 
-                                               paramselectedStage,
-                                               paramRemarks,
-                                               paramSelectedStage,
-                                               selectedPackageId) {
-            
+        function callValidateAndInsertMagazine(magazine,
+            paramId,
+            paramStatusRemarks,
+            paramselectedStage,
+            paramRemarks,
+            paramSelectedStage,
+            selectedPackageId) {
+
             $.ajax({
                 type: "GET",
                 url: "/PlasmaMagazine/ValidateandInsertMagazine",
@@ -465,21 +459,20 @@
                 dataType: "json",
                 success: function (response) {
 
-                    if (!response.isInserted) 
-                    {
+                    if (!response.isInserted) {
                         showNotif(response.message)
-                            .then(() => {})
+                            .then(() => { })
                         return;
                     }
 
                     showNotif(`Magazine (${magazine}) has been TRACKED IN`)
                         .then(() => { })
                     callMagazineList(paramId,
-                                     paramStatusRemarks,
-                                     paramSelectedStage);
-                   
-                    
-   
+                        paramStatusRemarks,
+                        paramSelectedStage);
+
+
+
                 },
                 error: function (xhr, status, error) {
                     alert("Error Please contact IT for the solution")
@@ -491,9 +484,9 @@
 
 
         function callTrackout(magazineCode,
-                              paramId,
-                              paramStatusRemarks,
-                              paramSelectedStage) {
+            paramId,
+            paramStatusRemarks,
+            paramSelectedStage) {
 
             $.ajax({
                 type: "GET",
@@ -507,11 +500,11 @@
                 success: function (response) {
 
                     if (!response.isInserted) {
-  
+
                         showNotif(response.message)
                         callMagazineList(paramId,
-                                         paramStatusRemarks,
-                                         paramSelectedStage);
+                            paramStatusRemarks,
+                            paramSelectedStage);
                         return;
                     }
 
