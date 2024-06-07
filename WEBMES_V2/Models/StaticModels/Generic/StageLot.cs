@@ -17,5 +17,19 @@
         public string? MagazineCode { get; set; }
         public string? StatusRemarks { get; set; }
         public string? Remarks { get; set; }
+
+        //Variables for Material Staging
+        public string? QRCode { get; set; }
+        public string? SID { get; set; }
+        public string? MaterialDesc { get; set; }
+        public int? MaterialType { get; set; }
+        public int? AvailableSID { get; set; }
+        public string? Batch { get; set; }
+        public string? BatchNumber { get; set; }
+        public DateTime? ThawIn { get; set; }
+        public DateTime? ThawOut { get; set; }
+        public DateTime? ThawOutEnd { get; set; }
+        public DateTime? WorkLifeEnd { get; set; }
+        public string? ExpirationDate { get; set; }
     }
 }
