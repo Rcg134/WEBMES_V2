@@ -127,7 +127,33 @@
                                </ul>
                         </li>
 
+                        @* MATERIAL STAGING *@
 
+                        <li class="nav-item" id="materialTracker">
+                            <a href="#" class="nav-link">
+                                <i class="nav-icon fas fa-file"></i>
+                                <p>
+                                    Material Staging
+                                    <i class="right fas fa-angle-left"></i>
+                                </p>
+                            </a>
+
+                            <ul class="nav nav-treeview">
+                                <li class="nav-item sub-item">
+                                    <a class="nav-link" asp-area="" asp-controller="MaterialStaging" asp-action="MaterialDashboard">
+                                        <i class="fas fa-circle nav-icon"></i>
+                                        <p>Material Dashboard</p>
+                                    </a>
+                                </li>
+
+                                <li class="nav-item sub-item">
+                                    <a class="nav-link" asp-area="" asp-controller="MaterialStaging" asp-action="MaterialView">
+                                        <i class="fas fa-circle nav-icon"></i>
+                                        <p>Materials</p>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
 
 
                     </ul>
