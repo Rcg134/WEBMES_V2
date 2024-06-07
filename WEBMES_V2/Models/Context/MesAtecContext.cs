@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using WEBMES_V2.Models.DomainModels.MaterialStaging;
 using WEBMES_V2.Models.DomainModels.PlasmaMagazine;
 
 
@@ -28,6 +29,12 @@ public partial class MesAtecContext : DbContext
     public virtual DbSet<PsEquipment> PsEquipments { get; set; }
 
     public virtual DbSet<MsStationListMagazine> MsStationListMagazines { get; set; }
+
+    public virtual DbSet<MtlMaterialThawingWorkLife> MtlMaterialThawingWorkLives { get; set; }
+
+    public virtual DbSet<MtlMaterialTracking> MtlMaterialTrackings { get; set; }
+
+    public virtual DbSet<MtlMaterialType> MtlMaterialTypes { get; set; }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -135,6 +142,48 @@ public partial class MesAtecContext : DbContext
             entity.Property(e => e.Name).HasMaxLength(125);
         });
 
+        modelBuilder.Entity<MtlMaterialThawingWorkLife>(entity =>
+        {
+            entity.HasKey(e => e.Id).HasName("PK_MTL_Epoxy_Thawing_WorkLife");
+
+            entity.ToTable("MTL_Material_Thawing_WorkLife");
+
+            entity.Property(e => e.Id).HasColumnName("ID");
+            entity.Property(e => e.ProductType).HasMaxLength(150);
+            entity.Property(e => e.Sid)
+                .HasMaxLength(50)
+                .HasColumnName("SID");
+        });
+
+        modelBuilder.Entity<MtlMaterialTracking>(entity =>
+        {
+            entity.ToTable("MTL_Material_Tracking");
+
+            entity.Property(e => e.Id).HasColumnName("ID");
+            entity.Property(e => e.Batch).HasMaxLength(50);
+            entity.Property(e => e.BatchNumber).HasMaxLength(50);
+            entity.Property(e => e.ExpirationDate).HasMaxLength(50);
+            entity.Property(e => e.MaterialDesc).HasMaxLength(200);
+            entity.Property(e => e.Qrcode)
+                .HasMaxLength(150)
+                .HasColumnName("QRCode");
+            entity.Property(e => e.Sid)
+                .HasMaxLength(50)
+                .HasColumnName("SID");
+            entity.Property(e => e.ThawIn).HasColumnType("datetime");
+            entity.Property(e => e.ThawOut).HasColumnType("datetime");
+            entity.Property(e => e.ThawOutEnd).HasColumnType("datetime");
+            entity.Property(e => e.WorkLifeEnd).HasColumnType("datetime");
+        });
+
+        modelBuilder.Entity<MtlMaterialType>(entity =>
+        {
+            entity.HasKey(e => e.MaterialType);
+
+            entity.ToTable("MTL_Material_Type");
+
+            entity.Property(e => e.ProductType).HasMaxLength(50);
+        });
 
         OnModelCreatingPartial(modelBuilder);
     }
