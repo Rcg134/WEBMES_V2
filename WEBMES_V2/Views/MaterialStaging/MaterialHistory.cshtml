@@ -1,0 +1,34 @@
+﻿@model WEBMES_V2.Models.StaticModels.Generic.SearchData
+
+@{
+    ViewBag.Title = "MATERIAL HISTORY";
+    var searchData = ViewBag.SearchData;
+}
+
+<div class="card pb-3">
+    <div class="card-body">
+        @using (Html.BeginForm("SearchList", "MaterialStaging", FormMethod.Post))
+        {
+            <div class="row p-3">
+                <div class="col-md-6">
+                    @Html.AntiForgeryToken()
+                    @Html.TextBoxFor(model => model.searchValue, new { @class = "form-control", @placeholder = "Search"})
+                </div>
+            </div>
+        }
+        <div id="historyTable"></div>
+    </div>
+</div>
+
+@section Scripts
+{
+    <script>
+        var searchData = '@Html.Raw(searchData)';
+
+
+
+
+
+
+    </script>
+}
