@@ -9,75 +9,91 @@ build_property.EnforceExtendedAnalyzerRules =
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = WEBMES_V2
 build_property.RootNamespace = WEBMES_V2
-build_property.ProjectDir = C:\Users\russe\Documents\GitHub\WEBMES_V2\WEBMES_V2\
+build_property.ProjectDir = D:\GITHUB\WEBMES_V2\WEBMES_V2\
 build_property.EnableComHosting = 
 build_property.EnableGeneratedComInterfaceComImportInterop = 
 build_property.RazorLangVersion = 7.0
 build_property.SupportLocalizedComponentNames = 
 build_property.GenerateRazorMetadataSourceChecksumAttributes = 
-build_property.MSBuildProjectDirectory = C:\Users\russe\Documents\GitHub\WEBMES_V2\WEBMES_V2
+build_property.MSBuildProjectDirectory = D:\GITHUB\WEBMES_V2\WEBMES_V2
 build_property._RazorSourceGeneratorDebug = 
 
-[C:/Users/russe/Documents/GitHub/WEBMES_V2/WEBMES_V2/Views/Login/LoginView.cshtml]
+[D:/GITHUB/WEBMES_V2/WEBMES_V2/Views/Login/LoginView.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTG9naW5cTG9naW5WaWV3LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/russe/Documents/GitHub/WEBMES_V2/WEBMES_V2/Views/MainPage/MainPageView.cshtml]
+[D:/GITHUB/WEBMES_V2/WEBMES_V2/Views/MainPage/MainPageView.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTWFpblBhZ2VcTWFpblBhZ2VWaWV3LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/russe/Documents/GitHub/WEBMES_V2/WEBMES_V2/Views/PlasmaMagazine/MagazineDashboard.cshtml]
+[D:/GITHUB/WEBMES_V2/WEBMES_V2/Views/MaterialStaging/MaterialDashboard.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTWF0ZXJpYWxTdGFnaW5nXE1hdGVyaWFsRGFzaGJvYXJkLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/GITHUB/WEBMES_V2/WEBMES_V2/Views/MaterialStaging/MaterialHistory.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTWF0ZXJpYWxTdGFnaW5nXE1hdGVyaWFsSGlzdG9yeS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/GITHUB/WEBMES_V2/WEBMES_V2/Views/MaterialStaging/MaterialView.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTWF0ZXJpYWxTdGFnaW5nXE1hdGVyaWFsVmlldy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/GITHUB/WEBMES_V2/WEBMES_V2/Views/MaterialStaging/_MaterialDashboardListTable.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTWF0ZXJpYWxTdGFnaW5nXF9NYXRlcmlhbERhc2hib2FyZExpc3RUYWJsZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/GITHUB/WEBMES_V2/WEBMES_V2/Views/PlasmaMagazine/MagazineDashboard.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUGxhc21hTWFnYXppbmVcTWFnYXppbmVEYXNoYm9hcmQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/russe/Documents/GitHub/WEBMES_V2/WEBMES_V2/Views/PlasmaMagazine/MagazineHistory.cshtml]
+[D:/GITHUB/WEBMES_V2/WEBMES_V2/Views/PlasmaMagazine/MagazineHistory.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUGxhc21hTWFnYXppbmVcTWFnYXppbmVIaXN0b3J5LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/russe/Documents/GitHub/WEBMES_V2/WEBMES_V2/Views/PlasmaMagazine/MagazineMaintenance.cshtml]
+[D:/GITHUB/WEBMES_V2/WEBMES_V2/Views/PlasmaMagazine/MagazineMaintenance.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUGxhc21hTWFnYXppbmVcTWFnYXppbmVNYWludGVuYW5jZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/russe/Documents/GitHub/WEBMES_V2/WEBMES_V2/Views/PlasmaMagazine/PlasmaMagazineView.cshtml]
+[D:/GITHUB/WEBMES_V2/WEBMES_V2/Views/PlasmaMagazine/PlasmaMagazineView.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUGxhc21hTWFnYXppbmVcUGxhc21hTWFnYXppbmVWaWV3LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/russe/Documents/GitHub/WEBMES_V2/WEBMES_V2/Views/PlasmaMagazine/_MagazineDashboardListTable.cshtml]
+[D:/GITHUB/WEBMES_V2/WEBMES_V2/Views/PlasmaMagazine/_MagazineDashboardListTable.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUGxhc21hTWFnYXppbmVcX01hZ2F6aW5lRGFzaGJvYXJkTGlzdFRhYmxlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/russe/Documents/GitHub/WEBMES_V2/WEBMES_V2/Views/PlasmaMagazine/_MagazineHistoryTable.cshtml]
+[D:/GITHUB/WEBMES_V2/WEBMES_V2/Views/PlasmaMagazine/_MagazineHistoryTable.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUGxhc21hTWFnYXppbmVcX01hZ2F6aW5lSGlzdG9yeVRhYmxlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/russe/Documents/GitHub/WEBMES_V2/WEBMES_V2/Views/PlasmaMagazine/_MagazineTrackInList.cshtml]
+[D:/GITHUB/WEBMES_V2/WEBMES_V2/Views/PlasmaMagazine/_MagazineTrackInList.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUGxhc21hTWFnYXppbmVcX01hZ2F6aW5lVHJhY2tJbkxpc3QuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/russe/Documents/GitHub/WEBMES_V2/WEBMES_V2/Views/PlasmaMagazine/_PackageModal.cshtml]
+[D:/GITHUB/WEBMES_V2/WEBMES_V2/Views/PlasmaMagazine/_PackageModal.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUGxhc21hTWFnYXppbmVcX1BhY2thZ2VNb2RhbC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/russe/Documents/GitHub/WEBMES_V2/WEBMES_V2/Views/PlasmaMagazine/_TrackOutModal.cshtml]
+[D:/GITHUB/WEBMES_V2/WEBMES_V2/Views/PlasmaMagazine/_TrackOutModal.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUGxhc21hTWFnYXppbmVcX1RyYWNrT3V0TW9kYWwuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/russe/Documents/GitHub/WEBMES_V2/WEBMES_V2/Views/Shared/Error.cshtml]
+[D:/GITHUB/WEBMES_V2/WEBMES_V2/Views/Shared/Error.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXEVycm9yLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/russe/Documents/GitHub/WEBMES_V2/WEBMES_V2/Views/Shared/_ValidationScriptsPartial.cshtml]
+[D:/GITHUB/WEBMES_V2/WEBMES_V2/Views/Shared/_ValidationScriptsPartial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/russe/Documents/GitHub/WEBMES_V2/WEBMES_V2/Views/_ViewImports.cshtml]
+[D:/GITHUB/WEBMES_V2/WEBMES_V2/Views/_ViewImports.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/russe/Documents/GitHub/WEBMES_V2/WEBMES_V2/Views/_ViewStart.cshtml]
+[D:/GITHUB/WEBMES_V2/WEBMES_V2/Views/_ViewStart.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdTdGFydC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/russe/Documents/GitHub/WEBMES_V2/WEBMES_V2/Views/Shared/_Layout.cshtml]
+[D:/GITHUB/WEBMES_V2/WEBMES_V2/Views/Shared/_Layout.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9MYXlvdXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = b-e4y6lqnfke

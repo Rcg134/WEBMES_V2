@@ -1,0 +1,514 @@
+﻿@{
+    ViewBag.Title = "MATERIALS";
+}
+
+<div class="card ATEC-theme-color mb-3">
+    <div class="card-header text-white">
+        <h3>Materials</h3>
+    </div>
+</div>
+
+<div class="card pb-3">
+    <div class="card-body">
+        @if (!ViewData.ModelState.IsValid)
+        {
+            <div class="mb-3">
+                <div class="alert alert-danger">
+                    <ul>
+                        @foreach (var modelError in ViewData.ModelState.Values.SelectMany(v => v.Errors))
+                        {
+                            <li>@modelError.ErrorMessage</li>
+                        }
+                    </ul>
+                </div>
+            </div>
+        } 
+        @if (!ViewData.ModelState.IsValid)
+        {
+            
+        }
+
+        <div class="row p-3">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label>Materials</label>
+                    <select id="materialSelect" class="select2">
+                        <option value="1">Epoxy</option>
+                        <option value="2">Molding Compound</option>
+                    </select>                    
+                </div>
+            </div>
+        </div>
+
+        <div class="row p-3">
+            <div class="col-md-3">
+                <label for="txtQRCode" class="form-label">QR Code</label>
+                <input type="text" class="form-control" id="txtQRCode" />
+            </div>
+        </div>
+        <div class="row p-3">            
+            <div class="col-md-3">
+                <label for="txtSID" class="form-label">SID</label>
+                <input type="text" class="form-control" id="txtSID" disabled="disabled" />
+                <input type="hidden" id="txtSIDid" />
+            </div>
+            <div class="col-md-3">
+                <label for="txtTypeDesc" class="form-label">Product Description</label>
+                <input type="text" class="form-control" id="txtTypeDesc" disabled="disabled" />
+            </div>
+            <div class="col-md-3">
+                <label for="txtBatch" class="form-label">Batch Number</label>
+                <input type="text" class="form-control" id="txtBatch" disabled="disabled" />
+            </div>
+            <div class="col-md-1">
+                <label for="txtBatchNumber" class="form-label">Batch Count</label>
+                <input type="text" class="form-control" id="txtBatchNumber" oninput="validateNumericInput(event)" disabled="disabled" />
+            </div>
+            <div class="col-md-2">
+                <label for="txtBatchNumberTotal" class="form-label">Batch Total</label>
+                <input type="text" class="form-control" id="txtBatchNumberTotal" disabled="disabled" />
+            </div>
+        </div>
+        <div class="row p-3">
+            <div class="col-md-3">
+                <label for="txtExpiration" class="form-label">Expiration Date</label>
+                <input type="text" class="form-control" id="txtExpiration" disabled="disabled" />
+            </div>
+            <div class="col-md-3">
+                <label for="txtThawingStartTime" class="form-label">Thawing Start Time</label>
+                <input type="datetime" class="form-control" id="txtThawingStartTime" disabled="disabled" />
+            </div>
+            <div class="col-md-3">
+                <label for="txtThawingEndTime" class="form-label">Thawing End Time</label>
+                <input type="datetime" class="form-control" id="txtThawingEndTime" disabled="disabled" />
+            </div>
+            <div class="col-md-3">
+                <label for="txtWorklife" class="form-label">Worklife</label>
+                <input type="datetime" class="form-control" id="txtWorklife" disabled="disabled" />
+            </div>
+        </div>
+
+        @* Table *@
+        <div class="p-3" id="sidTableList"></div>
+
+        <div class="row p-3 d-none" id="divButton">
+            <div class="col-md-1">
+                <button type="button" id="btnThawIn" class="btn btn-success" hidden>Thaw In</button>
+             </div>
+             <div class="col-md-1">
+                 <button type="button" id="btnThawOut" class="btn btn-success" hidden>Thaw Out</button>
+             </div>
+             <div class="col-md-1">
+                <a asp-controller="MaterialStaging" id="btnCancel" class="btn btn-warning asp-action="MaterialView">Cancel</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts
+{
+    <script>
+
+        var QRCode = "";
+        var QRlist = new Array();
+        var thawed = false;
+        var statusCode = 1;
+        console.log(QRlist, QRCode);
+
+        //initialize select
+        $('.select2').select2({
+            width: '100%'
+        });
+
+        $('#txtQRCode').focus();
+
+        //When user hit enter or barcode scanner 
+        $('#txtQRCode').keypress(function (event) {
+            QRCode = $('#txtQRCode').val();
+            QRlist = QRCode.split(',');
+            if (event.keyCode === 13) {                
+                const now = new Date();
+                //Check if Expired
+                if (compareDates(formatDate(now), QRlist[3])) { 
+                    showNotif('Material already Expired! Please use another material.')
+                    $('#divButton').addClass('d-none');
+                    document.getElementById("txtQRCode").disabled = false;
+                    $('#txtQRCode').focus();
+                    return;
+                }          
+
+                if (QRlist[5] != null) {
+                    $('#txtBatchNumber').val(QRlist[5]);
+                    checkSidAvailability(QRlist[0],
+                        $('#materialSelect').val(),
+                        QRlist[1],
+                        QRlist[2],
+                        QRlist[3],
+                        QRlist[4],
+                        QRlist[5],
+                        QRCode);
+                    return;
+                }
+                
+                $('#txtSID').val(QRlist[0]);
+                $('#txtTypeDesc').val(QRlist[1]);
+                $('#txtBatch').val(QRlist[2]);
+                $('#txtExpiration').val(QRlist[3]);
+                $('#txtBatchNumberTotal').val(QRlist[4]);
+
+                document.getElementById("txtBatchNumber").disabled = false;
+                $('#txtBatchNumber').val('');
+                $('#txtBatchNumber').focus();
+                $('#txtQRCode').val('');
+                document.getElementById('txtQRCode').disabled = true;                
+            }
+        });
+
+        $('#txtBatchNumber').keypress(function (event) {
+            if (event.keyCode === 13) {
+                if ($('#txtBatchNumber').val() == '') {
+                    showNotif("Please encode Batch count.");
+                    return;
+                } else if (parseInt($('#txtBatchNumber').val()) > parseInt($('#txtBatchNumberTotal').val())) {
+                    showNotif("Batch count exceeded Total count");
+                    $('#txtBatchNumber').val('');
+                    $('#txtBatchNumber').focus();
+                    return;
+                } else if (parseInt($('#txtBatchNumber').val()) < 1) {
+                    showNotif("Encode Batch count starting from 1 to " + $('#txtBatchNumberTotal').val());
+                    $('#txtBatchNumber').val('');
+                    $('#txtBatchNumber').focus();
+                    return;
+                }  
+                else {
+                    document.getElementById("txtBatchNumber").disabled = true;
+                    console.log($('#txtBatchNumber').val());
+                    checkSidAvailability(QRlist[0],
+                        $('#materialSelect').val(),
+                        QRlist[1],
+                        QRlist[2],
+                        QRlist[3],
+                        QRlist[4],
+                        $('#txtBatchNumber').val(),
+                        QRCode + "," + $('#txtBatchNumber').val());
+                }                
+            }
+        });
+
+        //Check if SID is available in SID Matrix
+        checkSidAvailability = (paramSID,
+                                      paramMaterialType,
+                                      paramTypeDesc,
+                                      paramBatch,
+                                      paramExpiration,
+                                      paramTotalCount,
+                                      paramBatchNumber,
+                                      paramQRCode) =>
+        {
+            $.ajax({
+                type: "get",
+                url: "/MaterialStaging/CheckSidAvailable",
+                data: {
+                    MaterialType: paramMaterialType,
+                    SID: paramSID,
+                    QRCode: paramQRCode,
+                    Batch: paramBatch,
+                    BatchNumber: paramBatchNumber
+                },
+                dataType: "json",
+                success: (response) => {
+                    statusCode = response.status;
+                    console.log(response.status);
+                    if (response.details.isExist == true) {
+                        $('#txtSID').val(QRlist[0]);
+                        $('#txtTypeDesc').val(QRlist[1]);
+                        $('#txtBatch').val(QRlist[2]);
+                        $('#txtExpiration').val(QRlist[3]);
+                        $('#txtBatchNumberTotal').val(QRlist[4]);
+                        //Thaw IN
+                        if (response.status == 1) {                            
+                            $('#txtThawingStartTime').val(response.details.thawingTime);
+                            $('#txtThawingEndTime').val(response.details.thawedTime);
+                            $('#txtWorklife').val(response.details.workLife);
+                            document.getElementById('btnThawIn').removeAttribute('hidden');
+                            $('#divButton').removeClass('d-none');
+                        } //Thaw OUT
+                        else if (response.status == 3) 
+                        {
+                            var thawInDate = formatDate24HR(response.details.thawIn);
+                            var thawOutEndDate = formatDate24HR(response.details.thawOutEnd);
+                            var workLifeEndDate = formatDate24HR(response.details.workLifeEnd);
+
+                            $('#txtThawingStartTime').val(thawInDate);
+                            $('#txtThawingEndTime').val(thawOutEndDate);
+                            $('#txtWorklife').val(workLifeEndDate);
+                            $('#txtSIDid').val(response.batchID);
+
+                            if (compareDates24H(formatDate24HR(new Date()), workLifeEndDate)) {
+                                showNotif("Material exceeds Work Life, please use another material.")
+                                    .then(() => {
+                                        document.getElementById('btnThawOut').setAttribute('hidden', true);
+                                        $('#divButton').addClass('d-none');
+                                        document.getElementById("txtQRCode").disabled = false;
+                                        $('#txtQRCode').focus();
+                                        return;
+                                    })
+
+                            } else if (compareDates24H(thawOutEndDate, formatDate24HR(new Date()))) {
+                                
+                                
+                                
+                                showNotif("The material is still not ready to be thawed out.")
+                                    .then(() => {
+                                        document.getElementById('btnThawOut').setAttribute('hidden', true);
+                                        $('#divButton').addClass('d-none');
+                                        document.getElementById("txtQRCode").disabled = false;
+                                        $('#txtQRCode').focus();
+                                        return;
+                                    })
+                            } else {
+                                document.getElementById('btnThawOut').removeAttribute('hidden');
+                                $('#divButton').removeClass('d-none');
+                            }                            
+                        }
+                        document.getElementById("txtQRCode").disabled = true;                        
+                    }
+                    else if (response.status == 2) 
+                    {             
+                        showNotif(response.message);
+                        document.getElementById("txtQRCode").disabled = false;
+                        $('#txtQRCode').focus();
+                        return;
+                    }
+                    $('#txtQRCode').val('');
+                },
+                error: function (xhr, status, error) {
+                    alert("Error: Please contact IT for the solution");
+                }
+            });
+        }
+
+        //Save SID Thaw In Details
+        SaveThawIn = (paramQRCode,
+                      paramSID,
+                      paramMaterialType,
+                      paramMaterialDesc,
+                      paramBatch, 
+                      paramBatchNo, 
+                      paramThawIn, 
+                      paramThawOutEnd, 
+                      paramWorkLifeEnd,
+                      paramExpirationDate) => {
+
+            $.ajax({
+                type: "GET",
+                url: "/MaterialStaging/InsertThawingDetails",
+                data: {
+                    QRCode: paramQRCode,
+                    SID: paramSID,
+                    MaterialDesc: paramMaterialDesc,
+                    Batch: paramBatch,
+                    BatchNumber: paramBatchNo,
+                    ThawIn: paramThawIn,
+                    ThawOutEnd: paramThawOutEnd,
+                    WorkLifeEnd: paramWorkLifeEnd,
+                    MaterialType: paramMaterialType,
+                    ExpirationDate: paramExpirationDate
+                },
+                dataType: "json",
+                success: function (response) {
+                    console.log("Im saving...");
+                    document.getElementById('btnThawIn').setAttribute('hidden', true);
+                    showNotif(response.message)
+                        .then(() => {
+                            $('#divButton').addClass('d-none');
+                            document.getElementById("txtQRCode").disabled = false;
+                            $('#txtQRCode').focus();
+                        })
+
+                },
+                error: function (xhr, status, error) {
+                    alert("Error, Please contact IT for the solution");
+                }
+            });
+        }
+
+        //Update SID Thaw Out Details
+        UpdateThawIn = (paramBatchID,
+                        paramDate,
+                        paramBatch,
+                        paramBatchNo,
+                        paramSid) => { 
+            $.ajax({
+                type: "POST",
+                url: "/MaterialStaging/ThawOut",
+                data: {
+                    id: paramBatchID,
+                    ThawOut: paramDate,
+                    Batch: paramBatch,
+                    BatchNumber: paramBatchNo,
+                    SID: paramSid
+                },
+                dataType: "json",
+                success: function (response) {
+                    console.log("Material Thawing Out!");
+                    showNotif(response.message)
+                        .then(() => {
+                            $('#divButton').addClass('d-none');
+                            document.getElementById("txtQRCode").disabled = false;
+                            $('#txtQRCode').focus();
+                        })
+                },
+                error: function (xhr, status, error) {
+                    alert("Error, Please contact IT for the solution");
+                    console.log("Thaw out error, update function");
+                }
+            });
+        
+        
+        
+        }
+
+        formatDate = (dateString) => {
+            // Parse the date string into a Date object
+            const date = new Date(dateString);
+
+            // Extract the month, day, and year
+            const day = date.getDate();
+            const month = date.getMonth() + 1; // Months are zero-based
+            const year = date.getFullYear();
+
+            // Ensure double digits for month and day
+            const formattedDay = day < 10 ? '0' + day : day;
+            const formattedMonth = month < 10 ? '0' + month : month;
+
+            // Return the formatted date string
+            return `${formattedMonth}/${formattedDay}/${year}`;
+        }
+        // Date format with 2400 format
+        formatDate24HR = (dateString) => {
+            // Parse the date string into a Date object
+            const date = new Date(dateString);
+
+            // Extract the month, day, year, hours, minutes, and seconds
+            const day = date.getDate();
+            const month = date.getMonth() + 1; // Months are zero-based
+            const year = date.getFullYear();
+            const hours = date.getHours();
+            const minutes = date.getMinutes();
+            const seconds = date.getSeconds();
+
+            // Ensure double digits for month, day, hours, minutes, and seconds
+            const formattedDay = day < 10 ? '0' + day : day;
+            const formattedMonth = month < 10 ? '0' + month : month;
+            const formattedHours = hours < 10 ? '0' + hours : hours;
+            const formattedMinutes = minutes < 10 ? '0' + minutes : minutes;
+            const formattedSeconds = seconds < 10 ? '0' + seconds : seconds;
+
+            // Return the formatted date and time string
+            return `${formattedMonth}/${formattedDay}/${year} ${formattedHours}:${formattedMinutes}:${formattedSeconds}`;
+        }
+
+        parseDate = (dateString) => {
+            const [month, day, year] = dateString.split('/').map(Number);
+            return new Date(year, month - 1, day); // Months are zero-based in JavaScript
+        }
+
+        compareDates = (date1, date2) => {
+            // Parse the date strings into Date objects
+            const dateObj1 = parseDate(date1);
+            const dateObj2 = parseDate(date2);
+            console.log(dateObj1, dateObj2);
+            // Compare the dates
+            if (dateObj1.getTime() > dateObj2.getTime()) {
+                return true;
+            } else if (dateObj1.getTime() < dateObj2.getTime()) {
+                return false;
+            } else {
+                return true;
+            }
+        }
+
+        compareDates24H = (date1, date2) => {
+            console.log(date1, date2);
+            // Compare the dates
+            if (date1 > date2) {
+                return true;
+            } else if (date1 < date2) {
+                return false;
+            } else {
+                return true;
+            }
+        }
+
+        validateNumericInput = (event) => {
+            // Get the input element
+            const inputElement = event.target;
+
+            // Get the value of the input field
+            const inputValue = inputElement.value;
+
+            // Check if the value is not a number
+            if (isNaN(inputValue)) {
+                // Remove the last entered character if it is not a number
+                inputElement.value = inputValue.slice(0, -1);
+            }
+        }
+
+        //When Thaw In click
+        $('#btnThawIn').click(() => {
+            console.log('For Saving');
+
+            if (QRlist[5] == null) {
+                QRCode += ',' + $('#txtBatchNumber').val();
+            }
+
+            SaveThawIn(QRCode,
+                $('#txtSID').val(),
+                $('#materialSelect').val(),
+                $('#txtTypeDesc').val(),
+                $('#txtBatch').val(),
+                $('#txtBatchNumber').val(),
+                $('#txtThawingStartTime').val(),
+                $('#txtThawingEndTime').val(),
+                $('#txtWorklife').val(),
+                $('#txtExpiration').val());
+        });
+
+        //When Thaw Out click
+        $('#btnThawOut').click(() => {
+            console.log('For Thaw Out');
+            if (compareDates24H(formatDate24HR(new Date()), $('#txtWorklife').val())) {
+                showNotif("Material exceeds Work Life, please use another material.")
+                    .then(() => {
+                        $('#divButton').addClass('d-none');
+                        document.getElementById("txtQRCode").disabled = false;
+                        $('#txtQRCode').focus();
+                        return;
+                    })
+            } else if (compareDates24H($('#txtThawingEndTime').val(), formatDate24HR(new Date()))) {
+                showNotif("The material is still not ready to be thawed out.")
+                    .then(() => {
+                        $('#divButton').addClass('d-none');
+                        document.getElementById("txtQRCode").disabled = false;
+                        $('#txtQRCode').focus();
+                        return;
+                    })
+            } else {
+                UpdateThawIn($('#txtSIDid').val(),
+                    new Date(),
+                    $('#txtBatch').val(),
+                    $('#txtBatchNumber').val(),
+                    $('#txtSID').val());
+            }
+        });
+
+
+
+        
+
+    </script>
+}
+
+
+

@@ -1,22 +1,10 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Users\\russe\\Documents\\GitHub\\WEBMES_V2\\",
+  "WorkspaceRootPath": "D:\\GITHUB\\WEBMES_V2\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{53F2C0E6-7B97-409C-BB71-0F774320914E}|WEBMES_V2\\WEBMES_V2.csproj|c:\\users\\russe\\documents\\github\\webmes_v2\\webmes_v2\\views\\plasmamagazine\\plasmamagazineview.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{53F2C0E6-7B97-409C-BB71-0F774320914E}|WEBMES_V2\\WEBMES_V2.csproj|solutionrelative:webmes_v2\\views\\plasmamagazine\\plasmamagazineview.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{53F2C0E6-7B97-409C-BB71-0F774320914E}|WEBMES_V2\\WEBMES_V2.csproj|C:\\Users\\russe\\Documents\\GitHub\\WEBMES_V2\\webmes_v2\\models\\storeprocedures\\plasmamagazinesp\\plasmamagazine.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{53F2C0E6-7B97-409C-BB71-0F774320914E}|WEBMES_V2\\WEBMES_V2.csproj|solutionrelative:webmes_v2\\models\\storeprocedures\\plasmamagazinesp\\plasmamagazine.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{53F2C0E6-7B97-409C-BB71-0F774320914E}|WEBMES_V2\\WEBMES_V2.csproj|C:\\Users\\russe\\Documents\\GitHub\\WEBMES_V2\\webmes_v2\\models\\staticmodels\\enums\\statusenum.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{53F2C0E6-7B97-409C-BB71-0F774320914E}|WEBMES_V2\\WEBMES_V2.csproj|solutionrelative:webmes_v2\\models\\staticmodels\\enums\\statusenum.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{53F2C0E6-7B97-409C-BB71-0F774320914E}|WEBMES_V2\\WEBMES_V2.csproj|C:\\Users\\russe\\Documents\\GitHub\\WEBMES_V2\\webmes_v2\\models\\staticmodels\\enums\\actionforstageenum.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{53F2C0E6-7B97-409C-BB71-0F774320914E}|WEBMES_V2\\WEBMES_V2.csproj|solutionrelative:webmes_v2\\models\\staticmodels\\enums\\actionforstageenum.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{53F2C0E6-7B97-409C-BB71-0F774320914E}|WEBMES_V2\\WEBMES_V2.csproj|d:\\github\\webmes_v2\\webmes_v2\\models\\staticmodels\\generic\\stagelot.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{53F2C0E6-7B97-409C-BB71-0F774320914E}|WEBMES_V2\\WEBMES_V2.csproj|solutionrelative:webmes_v2\\models\\staticmodels\\generic\\stagelot.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -26,63 +14,19 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 5,
+          "SelectedChildIndex": 0,
           "Children": [
-            {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
-            },
-            {
-              "$type": "Bookmark",
-              "Name": "ST:1:0:{e8b06f52-6d01-11d2-aa7d-00c04f990343}"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "ActionForStageEnum.cs",
-              "DocumentMoniker": "C:\\Users\\russe\\Documents\\GitHub\\WEBMES_V2\\WEBMES_V2\\Models\\StaticModels\\Enums\\ActionForStageEnum.cs",
-              "RelativeDocumentMoniker": "WEBMES_V2\\Models\\StaticModels\\Enums\\ActionForStageEnum.cs",
-              "ToolTip": "C:\\Users\\russe\\Documents\\GitHub\\WEBMES_V2\\WEBMES_V2\\Models\\StaticModels\\Enums\\ActionForStageEnum.cs",
-              "RelativeToolTip": "WEBMES_V2\\Models\\StaticModels\\Enums\\ActionForStageEnum.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-10T08:14:32.622Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "StatusEnum.cs",
-              "DocumentMoniker": "C:\\Users\\russe\\Documents\\GitHub\\WEBMES_V2\\WEBMES_V2\\Models\\StaticModels\\Enums\\StatusEnum.cs",
-              "RelativeDocumentMoniker": "WEBMES_V2\\Models\\StaticModels\\Enums\\StatusEnum.cs",
-              "ToolTip": "C:\\Users\\russe\\Documents\\GitHub\\WEBMES_V2\\WEBMES_V2\\Models\\StaticModels\\Enums\\StatusEnum.cs",
-              "RelativeToolTip": "WEBMES_V2\\Models\\StaticModels\\Enums\\StatusEnum.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-10T08:14:31.491Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "PlasmaMagazine.cs",
-              "DocumentMoniker": "C:\\Users\\russe\\Documents\\GitHub\\WEBMES_V2\\WEBMES_V2\\Models\\StoreProcedures\\PlasmaMagazineSP\\PlasmaMagazine.cs",
-              "RelativeDocumentMoniker": "WEBMES_V2\\Models\\StoreProcedures\\PlasmaMagazineSP\\PlasmaMagazine.cs",
-              "ToolTip": "C:\\Users\\russe\\Documents\\GitHub\\WEBMES_V2\\WEBMES_V2\\Models\\StoreProcedures\\PlasmaMagazineSP\\PlasmaMagazine.cs",
-              "RelativeToolTip": "WEBMES_V2\\Models\\StoreProcedures\\PlasmaMagazineSP\\PlasmaMagazine.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAABYAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-08T05:55:50.61Z"
-            },
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "PlasmaMagazineView.cshtml",
-              "DocumentMoniker": "C:\\Users\\russe\\Documents\\GitHub\\WEBMES_V2\\WEBMES_V2\\Views\\PlasmaMagazine\\PlasmaMagazineView.cshtml",
-              "RelativeDocumentMoniker": "WEBMES_V2\\Views\\PlasmaMagazine\\PlasmaMagazineView.cshtml",
-              "ToolTip": "C:\\Users\\russe\\Documents\\GitHub\\WEBMES_V2\\WEBMES_V2\\Views\\PlasmaMagazine\\PlasmaMagazineView.cshtml",
-              "RelativeToolTip": "WEBMES_V2\\Views\\PlasmaMagazine\\PlasmaMagazineView.cshtml",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAHUAAAALAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-05-08T02:40:14.625Z",
+              "Title": "StageLot.cs",
+              "DocumentMoniker": "D:\\GITHUB\\WEBMES_V2\\WEBMES_V2\\Models\\StaticModels\\Generic\\StageLot.cs",
+              "RelativeDocumentMoniker": "WEBMES_V2\\Models\\StaticModels\\Generic\\StageLot.cs",
+              "ToolTip": "D:\\GITHUB\\WEBMES_V2\\WEBMES_V2\\Models\\StaticModels\\Generic\\StageLot.cs",
+              "RelativeToolTip": "WEBMES_V2\\Models\\StaticModels\\Generic\\StageLot.cs",
+              "ViewState": "AQIAAA4AAAAAAAAAAAAIwCAAAAAzAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-07T12:07:08.512Z",
               "EditorCaption": ""
             }
           ]

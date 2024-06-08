@@ -1,0 +1,101 @@
+﻿@{
+    ViewBag.Title = "Material Staging Dashboard";
+}
+
+<div class="card ATEC-theme-color mb-3">
+    <div class="card-header text-white">
+        <h3>Dashboard</h3>
+    </div>
+</div>
+
+
+<div class="card pb-3">
+    <div class="card-body">
+        @* Validate *@
+        @if (!ViewData.ModelState.IsValid)
+        {
+            <div class="mb-3">
+                <div class="alert alert-danger">
+                    <ul>
+                        @foreach (var modelError in ViewData.ModelState.Values.SelectMany(v => v.Errors))
+                        {
+                            <li>@modelError.ErrorMessage</li>
+                        }
+                    </ul>
+                </div>
+            </div>
+        }
+
+        <div class="row p-3">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label>Material</label>
+                    <select id="materialSelect" class="select2">
+                        <option value="1">Epoxy</option>
+                        <option value="2">Molding Compound</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+
+        @* Table *@
+        <div class="p-3" id="materialTableList"></div>
+
+        <div class="row p-3 d-none" id="divCancel">
+            <div class="col-md-3">
+                <a asp-controller="MaterialStaging" class="btn btn-warming asp-action="MaterialDashboard">Cancel</a>"
+            </div>
+        </div>
+
+    </div>
+</div>
+
+@section Scripts
+{
+    <script>
+        //initialize select
+        $('.select2').select2({
+            width: '100%'
+        });
+        var selectedMaterial = $('#materialSelect').val();
+
+        $(function () {
+            callMaterialList(selectedMaterial);
+
+            $('#materialSelect').change(function () {
+                var currentMaterial = $('#materialSelect').val();
+                callMaterialList(currentMaterial);
+            });
+
+            setInterval(function () {
+                console.log(selectedMaterial)
+                callMaterialList(selectedMaterial)
+            }, 5000);        
+        });
+
+        $('#materialSelect').change(function () {
+            selectedMaterial = $(this).val();
+        });
+
+        //Call Material List
+        callMaterialList = (paramSelectedMaterial) => {
+            $.ajax({
+                type: "GET",
+                url: "/MaterialStaging/_MaterialDashboardListTable",
+                data: {
+                    MaterialType: paramSelectedMaterial
+                },
+                dataType: "html",
+                success: function (response) {
+                    $('#materialTableList').html('');
+                    $('#materialTableList').html(response);
+                },
+                error: function (xhr, status, error) {
+                    alert('Error, Please contact IT for the solution');
+                }
+            });
+        }
+
+
+    </script>
+}
