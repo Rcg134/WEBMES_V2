@@ -30,13 +30,15 @@
         <div class="row p-3">
             <div class="col-md-6">
                 <div class="form-group">
-                    <label>Stage</label>
                     <select id="stagePlanSelect" class="select2">
                         <option value="7">DA TO DA CURE</option>
                         <option value="8">PLASMA TO WIREBOND</option>
                         <option value="12">PLASMA TO MOLD</option>
                     </select>
                 </div>
+            </div>
+            <div class="col-md-6">
+                  <button class="btn btn-success" id="autoLoad">Stop Auto Load</button>
             </div>
 
         </div>
@@ -65,24 +67,55 @@
             width: '100%'
         });
         var selectedStage = $('#stagePlanSelect').val();
-
+        var typingInterval = 5000
+        var running = true;
+        var intervalId;
+        var runAutoLoad = 'Run Auto Load'
+        var stopAutoLoad = 'Stop Auto Load'
 
         $(function () {
 
             callMagazineList(selectedStage)
-
+    
             $('#stagePlanSelect').change(function () {
                 var currentStage = $('#stagePlanSelect').val();
                 callMagazineList(currentStage)
             });
-
-
-            setInterval(function () {
-                console.log(selectedStage)
-                callMagazineList(selectedStage)
-            }, 5000);
-
+ 
+            if (running){
+                intervalId = setInterval(function () {
+                    callMagazineList(selectedStage)
+                }, typingInterval);
+             }
+          
         });
+
+        $("#autoLoad").click(function () {
+                running ? stopInterval() : startInterval();
+        });
+
+
+        function stopInterval()
+        {
+                running = false
+                clearInterval(intervalId);
+                $("#autoLoad").text(runAutoLoad)
+                $("#autoLoad").removeClass('btn-success').addClass('btn-danger')
+        }
+
+
+        function startInterval()
+        {
+  
+                intervalId = setInterval(function () {
+                       callMagazineList(selectedStage)
+                   }, typingInterval);
+
+                running = true
+                  $("#autoLoad").text(stopAutoLoad)
+                  $("#autoLoad").removeClass('btn-danger').addClass('btn-success')
+        }
+
 
         $("#stagePlanSelect").change(function () {
            selectedStage = $(this).val();
@@ -104,6 +137,9 @@
                     $("#magazineTableList").html('');
                     $("#magazineTableList").html(response);
 
+                     initializeDatatable('MagazineListTable')
+                   
+    
                 },
                 error: function (xhr, status, error) {
                     alert("Error Please contact IT for the solution")

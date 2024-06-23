@@ -1,39 +1,34 @@
-
 function callErrorPage(message) {
-    $.ajax({
-        type: "GET",
-        url: "/Error/ErrorView",
-        data: {
-            ErrorMessage: message
-        },
-        success: function (response) {
-
-            $("#renderBody").html(response);
-        },
-    });
+  $.ajax({
+    type: "GET",
+    url: "/Error/ErrorView",
+    data: {
+      ErrorMessage: message,
+    },
+    success: function (response) {
+      $("#renderBody").html(response);
+    },
+  });
 }
 
-
-
-
 function showSkeletonLoading(formid, columnCount, rowCount) {
-    var tableHeader = '<thead><tr>';
-    for (var i = 0; i < columnCount; i++) {
-        tableHeader += '<th></th>';
-    }
-    tableHeader += '</tr></thead>';
+  var tableHeader = "<thead><tr>";
+  for (var i = 0; i < columnCount; i++) {
+    tableHeader += "<th></th>";
+  }
+  tableHeader += "</tr></thead>";
 
-    var tableBody = '<tbody>';
-    for (var j = 0; j < rowCount; j++) {
-        tableBody += '<tr>';
-        for (var k = 0; k < columnCount; k++) {
-            tableBody += '<td class="skeleton-row"></td>';
-        }
-        tableBody += '</tr>';
+  var tableBody = "<tbody>";
+  for (var j = 0; j < rowCount; j++) {
+    tableBody += "<tr>";
+    for (var k = 0; k < columnCount; k++) {
+      tableBody += '<td class="skeleton-row"></td>';
     }
-    tableBody += '</tbody>';
+    tableBody += "</tr>";
+  }
+  tableBody += "</tbody>";
 
-    var skeletonTable = `
+  var skeletonTable = `
         <div class='table-responsive'>
             <table class="table table-bordered skeleton-row">
                 ${tableHeader}
@@ -41,23 +36,48 @@ function showSkeletonLoading(formid, columnCount, rowCount) {
             </table>
         </div>`;
 
-    $(`#${formid}`).html(skeletonTable)
+  $(`#${formid}`).html(skeletonTable);
 }
-
 
 function hideSkeletonLoading(formid) {
-    $(`#${formid}`).html('');
+  $(`#${formid}`).html("");
 }
 
-
-
 function showNotif(message) {
-    return new Promise((resolve, reject) => {
-        $('#notificationAlertid').removeClass('d-none');
-        $('#notificationMessage').text(message);
-        setTimeout(() => {
-            $('#notificationAlertid').addClass('d-none');
-            resolve(); // Resolve the promise after the notification is hidden
-        }, 3000);
-    });
+  return new Promise((resolve, reject) => {
+    $("#notificationAlertid").removeClass("d-none");
+    $("#notificationMessage").text(message);
+    setTimeout(() => {
+      $("#notificationAlertid").addClass("d-none");
+      resolve(); // Resolve the promise after the notification is hidden
+    }, 3000);
+  });
+}
+
+function initializeDatatable(tableId) {
+  //Datatable initialization
+  new DataTable(`#${tableId}`, {
+    initComplete: function () {
+      this.api()
+        .columns()
+        .every(function () {
+          let column = this;
+          let title = column.footer().textContent;
+
+          let input = document.createElement("input");
+          input.placeholder = title;
+          column.footer().replaceChildren(input);
+
+          input.addEventListener("keyup", () => {
+            if (column.search() !== this.value) {
+              column.search(input.value).draw();
+            }
+          });
+        });
+    },
+    dom: "<'row'<'col-sm-6'f><'col-sm-6'<'float-right'B>>>tip",
+    buttons: ["csv", "excel", "pdf"],
+  });
+
+  $(`#${tableId} tfoot tr`).appendTo(`#${tableId} thead`);
 }
