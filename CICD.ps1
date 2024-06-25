@@ -1,6 +1,6 @@
 # Define the source and destination paths
 $sourcePath = ".\publish"
-$destinationPath = "\\192.168.1.65\C$\inetpub\wwwroot\sampleAPI"
+$destinationPath = "\\192.168.1.65\C$\inetpub\wwwroot\Webmes_V2"
 
 # Define the credentials (replace "username" and "password" with your actual credentials)
 $username = "administrator"

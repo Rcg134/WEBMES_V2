@@ -5,7 +5,7 @@
 <div class="row p-3">
     <div class="col-md-12">
         <div class="table-responsive">
-            <table class="table table-hover" id="MagazineListTable">
+            <table class="table table-hover" id="MagazineHistoryListTable">
                 <thead>
                     <tr>
                         <th class="fixed-cell-width">Lot Number</th>
@@ -22,9 +22,8 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @if (Model.Any())
-                    {
-                        foreach (var item in Model)
+
+                        @foreach (var item in Model)
                         {
                               TimeSpan? timeDifference = null;
                               if (item.DateTime_TrackOut.HasValue)
@@ -49,14 +48,22 @@
                                 <td>@item.Remarks</td>
                             </tr>
                         }
-                    }
-                    else
-                    {
-                        <tr>
-                            <td colspan="11" class="text-center">No search data</td>
-                        </tr>
-                    }
                 </tbody>
+                <tfoot>
+                    <tr>
+                        <th class="fixed-cell-width">Lot Number</th>
+                        <th class="fixed-cell-width">Magazine Code</th>
+                        <th class="fixed-cell-width">Magazine Qty</th>
+                        <th class="fixed-cell-width">Package</th>
+                        <th class="fixed-cell-width">Status</th>
+                        <th class="fixed-cell-width">Station</th>
+                        <th class="fixed-cell-width">Tracked In Date and Time</th>
+                        <th class="fixed-cell-width">Tracked Out Date and Time</th>
+                        <th class="fixed-cell-width">Duration In Stage</th>
+                        <th class="fixed-cell-width">Scanned By</th>
+                        <th class="fixed-cell-width">Remarks</th>
+                    </tr>
+                </tfoot>
             </table>
         </div>
     </div>

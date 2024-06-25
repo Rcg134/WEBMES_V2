@@ -16,12 +16,13 @@
          @using (Html.BeginForm("SearchList", "PlasmaMagazine", FormMethod.Post))
          {         
              <div class="row p-3">
-               <div class="col-md-6">
+               <div class="col-md-12">
                     @Html.AntiForgeryToken()
-                    @Html.TextBoxFor(model => model.searchValue, new { @class = "form-control", @placeholder = "Search" })
+                    @Html.TextBoxFor(model => model.searchValue, new { @class = "form-control", @placeholder = "General Search" })
                  </div>
              </div>
          }
+         <hr>
         <div id="historyTable"></div>
     </div>
 </div>
@@ -54,6 +55,8 @@
                     success: function (response) {
                         $("#historyTable").html('');
                         $("#historyTable").html(response);
+
+                        initializeDatatable('MagazineHistoryListTable')
                     },
                     error: function (xhr, status, error) {
                         alert("Error Please contact IT for the solution")
