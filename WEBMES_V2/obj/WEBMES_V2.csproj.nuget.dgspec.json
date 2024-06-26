@@ -1,23 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\russe\\Documents\\GitHub\\WEBMES_V2\\WEBMES_V2\\WEBMES_V2.csproj": {}
+    "D:\\GITHUB\\WEBMES_V2\\WEBMES_V2\\WEBMES_V2.csproj": {}
   },
   "projects": {
-    "C:\\Users\\russe\\Documents\\GitHub\\WEBMES_V2\\WEBMES_V2\\WEBMES_V2.csproj": {
+    "D:\\GITHUB\\WEBMES_V2\\WEBMES_V2\\WEBMES_V2.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\russe\\Documents\\GitHub\\WEBMES_V2\\WEBMES_V2\\WEBMES_V2.csproj",
+        "projectUniqueName": "D:\\GITHUB\\WEBMES_V2\\WEBMES_V2\\WEBMES_V2.csproj",
         "projectName": "WEBMES_V2",
-        "projectPath": "C:\\Users\\russe\\Documents\\GitHub\\WEBMES_V2\\WEBMES_V2\\WEBMES_V2.csproj",
-        "packagesPath": "C:\\Users\\russe\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\russe\\Documents\\GitHub\\WEBMES_V2\\WEBMES_V2\\obj\\",
+        "projectPath": "D:\\GITHUB\\WEBMES_V2\\WEBMES_V2\\WEBMES_V2.csproj",
+        "packagesPath": "C:\\Users\\dsibayan\\.nuget\\packages\\",
+        "outputPath": "D:\\GITHUB\\WEBMES_V2\\WEBMES_V2\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\russe\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\dsibayan\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -105,19 +105,19 @@
           "downloadDependencies": [
             {
               "name": "Microsoft.AspNetCore.App.Ref",
-              "version": "[7.0.18, 7.0.18]"
+              "version": "[7.0.19, 7.0.19]"
             },
             {
               "name": "Microsoft.NETCore.App.Host.win-x64",
-              "version": "[7.0.18, 7.0.18]"
+              "version": "[7.0.19, 7.0.19]"
             },
             {
               "name": "Microsoft.NETCore.App.Ref",
-              "version": "[7.0.18, 7.0.18]"
+              "version": "[7.0.19, 7.0.19]"
             },
             {
               "name": "Microsoft.WindowsDesktop.App.Ref",
-              "version": "[7.0.18, 7.0.18]"
+              "version": "[7.0.19, 7.0.19]"
             }
           ],
           "frameworkReferences": {
@@ -128,7 +128,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.204\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.300\\RuntimeIdentifierGraph.json"
         }
       }
     }
