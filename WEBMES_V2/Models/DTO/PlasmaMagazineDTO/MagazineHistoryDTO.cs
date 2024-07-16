@@ -6,6 +6,8 @@
         public string MagazineCode { get; set; }
         public int MagazineQty { get; set; }
         public string PackageId { get; set; }
+
+        public string LeadCount { get; set; }
         public string StatusId { get; set; }
         public string StageId { get; set; }
         public DateTime DateTime_TrackIn { get; set; }

@@ -8,11 +8,6 @@ using static WEBMES_V2.Models.StaticModels.Enums.MagazineStageEnum;
 using static WEBMES_V2.Models.StaticModels.Enums.StatusEnum;
 using System.Security.Claims;
 using WEBMES_V2.Models.DTO.PlasmaMagazineDTO;
-using Microsoft.EntityFrameworkCore.Metadata.Internal;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Hosting.Server;
-using Microsoft.AspNetCore.Hosting;
-using static System.Collections.Specialized.BitVector32;
 using WEBMES_V2.Models.StaticModels.Dictionary;
 
 namespace WEBMES_V2.Controllers
@@ -293,15 +288,17 @@ namespace WEBMES_V2.Controllers
 
 
         #region Magazine History
-        public async Task<IActionResult> MagazineHistory(string searchValue)
+        public async Task<IActionResult> MagazineHistory(SearchData searchData)
         {
-            ViewBag.SearchData = searchValue;
+            ViewBag.SearchData = searchData.searchValue;
+            ViewBag.StageValue = searchData.stagePlanSelect;
 
-            if (string.IsNullOrEmpty(searchValue))
+            if (!string.IsNullOrEmpty(searchData.searchValue))
             {
                 var search = new SearchData
                 {
-                    searchValue = searchValue
+                    searchValue = searchData.searchValue,
+                    stagePlanSelect = searchData.stagePlanSelect
                 };
                 return View(search);
             }
@@ -319,7 +316,8 @@ namespace WEBMES_V2.Controllers
         {
             var removeSpace = !string.IsNullOrEmpty(searchData.searchValue) ? searchData.searchValue.Trim() : "";
       
-            return RedirectToAction("MagazineHistory" , new { searchValue = removeSpace });
+            return RedirectToAction("MagazineHistory" , new { searchValue = removeSpace , 
+                                                              stagePlanSelect = searchData.stagePlanSelect });
         }
 
         #endregion

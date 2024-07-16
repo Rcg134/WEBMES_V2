@@ -3,5 +3,7 @@
     public class SearchData
     {
         public string? searchValue{ get; set; } 
+
+        public int stagePlanSelect{ get; set; } 
     }
 }

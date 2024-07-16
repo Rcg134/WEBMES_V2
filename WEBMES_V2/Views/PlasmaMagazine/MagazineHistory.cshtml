@@ -3,6 +3,7 @@
 @{
     ViewBag.Title = "MAGAZINE HISTORY";
     var searchData = ViewBag.SearchData;
+    var stageValue = ViewBag.StageValue;
 }
 
 <div class="card ATEC-theme-color mb-3">
@@ -15,13 +16,32 @@
     <div class="card-body">
          @using (Html.BeginForm("SearchList", "PlasmaMagazine", FormMethod.Post))
          {         
-             <div class="row p-3">
-               <div class="col-md-12">
+             <div class="row p-2">
+                 <div class="col-md-6">
                     @Html.AntiForgeryToken()
                     @Html.TextBoxFor(model => model.searchValue, new { @class = "form-control", @placeholder = "General Search" })
                  </div>
+
+                <div class="col-md-6">
+                    <div class="form-group">
+                  @Html.DropDownListFor(
+                          model => model.stagePlanSelect,
+                          new SelectList(new List<SelectListItem>
+                          {
+                              new SelectListItem { Value = "0", Text = "All" },
+                              new SelectListItem { Value = "7", Text = "DA TO DA CURE", Selected = true },
+                              new SelectListItem { Value = "8", Text = "PLASMA TO WIREBOND" },
+                              new SelectListItem { Value = "12", Text = "PLASMA TO MOLD" }
+                          }, "Value", "Text"),
+                          new { @class = "select2", id = "stagePlanSelect" }
+                       )
+                    </div>
+                </div>
              </div>
          }
+
+
+
          <hr>
         <div id="historyTable"></div>
     </div>
@@ -35,28 +55,55 @@
 {
     <script>
         var searchData = '@Html.Raw(searchData)';
+        var stageValue = '@Html.Raw(stageValue)';
+        
+        var currentTextGlobal = $('#stagePlanSelect').find('option:first').text();
+       
+        //initialize select
+        $('.select2').select2({
+            width: '100%'
+        });
 
         $(function () {
-            callmagazineHistory(searchData);
+            callmagazineHistory(searchData, 
+                                currentTextGlobal,
+                                stageValue);
         });
 
 
-        //Function for Geting History table
-        function callmagazineHistory(paramSearch) {
+         $('#stagePlanSelect').change(function () {
+                var currentText = $('#stagePlanSelect').find(':selected').text();
+                var currentStageId = $('#stagePlanSelect').val();
+                $('#trckIn').text('');
+                $('#trckOut').text('');
+                $('#trckIn').text(getLettersBeforeTO(currentText));
+                $('#trckOut').text(getLettersAfterTO(currentText));
+         });
+
+
+       //Function for Geting History table
+        function callmagazineHistory(paramSearch , currentStageText , stageValue) {
             showSkeletonLoading('historyTable', 10, 20)
             return new Promise(function (resolve, reject) {
                 $.ajax({
                     type: "GET",
                     url: "/PlasmaMagazine/_MagazineHistoryTable",
                     data: {
-                        searchValue: paramSearch
+                        searchValue: paramSearch,
+                        stagePlanSelect: stageValue
                     },
                     dataType: "html",
                     success: function (response) {
                         $("#historyTable").html('');
                         $("#historyTable").html(response);
+                       var currentStageText = $('#stagePlanSelect').find(':selected').text();
 
-                        initializeDatatable('MagazineHistoryListTable')
+                      initializeDatatable('MagazineHistoryListTable')
+                       $('#trckIn').text('');
+                       $('#trckOut').text('');
+                       $('#trckIn').text(getLettersBeforeTO(currentStageText));
+                       $('#trckOut').text(getLettersAfterTO(currentStageText));
+                       
                     },
                     error: function (xhr, status, error) {
                         alert("Error Please contact IT for the solution")
@@ -65,6 +112,5 @@
                 });
             });
         }
-
     </script>
 }
