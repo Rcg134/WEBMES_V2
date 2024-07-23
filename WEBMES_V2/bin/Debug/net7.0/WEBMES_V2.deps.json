@@ -16,7 +16,8 @@
           "Microsoft.EntityFrameworkCore": "7.0.14",
           "Microsoft.EntityFrameworkCore.Design": "7.0.14",
           "Microsoft.EntityFrameworkCore.SqlServer": "7.0.14",
-          "Microsoft.EntityFrameworkCore.Tools": "7.0.14"
+          "Microsoft.EntityFrameworkCore.Tools": "7.0.14",
+          "SDK.NET": "17.2.0.0"
         },
         "runtime": {
           "WEBMES_V2.dll": {}
@@ -720,6 +721,1308 @@
             "fileVersion": "6.0.21.52210"
           }
         }
+      },
+      "SDK.NET/17.2.0.0": {
+        "runtime": {
+          "SDK.NET.dll": {
+            "assemblyVersion": "17.2.0.0",
+            "fileVersion": "17.2.0.1825"
+          }
+        }
+      },
+      "SDK.NET.Interface/17.2.0.0": {
+        "runtime": {
+          "SDK.NET.Interface.dll": {
+            "assemblyVersion": "17.2.0.0",
+            "fileVersion": "17.2.0.1825"
+          }
+        }
+      },
+      "Gui.Core/17.2.0.0": {
+        "runtime": {
+          "Gui.Core.dll": {
+            "assemblyVersion": "17.2.0.0",
+            "fileVersion": "17.2.0.1825"
+          }
+        },
+        "resources": {
+          "cs/Gui.Core.resources.dll": {
+            "locale": "cs"
+          },
+          "da/Gui.Core.resources.dll": {
+            "locale": "da"
+          },
+          "de/Gui.Core.resources.dll": {
+            "locale": "de"
+          },
+          "en/Gui.Core.resources.dll": {
+            "locale": "en"
+          },
+          "es/Gui.Core.resources.dll": {
+            "locale": "es"
+          },
+          "fi/Gui.Core.resources.dll": {
+            "locale": "fi"
+          },
+          "fr/Gui.Core.resources.dll": {
+            "locale": "fr"
+          },
+          "hu/Gui.Core.resources.dll": {
+            "locale": "hu"
+          },
+          "it/Gui.Core.resources.dll": {
+            "locale": "it"
+          },
+          "ja/Gui.Core.resources.dll": {
+            "locale": "ja"
+          },
+          "nl/Gui.Core.resources.dll": {
+            "locale": "nl"
+          },
+          "pl/Gui.Core.resources.dll": {
+            "locale": "pl"
+          },
+          "pt-BR/Gui.Core.resources.dll": {
+            "locale": "pt-BR"
+          },
+          "ru/Gui.Core.resources.dll": {
+            "locale": "ru"
+          },
+          "sl/Gui.Core.resources.dll": {
+            "locale": "sl"
+          },
+          "sv/Gui.Core.resources.dll": {
+            "locale": "sv"
+          },
+          "th/Gui.Core.resources.dll": {
+            "locale": "th"
+          },
+          "tr/Gui.Core.resources.dll": {
+            "locale": "tr"
+          },
+          "zh-Hans/Gui.Core.resources.dll": {
+            "locale": "zh-Hans"
+          },
+          "zh-Hant/Gui.Core.resources.dll": {
+            "locale": "zh-Hant"
+          }
+        }
+      },
+      "NetCommon/17.2.0.0": {
+        "runtime": {
+          "NetCommon.dll": {
+            "assemblyVersion": "17.2.0.0",
+            "fileVersion": "17.2.0.1825"
+          }
+        }
+      },
+      "Interfaces/17.2.0.0": {
+        "runtime": {
+          "Interfaces.dll": {
+            "assemblyVersion": "17.2.0.0",
+            "fileVersion": "17.2.0.1825"
+          }
+        }
+      },
+      "WindowsApi/17.2.0.0": {
+        "runtime": {
+          "WindowsApi.dll": {
+            "assemblyVersion": "17.2.0.0",
+            "fileVersion": "17.2.0.1825"
+          }
+        }
+      },
+      "FormatDocument/17.2.0.0": {
+        "runtime": {
+          "FormatDocument.dll": {
+            "assemblyVersion": "17.2.0.0",
+            "fileVersion": "17.2.0.1825"
+          }
+        },
+        "resources": {
+          "cs/FormatDocument.resources.dll": {
+            "locale": "cs"
+          },
+          "da/FormatDocument.resources.dll": {
+            "locale": "da"
+          },
+          "de/FormatDocument.resources.dll": {
+            "locale": "de"
+          },
+          "en/FormatDocument.resources.dll": {
+            "locale": "en"
+          },
+          "es/FormatDocument.resources.dll": {
+            "locale": "es"
+          },
+          "fi/FormatDocument.resources.dll": {
+            "locale": "fi"
+          },
+          "fr/FormatDocument.resources.dll": {
+            "locale": "fr"
+          },
+          "hu/FormatDocument.resources.dll": {
+            "locale": "hu"
+          },
+          "it/FormatDocument.resources.dll": {
+            "locale": "it"
+          },
+          "ja/FormatDocument.resources.dll": {
+            "locale": "ja"
+          },
+          "nl/FormatDocument.resources.dll": {
+            "locale": "nl"
+          },
+          "pl/FormatDocument.resources.dll": {
+            "locale": "pl"
+          },
+          "pt-BR/FormatDocument.resources.dll": {
+            "locale": "pt-BR"
+          },
+          "ru/FormatDocument.resources.dll": {
+            "locale": "ru"
+          },
+          "sl/FormatDocument.resources.dll": {
+            "locale": "sl"
+          },
+          "sv/FormatDocument.resources.dll": {
+            "locale": "sv"
+          },
+          "th/FormatDocument.resources.dll": {
+            "locale": "th"
+          },
+          "tr/FormatDocument.resources.dll": {
+            "locale": "tr"
+          },
+          "zh-Hans/FormatDocument.resources.dll": {
+            "locale": "zh-Hans"
+          },
+          "zh-Hant/FormatDocument.resources.dll": {
+            "locale": "zh-Hant"
+          }
+        }
+      },
+      "Utils/17.2.0.0": {
+        "runtime": {
+          "Utils.dll": {
+            "assemblyVersion": "17.2.0.0",
+            "fileVersion": "17.2.0.1825"
+          }
+        },
+        "resources": {
+          "cs/Utils.resources.dll": {
+            "locale": "cs"
+          },
+          "da/Utils.resources.dll": {
+            "locale": "da"
+          },
+          "de/Utils.resources.dll": {
+            "locale": "de"
+          },
+          "en/Utils.resources.dll": {
+            "locale": "en"
+          },
+          "es/Utils.resources.dll": {
+            "locale": "es"
+          },
+          "fi/Utils.resources.dll": {
+            "locale": "fi"
+          },
+          "fr/Utils.resources.dll": {
+            "locale": "fr"
+          },
+          "hu/Utils.resources.dll": {
+            "locale": "hu"
+          },
+          "it/Utils.resources.dll": {
+            "locale": "it"
+          },
+          "ja/Utils.resources.dll": {
+            "locale": "ja"
+          },
+          "nl/Utils.resources.dll": {
+            "locale": "nl"
+          },
+          "pl/Utils.resources.dll": {
+            "locale": "pl"
+          },
+          "pt-BR/Utils.resources.dll": {
+            "locale": "pt-BR"
+          },
+          "ru/Utils.resources.dll": {
+            "locale": "ru"
+          },
+          "sl/Utils.resources.dll": {
+            "locale": "sl"
+          },
+          "sv/Utils.resources.dll": {
+            "locale": "sv"
+          },
+          "th/Utils.resources.dll": {
+            "locale": "th"
+          },
+          "tr/Utils.resources.dll": {
+            "locale": "tr"
+          },
+          "zh-Hans/Utils.resources.dll": {
+            "locale": "zh-Hans"
+          },
+          "zh-Hant/Utils.resources.dll": {
+            "locale": "zh-Hant"
+          }
+        }
+      },
+      "Core.Desktop/17.2.0.0": {
+        "runtime": {
+          "Core.Desktop.dll": {
+            "assemblyVersion": "17.2.0.0",
+            "fileVersion": "17.2.0.1825"
+          }
+        }
+      },
+      "Core/17.2.0.0": {
+        "runtime": {
+          "Core.dll": {
+            "assemblyVersion": "17.2.0.0",
+            "fileVersion": "17.2.0.1825"
+          }
+        },
+        "resources": {
+          "cs/Core.resources.dll": {
+            "locale": "cs"
+          },
+          "da/Core.resources.dll": {
+            "locale": "da"
+          },
+          "de/Core.resources.dll": {
+            "locale": "de"
+          },
+          "en/Core.resources.dll": {
+            "locale": "en"
+          },
+          "es/Core.resources.dll": {
+            "locale": "es"
+          },
+          "fi/Core.resources.dll": {
+            "locale": "fi"
+          },
+          "fr/Core.resources.dll": {
+            "locale": "fr"
+          },
+          "hu/Core.resources.dll": {
+            "locale": "hu"
+          },
+          "it/Core.resources.dll": {
+            "locale": "it"
+          },
+          "ja/Core.resources.dll": {
+            "locale": "ja"
+          },
+          "nl/Core.resources.dll": {
+            "locale": "nl"
+          },
+          "pl/Core.resources.dll": {
+            "locale": "pl"
+          },
+          "pt-BR/Core.resources.dll": {
+            "locale": "pt-BR"
+          },
+          "ru/Core.resources.dll": {
+            "locale": "ru"
+          },
+          "sl/Core.resources.dll": {
+            "locale": "sl"
+          },
+          "sv/Core.resources.dll": {
+            "locale": "sv"
+          },
+          "th/Core.resources.dll": {
+            "locale": "th"
+          },
+          "tr/Core.resources.dll": {
+            "locale": "tr"
+          },
+          "zh-Hans/Core.resources.dll": {
+            "locale": "zh-Hans"
+          },
+          "zh-Hant/Core.resources.dll": {
+            "locale": "zh-Hant"
+          }
+        }
+      },
+      "Gui.Interfaces/17.2.0.0": {
+        "runtime": {
+          "Gui.Interfaces.dll": {
+            "assemblyVersion": "17.2.0.0",
+            "fileVersion": "17.2.0.1825"
+          }
+        }
+      },
+      "Printing.Core/17.2.0.0": {
+        "runtime": {
+          "Printing.Core.dll": {
+            "assemblyVersion": "17.2.0.0",
+            "fileVersion": "17.2.0.1825"
+          }
+        },
+        "resources": {
+          "cs/Printing.Core.resources.dll": {
+            "locale": "cs"
+          },
+          "da/Printing.Core.resources.dll": {
+            "locale": "da"
+          },
+          "de/Printing.Core.resources.dll": {
+            "locale": "de"
+          },
+          "en/Printing.Core.resources.dll": {
+            "locale": "en"
+          },
+          "es/Printing.Core.resources.dll": {
+            "locale": "es"
+          },
+          "fi/Printing.Core.resources.dll": {
+            "locale": "fi"
+          },
+          "fr/Printing.Core.resources.dll": {
+            "locale": "fr"
+          },
+          "hu/Printing.Core.resources.dll": {
+            "locale": "hu"
+          },
+          "it/Printing.Core.resources.dll": {
+            "locale": "it"
+          },
+          "ja/Printing.Core.resources.dll": {
+            "locale": "ja"
+          },
+          "nl/Printing.Core.resources.dll": {
+            "locale": "nl"
+          },
+          "pl/Printing.Core.resources.dll": {
+            "locale": "pl"
+          },
+          "pt-BR/Printing.Core.resources.dll": {
+            "locale": "pt-BR"
+          },
+          "ru/Printing.Core.resources.dll": {
+            "locale": "ru"
+          },
+          "sl/Printing.Core.resources.dll": {
+            "locale": "sl"
+          },
+          "sv/Printing.Core.resources.dll": {
+            "locale": "sv"
+          },
+          "th/Printing.Core.resources.dll": {
+            "locale": "th"
+          },
+          "tr/Printing.Core.resources.dll": {
+            "locale": "tr"
+          },
+          "zh-Hans/Printing.Core.resources.dll": {
+            "locale": "zh-Hans"
+          },
+          "zh-Hant/Printing.Core.resources.dll": {
+            "locale": "zh-Hant"
+          }
+        }
+      },
+      "Barcodes.Interfaces/17.2.0.0": {
+        "runtime": {
+          "Barcodes.Interfaces.dll": {
+            "assemblyVersion": "17.2.0.0",
+            "fileVersion": "17.2.0.1825"
+          }
+        }
+      },
+      "DataValidators/17.2.0.0": {
+        "runtime": {
+          "DataValidators.dll": {
+            "assemblyVersion": "17.2.0.0",
+            "fileVersion": "17.2.0.1825"
+          }
+        },
+        "resources": {
+          "cs/DataValidators.resources.dll": {
+            "locale": "cs"
+          },
+          "da/DataValidators.resources.dll": {
+            "locale": "da"
+          },
+          "de/DataValidators.resources.dll": {
+            "locale": "de"
+          },
+          "en/DataValidators.resources.dll": {
+            "locale": "en"
+          },
+          "es/DataValidators.resources.dll": {
+            "locale": "es"
+          },
+          "fi/DataValidators.resources.dll": {
+            "locale": "fi"
+          },
+          "fr/DataValidators.resources.dll": {
+            "locale": "fr"
+          },
+          "hu/DataValidators.resources.dll": {
+            "locale": "hu"
+          },
+          "it/DataValidators.resources.dll": {
+            "locale": "it"
+          },
+          "ja/DataValidators.resources.dll": {
+            "locale": "ja"
+          },
+          "nl/DataValidators.resources.dll": {
+            "locale": "nl"
+          },
+          "pl/DataValidators.resources.dll": {
+            "locale": "pl"
+          },
+          "pt-BR/DataValidators.resources.dll": {
+            "locale": "pt-BR"
+          },
+          "ru/DataValidators.resources.dll": {
+            "locale": "ru"
+          },
+          "sl/DataValidators.resources.dll": {
+            "locale": "sl"
+          },
+          "sv/DataValidators.resources.dll": {
+            "locale": "sv"
+          },
+          "th/DataValidators.resources.dll": {
+            "locale": "th"
+          },
+          "tr/DataValidators.resources.dll": {
+            "locale": "tr"
+          },
+          "zh-Hans/DataValidators.resources.dll": {
+            "locale": "zh-Hans"
+          },
+          "zh-Hant/DataValidators.resources.dll": {
+            "locale": "zh-Hant"
+          }
+        }
+      },
+      "Activation/17.2.0.0": {
+        "runtime": {
+          "Activation.dll": {
+            "assemblyVersion": "17.2.0.0",
+            "fileVersion": "17.2.0.1825"
+          }
+        }
+      },
+      "Scripting/17.2.0.0": {
+        "runtime": {
+          "Scripting.dll": {
+            "assemblyVersion": "17.2.0.0",
+            "fileVersion": "17.2.0.1825"
+          }
+        },
+        "resources": {
+          "cs/Scripting.resources.dll": {
+            "locale": "cs"
+          },
+          "da/Scripting.resources.dll": {
+            "locale": "da"
+          },
+          "de/Scripting.resources.dll": {
+            "locale": "de"
+          },
+          "en/Scripting.resources.dll": {
+            "locale": "en"
+          },
+          "es/Scripting.resources.dll": {
+            "locale": "es"
+          },
+          "fi/Scripting.resources.dll": {
+            "locale": "fi"
+          },
+          "fr/Scripting.resources.dll": {
+            "locale": "fr"
+          },
+          "hu/Scripting.resources.dll": {
+            "locale": "hu"
+          },
+          "it/Scripting.resources.dll": {
+            "locale": "it"
+          },
+          "ja/Scripting.resources.dll": {
+            "locale": "ja"
+          },
+          "nl/Scripting.resources.dll": {
+            "locale": "nl"
+          },
+          "pl/Scripting.resources.dll": {
+            "locale": "pl"
+          },
+          "pt-BR/Scripting.resources.dll": {
+            "locale": "pt-BR"
+          },
+          "ru/Scripting.resources.dll": {
+            "locale": "ru"
+          },
+          "sl/Scripting.resources.dll": {
+            "locale": "sl"
+          },
+          "sv/Scripting.resources.dll": {
+            "locale": "sv"
+          },
+          "th/Scripting.resources.dll": {
+            "locale": "th"
+          },
+          "tr/Scripting.resources.dll": {
+            "locale": "tr"
+          },
+          "zh-Hans/Scripting.resources.dll": {
+            "locale": "zh-Hans"
+          },
+          "zh-Hant/Scripting.resources.dll": {
+            "locale": "zh-Hant"
+          }
+        }
+      },
+      "Databases.Core/17.2.0.0": {
+        "runtime": {
+          "Databases.Core.dll": {
+            "assemblyVersion": "17.2.0.0",
+            "fileVersion": "17.2.0.1825"
+          }
+        },
+        "resources": {
+          "cs/Databases.Core.resources.dll": {
+            "locale": "cs"
+          },
+          "da/Databases.Core.resources.dll": {
+            "locale": "da"
+          },
+          "de/Databases.Core.resources.dll": {
+            "locale": "de"
+          },
+          "en/Databases.Core.resources.dll": {
+            "locale": "en"
+          },
+          "es/Databases.Core.resources.dll": {
+            "locale": "es"
+          },
+          "fi/Databases.Core.resources.dll": {
+            "locale": "fi"
+          },
+          "fr/Databases.Core.resources.dll": {
+            "locale": "fr"
+          },
+          "hu/Databases.Core.resources.dll": {
+            "locale": "hu"
+          },
+          "it/Databases.Core.resources.dll": {
+            "locale": "it"
+          },
+          "ja/Databases.Core.resources.dll": {
+            "locale": "ja"
+          },
+          "nl/Databases.Core.resources.dll": {
+            "locale": "nl"
+          },
+          "pl/Databases.Core.resources.dll": {
+            "locale": "pl"
+          },
+          "pt-BR/Databases.Core.resources.dll": {
+            "locale": "pt-BR"
+          },
+          "ru/Databases.Core.resources.dll": {
+            "locale": "ru"
+          },
+          "sl/Databases.Core.resources.dll": {
+            "locale": "sl"
+          },
+          "sv/Databases.Core.resources.dll": {
+            "locale": "sv"
+          },
+          "th/Databases.Core.resources.dll": {
+            "locale": "th"
+          },
+          "tr/Databases.Core.resources.dll": {
+            "locale": "tr"
+          },
+          "zh-Hans/Databases.Core.resources.dll": {
+            "locale": "zh-Hans"
+          },
+          "zh-Hant/Databases.Core.resources.dll": {
+            "locale": "zh-Hant"
+          }
+        }
+      },
+      "Databases.Interfaces/17.2.0.0": {
+        "runtime": {
+          "Databases.Interfaces.dll": {
+            "assemblyVersion": "17.2.0.0",
+            "fileVersion": "17.2.0.1825"
+          }
+        }
+      },
+      "Microsoft.Practices.Prism/4.0.0.0": {
+        "runtime": {
+          "Microsoft.Practices.Prism.dll": {
+            "assemblyVersion": "4.0.0.0",
+            "fileVersion": "4.0.0.0"
+          }
+        }
+      },
+      "DevExpress.Xpf.Core.v15.2/15.2.4.0": {
+        "runtime": {
+          "DevExpress.Xpf.Core.v15.2.dll": {
+            "assemblyVersion": "15.2.4.0",
+            "fileVersion": "15.2.4.0"
+          }
+        }
+      },
+      "WpfControls.Metro/17.2.0.0": {
+        "runtime": {
+          "WpfControls.Metro.dll": {
+            "assemblyVersion": "17.2.0.0",
+            "fileVersion": "17.2.0.1825"
+          }
+        }
+      },
+      "DevExpress.Xpf.Grid.v15.2.Core/15.2.4.0": {
+        "runtime": {
+          "DevExpress.Xpf.Grid.v15.2.Core.dll": {
+            "assemblyVersion": "15.2.4.0",
+            "fileVersion": "15.2.4.0"
+          }
+        }
+      },
+      "WPFToolkit.Extended/1.6.1.0": {
+        "runtime": {
+          "WPFToolkit.Extended.dll": {
+            "assemblyVersion": "1.6.1.0",
+            "fileVersion": "1.6.1.0"
+          }
+        }
+      },
+      "DevExpress.Mvvm.v15.2/15.2.4.0": {
+        "runtime": {
+          "DevExpress.Mvvm.v15.2.dll": {
+            "assemblyVersion": "15.2.4.0",
+            "fileVersion": "15.2.4.0"
+          }
+        }
+      },
+      "ICSharpCode.AvalonEdit/5.0.3.0": {
+        "runtime": {
+          "ICSharpCode.AvalonEdit.dll": {
+            "assemblyVersion": "5.0.3.0",
+            "fileVersion": "5.0.3.0"
+          }
+        }
+      },
+      "WpfControls/17.2.0.0": {
+        "runtime": {
+          "WpfControls.dll": {
+            "assemblyVersion": "17.2.0.0",
+            "fileVersion": "17.2.0.1825"
+          }
+        }
+      },
+      "DevExpress.Xpf.RichEdit.v15.2/15.2.4.0": {
+        "runtime": {
+          "DevExpress.Xpf.RichEdit.v15.2.dll": {
+            "assemblyVersion": "15.2.4.0",
+            "fileVersion": "15.2.4.0"
+          }
+        }
+      },
+      "DevExpress.RichEdit.v15.2.Core/15.2.4.0": {
+        "runtime": {
+          "DevExpress.RichEdit.v15.2.Core.dll": {
+            "assemblyVersion": "15.2.4.0",
+            "fileVersion": "15.2.4.0"
+          }
+        }
+      },
+      "UndoRedoFramework.Core/17.2.0.0": {
+        "runtime": {
+          "UndoRedoFramework.Core.dll": {
+            "assemblyVersion": "17.2.0.0",
+            "fileVersion": "17.2.0.1825"
+          }
+        }
+      },
+      "DevExpress.Xpf.Ribbon.v15.2/15.2.4.0": {
+        "runtime": {
+          "DevExpress.Xpf.Ribbon.v15.2.dll": {
+            "assemblyVersion": "15.2.4.0",
+            "fileVersion": "15.2.4.0"
+          }
+        }
+      },
+      "System.Data.SQLite/1.0.93.0": {
+        "runtime": {
+          "System.Data.SQLite.dll": {
+            "assemblyVersion": "1.0.93.0",
+            "fileVersion": "1.0.93.0"
+          }
+        }
+      },
+      "LogicNP.FolderView.WPF/12.0.0.0": {
+        "runtime": {
+          "LogicNP.FolderView.WPF.dll": {
+            "assemblyVersion": "12.0.0.0",
+            "fileVersion": "12.0.0.0"
+          }
+        }
+      },
+      "DevExpress.Xpf.Grid.v15.2/15.2.4.0": {
+        "runtime": {
+          "DevExpress.Xpf.Grid.v15.2.dll": {
+            "assemblyVersion": "15.2.4.0",
+            "fileVersion": "15.2.4.0"
+          }
+        }
+      },
+      "FormDocument/17.2.0.0": {
+        "runtime": {
+          "FormDocument.dll": {
+            "assemblyVersion": "17.2.0.0",
+            "fileVersion": "17.2.0.1825"
+          }
+        },
+        "resources": {
+          "cs/FormDocument.resources.dll": {
+            "locale": "cs"
+          },
+          "da/FormDocument.resources.dll": {
+            "locale": "da"
+          },
+          "de/FormDocument.resources.dll": {
+            "locale": "de"
+          },
+          "en/FormDocument.resources.dll": {
+            "locale": "en"
+          },
+          "es/FormDocument.resources.dll": {
+            "locale": "es"
+          },
+          "fi/FormDocument.resources.dll": {
+            "locale": "fi"
+          },
+          "fr/FormDocument.resources.dll": {
+            "locale": "fr"
+          },
+          "hu/FormDocument.resources.dll": {
+            "locale": "hu"
+          },
+          "it/FormDocument.resources.dll": {
+            "locale": "it"
+          },
+          "ja/FormDocument.resources.dll": {
+            "locale": "ja"
+          },
+          "nl/FormDocument.resources.dll": {
+            "locale": "nl"
+          },
+          "pl/FormDocument.resources.dll": {
+            "locale": "pl"
+          },
+          "pt-BR/FormDocument.resources.dll": {
+            "locale": "pt-BR"
+          },
+          "ru/FormDocument.resources.dll": {
+            "locale": "ru"
+          },
+          "sl/FormDocument.resources.dll": {
+            "locale": "sl"
+          },
+          "sv/FormDocument.resources.dll": {
+            "locale": "sv"
+          },
+          "th/FormDocument.resources.dll": {
+            "locale": "th"
+          },
+          "tr/FormDocument.resources.dll": {
+            "locale": "tr"
+          },
+          "zh-Hans/FormDocument.resources.dll": {
+            "locale": "zh-Hans"
+          },
+          "zh-Hant/FormDocument.resources.dll": {
+            "locale": "zh-Hant"
+          }
+        }
+      },
+      "Neodynamic.WPF.Barcode/6.0.3500.0": {
+        "runtime": {
+          "Neodynamic.WPF.Barcode.dll": {
+            "assemblyVersion": "6.0.3500.0",
+            "fileVersion": "6.0.3516.1201"
+          }
+        }
+      },
+      "DevExpress.Data.v15.2/15.2.4.0": {
+        "runtime": {
+          "DevExpress.Data.v15.2.dll": {
+            "assemblyVersion": "15.2.4.0",
+            "fileVersion": "15.2.4.0"
+          }
+        }
+      },
+      "Databases/17.2.0.0": {
+        "runtime": {
+          "Databases.dll": {
+            "assemblyVersion": "17.2.0.0",
+            "fileVersion": "17.2.0.1825"
+          }
+        },
+        "resources": {
+          "cs/Databases.resources.dll": {
+            "locale": "cs"
+          },
+          "da/Databases.resources.dll": {
+            "locale": "da"
+          },
+          "de/Databases.resources.dll": {
+            "locale": "de"
+          },
+          "en/Databases.resources.dll": {
+            "locale": "en"
+          },
+          "es/Databases.resources.dll": {
+            "locale": "es"
+          },
+          "fi/Databases.resources.dll": {
+            "locale": "fi"
+          },
+          "fr/Databases.resources.dll": {
+            "locale": "fr"
+          },
+          "hu/Databases.resources.dll": {
+            "locale": "hu"
+          },
+          "it/Databases.resources.dll": {
+            "locale": "it"
+          },
+          "ja/Databases.resources.dll": {
+            "locale": "ja"
+          },
+          "nl/Databases.resources.dll": {
+            "locale": "nl"
+          },
+          "pl/Databases.resources.dll": {
+            "locale": "pl"
+          },
+          "pt-BR/Databases.resources.dll": {
+            "locale": "pt-BR"
+          },
+          "ru/Databases.resources.dll": {
+            "locale": "ru"
+          },
+          "sl/Databases.resources.dll": {
+            "locale": "sl"
+          },
+          "sv/Databases.resources.dll": {
+            "locale": "sv"
+          },
+          "th/Databases.resources.dll": {
+            "locale": "th"
+          },
+          "tr/Databases.resources.dll": {
+            "locale": "tr"
+          },
+          "zh-Hans/Databases.resources.dll": {
+            "locale": "zh-Hans"
+          },
+          "zh-Hant/Databases.resources.dll": {
+            "locale": "zh-Hant"
+          }
+        }
+      },
+      "DevExpress.Office.v15.2.Core/15.2.4.0": {
+        "runtime": {
+          "DevExpress.Office.v15.2.Core.dll": {
+            "assemblyVersion": "15.2.4.0",
+            "fileVersion": "15.2.4.0"
+          }
+        }
+      },
+      "Barcodes.Core/17.2.0.0": {
+        "runtime": {
+          "Barcodes.Core.dll": {
+            "assemblyVersion": "17.2.0.0",
+            "fileVersion": "17.2.0.1825"
+          }
+        },
+        "resources": {
+          "cs/Barcodes.Core.resources.dll": {
+            "locale": "cs"
+          },
+          "da/Barcodes.Core.resources.dll": {
+            "locale": "da"
+          },
+          "de/Barcodes.Core.resources.dll": {
+            "locale": "de"
+          },
+          "en/Barcodes.Core.resources.dll": {
+            "locale": "en"
+          },
+          "es/Barcodes.Core.resources.dll": {
+            "locale": "es"
+          },
+          "fi/Barcodes.Core.resources.dll": {
+            "locale": "fi"
+          },
+          "fr/Barcodes.Core.resources.dll": {
+            "locale": "fr"
+          },
+          "hu/Barcodes.Core.resources.dll": {
+            "locale": "hu"
+          },
+          "it/Barcodes.Core.resources.dll": {
+            "locale": "it"
+          },
+          "ja/Barcodes.Core.resources.dll": {
+            "locale": "ja"
+          },
+          "nl/Barcodes.Core.resources.dll": {
+            "locale": "nl"
+          },
+          "pl/Barcodes.Core.resources.dll": {
+            "locale": "pl"
+          },
+          "pt-BR/Barcodes.Core.resources.dll": {
+            "locale": "pt-BR"
+          },
+          "ru/Barcodes.Core.resources.dll": {
+            "locale": "ru"
+          },
+          "sl/Barcodes.Core.resources.dll": {
+            "locale": "sl"
+          },
+          "sv/Barcodes.Core.resources.dll": {
+            "locale": "sv"
+          },
+          "th/Barcodes.Core.resources.dll": {
+            "locale": "th"
+          },
+          "tr/Barcodes.Core.resources.dll": {
+            "locale": "tr"
+          },
+          "zh-Hans/Barcodes.Core.resources.dll": {
+            "locale": "zh-Hans"
+          },
+          "zh-Hant/Barcodes.Core.resources.dll": {
+            "locale": "zh-Hant"
+          }
+        }
+      },
+      "Graphics.Svg/1.0.0.0": {
+        "runtime": {
+          "Graphics.Svg.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        }
+      },
+      "Microsoft.WindowsAPICodePack.Shell/1.1.0.0": {
+        "runtime": {
+          "Microsoft.WindowsAPICodePack.Shell.dll": {
+            "assemblyVersion": "1.1.0.0",
+            "fileVersion": "1.1.0.0"
+          }
+        }
+      },
+      "Interop.Shell32/1.0.0.0": {
+        "runtime": {
+          "Interop.Shell32.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        }
+      },
+      "ITHit.WebDAV.Client/1.2.0.197": {
+        "runtime": {
+          "ITHit.WebDAV.Client.dll": {
+            "assemblyVersion": "1.2.0.197",
+            "fileVersion": "1.2.0.197"
+          }
+        }
+      },
+      "Dapper.StrongName/1.50.0.0": {
+        "runtime": {
+          "Dapper.StrongName.dll": {
+            "assemblyVersion": "1.50.0.0",
+            "fileVersion": "1.50.0.0"
+          }
+        }
+      },
+      "Interop.IWshRuntimeLibrary/1.0.0.0": {
+        "runtime": {
+          "Interop.IWshRuntimeLibrary.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        }
+      },
+      "Ionic.Zip/1.9.1.8": {
+        "runtime": {
+          "Ionic.Zip.dll": {
+            "assemblyVersion": "1.9.1.8",
+            "fileVersion": "1.9.1.8"
+          }
+        }
+      },
+      "NdefLibrary/3.1.1.0": {
+        "runtime": {
+          "NdefLibrary.dll": {
+            "assemblyVersion": "3.1.1.0",
+            "fileVersion": "3.1.1.0"
+          }
+        }
+      },
+      "AdvancedFunctions/17.2.0.0": {
+        "runtime": {
+          "AdvancedFunctions.dll": {
+            "assemblyVersion": "17.2.0.0",
+            "fileVersion": "17.2.0.1825"
+          }
+        },
+        "resources": {
+          "cs/AdvancedFunctions.resources.dll": {
+            "locale": "cs"
+          },
+          "da/AdvancedFunctions.resources.dll": {
+            "locale": "da"
+          },
+          "de/AdvancedFunctions.resources.dll": {
+            "locale": "de"
+          },
+          "en/AdvancedFunctions.resources.dll": {
+            "locale": "en"
+          },
+          "es/AdvancedFunctions.resources.dll": {
+            "locale": "es"
+          },
+          "fi/AdvancedFunctions.resources.dll": {
+            "locale": "fi"
+          },
+          "fr/AdvancedFunctions.resources.dll": {
+            "locale": "fr"
+          },
+          "hu/AdvancedFunctions.resources.dll": {
+            "locale": "hu"
+          },
+          "it/AdvancedFunctions.resources.dll": {
+            "locale": "it"
+          },
+          "ja/AdvancedFunctions.resources.dll": {
+            "locale": "ja"
+          },
+          "nl/AdvancedFunctions.resources.dll": {
+            "locale": "nl"
+          },
+          "pl/AdvancedFunctions.resources.dll": {
+            "locale": "pl"
+          },
+          "pt-BR/AdvancedFunctions.resources.dll": {
+            "locale": "pt-BR"
+          },
+          "ru/AdvancedFunctions.resources.dll": {
+            "locale": "ru"
+          },
+          "sl/AdvancedFunctions.resources.dll": {
+            "locale": "sl"
+          },
+          "sv/AdvancedFunctions.resources.dll": {
+            "locale": "sv"
+          },
+          "th/AdvancedFunctions.resources.dll": {
+            "locale": "th"
+          },
+          "tr/AdvancedFunctions.resources.dll": {
+            "locale": "tr"
+          },
+          "zh-Hans/AdvancedFunctions.resources.dll": {
+            "locale": "zh-Hans"
+          },
+          "zh-Hant/AdvancedFunctions.resources.dll": {
+            "locale": "zh-Hant"
+          }
+        }
+      },
+      "hasp_net_windows/7.4.1.55825": {
+        "runtime": {
+          "hasp_net_windows.dll": {
+            "assemblyVersion": "7.4.1.55825",
+            "fileVersion": "7.4.1.55825"
+          }
+        }
+      },
+      "Microsoft.Scripting/1.1.1.21": {
+        "runtime": {
+          "Microsoft.Scripting.dll": {
+            "assemblyVersion": "1.1.1.21",
+            "fileVersion": "1.1.1.21"
+          }
+        }
+      },
+      "ProxyServiceLib/17.2.0.0": {
+        "runtime": {
+          "ProxyServiceLib.dll": {
+            "assemblyVersion": "17.2.0.0",
+            "fileVersion": "17.2.0.1825"
+          }
+        }
+      },
+      "IronPython/2.7.6.3": {
+        "runtime": {
+          "IronPython.dll": {
+            "assemblyVersion": "2.7.6.3",
+            "fileVersion": "2.7.6.1003"
+          }
+        }
+      },
+      "MySql.Data/6.3.6.0": {
+        "runtime": {
+          "MySql.Data.dll": {
+            "assemblyVersion": "6.3.6.0",
+            "fileVersion": "6.3.6.0"
+          }
+        }
+      },
+      "DevExpress.Printing.v15.2.Core/15.2.4.0": {
+        "runtime": {
+          "DevExpress.Printing.v15.2.Core.dll": {
+            "assemblyVersion": "15.2.4.0",
+            "fileVersion": "15.2.4.0"
+          }
+        }
+      },
+      "System.Windows.Interactivity/4.0.0.0": {
+        "runtime": {
+          "System.Windows.Interactivity.dll": {
+            "assemblyVersion": "4.0.0.0",
+            "fileVersion": "2.0.20525.0"
+          }
+        }
+      },
+      "DevExpress.Xpf.Docking.v15.2/15.2.4.0": {
+        "runtime": {
+          "DevExpress.Xpf.Docking.v15.2.dll": {
+            "assemblyVersion": "15.2.4.0",
+            "fileVersion": "15.2.4.0"
+          }
+        }
+      },
+      "Microsoft.WindowsAPICodePack/1.1.0.0": {
+        "runtime": {
+          "Microsoft.WindowsAPICodePack.dll": {
+            "assemblyVersion": "1.1.0.0",
+            "fileVersion": "1.1.0.0"
+          }
+        }
+      },
+      "LblLoader/17.2.0.0": {
+        "runtime": {
+          "LblLoader.dll": {
+            "assemblyVersion": "17.2.0.0",
+            "fileVersion": "17.2.0.1825"
+          }
+        },
+        "resources": {
+          "cs/LblLoader.resources.dll": {
+            "locale": "cs"
+          },
+          "da/LblLoader.resources.dll": {
+            "locale": "da"
+          },
+          "de/LblLoader.resources.dll": {
+            "locale": "de"
+          },
+          "en/LblLoader.resources.dll": {
+            "locale": "en"
+          },
+          "es/LblLoader.resources.dll": {
+            "locale": "es"
+          },
+          "fi/LblLoader.resources.dll": {
+            "locale": "fi"
+          },
+          "fr/LblLoader.resources.dll": {
+            "locale": "fr"
+          },
+          "hu/LblLoader.resources.dll": {
+            "locale": "hu"
+          },
+          "it/LblLoader.resources.dll": {
+            "locale": "it"
+          },
+          "ja/LblLoader.resources.dll": {
+            "locale": "ja"
+          },
+          "nl/LblLoader.resources.dll": {
+            "locale": "nl"
+          },
+          "pl/LblLoader.resources.dll": {
+            "locale": "pl"
+          },
+          "pt-BR/LblLoader.resources.dll": {
+            "locale": "pt-BR"
+          },
+          "ru/LblLoader.resources.dll": {
+            "locale": "ru"
+          },
+          "sl/LblLoader.resources.dll": {
+            "locale": "sl"
+          },
+          "sv/LblLoader.resources.dll": {
+            "locale": "sv"
+          },
+          "th/LblLoader.resources.dll": {
+            "locale": "th"
+          },
+          "tr/LblLoader.resources.dll": {
+            "locale": "tr"
+          },
+          "zh-Hans/LblLoader.resources.dll": {
+            "locale": "zh-Hans"
+          },
+          "zh-Hant/LblLoader.resources.dll": {
+            "locale": "zh-Hant"
+          }
+        }
+      },
+      "Microsoft.AspNet.SignalR.Client/2.2.1.0": {
+        "runtime": {
+          "Microsoft.AspNet.SignalR.Client.dll": {
+            "assemblyVersion": "2.2.1.0",
+            "fileVersion": "2.2.50714.868"
+          }
+        }
+      },
+      "Microsoft.Dynamic/1.1.1.21": {
+        "runtime": {
+          "Microsoft.Dynamic.dll": {
+            "assemblyVersion": "1.1.1.21",
+            "fileVersion": "1.1.1.21"
+          }
+        }
+      },
+      "DevExpress.Xpf.Layout.v15.2.Core/15.2.4.0": {
+        "runtime": {
+          "DevExpress.Xpf.Layout.v15.2.Core.dll": {
+            "assemblyVersion": "15.2.4.0",
+            "fileVersion": "15.2.4.0"
+          }
+        }
+      },
+      "Newtonsoft.Json/6.0.0.0": {
+        "runtime": {
+          "Newtonsoft.Json.dll": {
+            "assemblyVersion": "6.0.0.0",
+            "fileVersion": "6.0.4.17603"
+          }
+        }
       }
     }
   },
@@ -1267,6 +2570,316 @@
       "sha512": "sha512-IXoJOXIqc39AIe+CIR7koBtRGMiCt/LPM3lI+PELtDIy9XdyeSrwXFdWV9dzJ2Awl0paLWUaknLxFQ5HpHZUog==",
       "path": "system.windows.extensions/6.0.0",
       "hashPath": "system.windows.extensions.6.0.0.nupkg.sha512"
+    },
+    "SDK.NET/17.2.0.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "SDK.NET.Interface/17.2.0.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Gui.Core/17.2.0.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "NetCommon/17.2.0.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Interfaces/17.2.0.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "WindowsApi/17.2.0.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "FormatDocument/17.2.0.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Utils/17.2.0.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Core.Desktop/17.2.0.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Core/17.2.0.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Gui.Interfaces/17.2.0.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Printing.Core/17.2.0.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Barcodes.Interfaces/17.2.0.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "DataValidators/17.2.0.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Activation/17.2.0.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Scripting/17.2.0.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Databases.Core/17.2.0.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Databases.Interfaces/17.2.0.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Microsoft.Practices.Prism/4.0.0.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "DevExpress.Xpf.Core.v15.2/15.2.4.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "WpfControls.Metro/17.2.0.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "DevExpress.Xpf.Grid.v15.2.Core/15.2.4.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "WPFToolkit.Extended/1.6.1.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "DevExpress.Mvvm.v15.2/15.2.4.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "ICSharpCode.AvalonEdit/5.0.3.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "WpfControls/17.2.0.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "DevExpress.Xpf.RichEdit.v15.2/15.2.4.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "DevExpress.RichEdit.v15.2.Core/15.2.4.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "UndoRedoFramework.Core/17.2.0.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "DevExpress.Xpf.Ribbon.v15.2/15.2.4.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "System.Data.SQLite/1.0.93.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "LogicNP.FolderView.WPF/12.0.0.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "DevExpress.Xpf.Grid.v15.2/15.2.4.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "FormDocument/17.2.0.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Neodynamic.WPF.Barcode/6.0.3500.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "DevExpress.Data.v15.2/15.2.4.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Databases/17.2.0.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "DevExpress.Office.v15.2.Core/15.2.4.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Barcodes.Core/17.2.0.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Graphics.Svg/1.0.0.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Microsoft.WindowsAPICodePack.Shell/1.1.0.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Interop.Shell32/1.0.0.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "ITHit.WebDAV.Client/1.2.0.197": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Dapper.StrongName/1.50.0.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Interop.IWshRuntimeLibrary/1.0.0.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Ionic.Zip/1.9.1.8": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "NdefLibrary/3.1.1.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "AdvancedFunctions/17.2.0.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "hasp_net_windows/7.4.1.55825": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Microsoft.Scripting/1.1.1.21": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "ProxyServiceLib/17.2.0.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "IronPython/2.7.6.3": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "MySql.Data/6.3.6.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "DevExpress.Printing.v15.2.Core/15.2.4.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "System.Windows.Interactivity/4.0.0.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "DevExpress.Xpf.Docking.v15.2/15.2.4.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Microsoft.WindowsAPICodePack/1.1.0.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "LblLoader/17.2.0.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Microsoft.AspNet.SignalR.Client/2.2.1.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Microsoft.Dynamic/1.1.1.21": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "DevExpress.Xpf.Layout.v15.2.Core/15.2.4.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Newtonsoft.Json/6.0.0.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
     }
   }
 }

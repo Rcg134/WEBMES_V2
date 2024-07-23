@@ -3,12 +3,12 @@
   "WorkspaceRootPath": "D:\\GITHUB\\WEBMES_V2\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{53F2C0E6-7B97-409C-BB71-0F774320914E}|WEBMES_V2\\WEBMES_V2.csproj|d:\\github\\webmes_v2\\webmes_v2\\models\\staticmodels\\generic\\stagelot.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{53F2C0E6-7B97-409C-BB71-0F774320914E}|WEBMES_V2\\WEBMES_V2.csproj|solutionrelative:webmes_v2\\models\\staticmodels\\generic\\stagelot.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{53F2C0E6-7B97-409C-BB71-0F774320914E}|WEBMES_V2\\WEBMES_V2.csproj|d:\\github\\webmes_v2\\webmes_v2\\views\\materialstaging\\materialstagingview.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{53F2C0E6-7B97-409C-BB71-0F774320914E}|WEBMES_V2\\WEBMES_V2.csproj|solutionrelative:webmes_v2\\views\\materialstaging\\materialstagingview.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{53F2C0E6-7B97-409C-BB71-0F774320914E}|WEBMES_V2\\WEBMES_V2.csproj|d:\\github\\webmes_v2\\webmes_v2\\webmes_v2.csproj||{04B8AB82-A572-4FEF-95CE-5222444B6B64}|",
-      "RelativeMoniker": "D:0:0:{53F2C0E6-7B97-409C-BB71-0F774320914E}|WEBMES_V2\\WEBMES_V2.csproj|solutionrelative:webmes_v2\\webmes_v2.csproj||{04B8AB82-A572-4FEF-95CE-5222444B6B64}|"
+      "AbsoluteMoniker": "D:0:0:{53F2C0E6-7B97-409C-BB71-0F774320914E}|WEBMES_V2\\WEBMES_V2.csproj|d:\\github\\webmes_v2\\webmes_v2\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{53F2C0E6-7B97-409C-BB71-0F774320914E}|WEBMES_V2\\WEBMES_V2.csproj|solutionrelative:webmes_v2\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     }
   ],
   "DocumentGroupContainers": [
@@ -17,32 +17,33 @@
       "VerticalTabListWidth": 256,
       "DocumentGroups": [
         {
-          "DockedWidth": 200,
-          "SelectedChildIndex": 1,
+          "DockedWidth": 236,
+          "SelectedChildIndex": 0,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "WEBMES_V2",
-              "DocumentMoniker": "D:\\GITHUB\\WEBMES_V2\\WEBMES_V2\\WEBMES_V2.csproj",
-              "RelativeDocumentMoniker": "WEBMES_V2\\WEBMES_V2.csproj",
-              "ToolTip": "D:\\GITHUB\\WEBMES_V2\\WEBMES_V2\\WEBMES_V2.csproj",
-              "RelativeToolTip": "WEBMES_V2\\WEBMES_V2.csproj",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
-              "WhenOpened": "2024-06-16T10:49:41.276Z",
+              "DocumentIndex": 0,
+              "Title": "MaterialStagingView.cshtml",
+              "DocumentMoniker": "D:\\GITHUB\\WEBMES_V2\\WEBMES_V2\\Views\\MaterialStaging\\MaterialStagingView.cshtml",
+              "RelativeDocumentMoniker": "WEBMES_V2\\Views\\MaterialStaging\\MaterialStagingView.cshtml",
+              "ToolTip": "D:\\GITHUB\\WEBMES_V2\\WEBMES_V2\\Views\\MaterialStaging\\MaterialStagingView.cshtml",
+              "RelativeToolTip": "WEBMES_V2\\Views\\MaterialStaging\\MaterialStagingView.cshtml",
+              "ViewState": "AQIAAKwAAAAAAAAAAAAmwMcAAAAwAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-07-16T09:10:33.127Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "StageLot.cs",
-              "DocumentMoniker": "D:\\GITHUB\\WEBMES_V2\\WEBMES_V2\\Models\\StaticModels\\Generic\\StageLot.cs",
-              "RelativeDocumentMoniker": "WEBMES_V2\\Models\\StaticModels\\Generic\\StageLot.cs",
-              "ToolTip": "D:\\GITHUB\\WEBMES_V2\\WEBMES_V2\\Models\\StaticModels\\Generic\\StageLot.cs",
-              "RelativeToolTip": "WEBMES_V2\\Models\\StaticModels\\Generic\\StageLot.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAACAAAAAzAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-07T12:07:08.512Z",
+              "DocumentIndex": 1,
+              "Title": "_Layout.cshtml",
+              "DocumentMoniker": "D:\\GITHUB\\WEBMES_V2\\WEBMES_V2\\Views\\Shared\\_Layout.cshtml",
+              "RelativeDocumentMoniker": "WEBMES_V2\\Views\\Shared\\_Layout.cshtml",
+              "ToolTip": "D:\\GITHUB\\WEBMES_V2\\WEBMES_V2\\Views\\Shared\\_Layout.cshtml",
+              "RelativeToolTip": "WEBMES_V2\\Views\\Shared\\_Layout.cshtml",
+              "ViewState": "AQIAAJAAAAAAAAAAAAAAAKIAAAA4AAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-07-16T05:33:32.28Z",
               "EditorCaption": ""
             }
           ]

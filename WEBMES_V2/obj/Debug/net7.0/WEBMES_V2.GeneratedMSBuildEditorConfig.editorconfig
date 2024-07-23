@@ -34,12 +34,20 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTWF0ZXJpYWxTdGFnaW5nXE1hdGVyaWFsSGlzdG9yeS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
+[D:/GITHUB/WEBMES_V2/WEBMES_V2/Views/MaterialStaging/MaterialStagingView.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTWF0ZXJpYWxTdGFnaW5nXE1hdGVyaWFsU3RhZ2luZ1ZpZXcuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
 [D:/GITHUB/WEBMES_V2/WEBMES_V2/Views/MaterialStaging/MaterialView.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTWF0ZXJpYWxTdGFnaW5nXE1hdGVyaWFsVmlldy5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
 [D:/GITHUB/WEBMES_V2/WEBMES_V2/Views/MaterialStaging/_MaterialDashboardListTable.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTWF0ZXJpYWxTdGFnaW5nXF9NYXRlcmlhbERhc2hib2FyZExpc3RUYWJsZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/GITHUB/WEBMES_V2/WEBMES_V2/Views/MaterialStaging/_MaterialHistoryTable.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTWF0ZXJpYWxTdGFnaW5nXF9NYXRlcmlhbEhpc3RvcnlUYWJsZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
 [D:/GITHUB/WEBMES_V2/WEBMES_V2/Views/PlasmaMagazine/MagazineDashboard.cshtml]
