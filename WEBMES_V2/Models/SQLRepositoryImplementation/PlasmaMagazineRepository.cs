@@ -303,7 +303,8 @@ namespace WEBMES_V2.Models.SQLRepositoryImplementation
                                                                             PlasmaMagazine.usp_Magazine_History_Search,
                                                                             new
                                                                             {
-                                                                                SearchData = searchData.searchValue
+                                                                                SearchData = searchData.searchValue,
+                                                                                StageValue = searchData.stagePlanSelect
                                                                             },
                                                                             commandType: CommandType.StoredProcedure
                                                                             );

@@ -66,7 +66,10 @@
         $('.select2').select2({
             width: '100%'
         });
+
         var selectedStage = $('#stagePlanSelect').val();
+        var currentTextGlobal = $('#stagePlanSelect').find('option:first').text();
+        var currentText;
         var typingInterval = 5000
         var running = true;
         var intervalId;
@@ -75,16 +78,17 @@
 
         $(function () {
 
-            callMagazineList(selectedStage)
+            callMagazineList(selectedStage , currentTextGlobal)
     
             $('#stagePlanSelect').change(function () {
                 var currentStage = $('#stagePlanSelect').val();
-                callMagazineList(currentStage)
+                currentText = $('#stagePlanSelect').find(':selected').text();
+                callMagazineList(currentStage,currentText)
             });
  
             if (running){
                 intervalId = setInterval(function () {
-                    callMagazineList(selectedStage)
+                    callMagazineList(selectedStage,currentText)
                 }, typingInterval);
              }
           
@@ -108,7 +112,7 @@
         {
   
                 intervalId = setInterval(function () {
-                       callMagazineList(selectedStage)
+                       callMagazineList(selectedStage,currentText)
                    }, typingInterval);
 
                 running = true
@@ -117,14 +121,10 @@
         }
 
 
-        $("#stagePlanSelect").change(function () {
-           selectedStage = $(this).val();
-        });
-
-
 
         //Call Magazine List
-        function callMagazineList(paramSelectedStage) {
+        function callMagazineList(paramSelectedStage,
+                                  currentText) {
             $.ajax({
                 type: "GET",
                 url: "/PlasmaMagazine/_MagazineDashboardListTable",
@@ -138,8 +138,10 @@
                     $("#magazineTableList").html(response);
 
                      initializeDatatable('MagazineListTable')
-                   
-    
+                     $('#trckIn').text('');
+                     $('#trckOut').text('');
+                     $('#trckIn').text(getLettersBeforeTO(currentText));
+                     $('#trckOut').text(getLettersAfterTO(currentText));
                 },
                 error: function (xhr, status, error) {
                     alert("Error Please contact IT for the solution")
@@ -149,7 +151,7 @@
         }
 
 
-
+        
 
 
 

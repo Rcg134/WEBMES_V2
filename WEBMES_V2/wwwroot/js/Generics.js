@@ -76,8 +76,24 @@ function initializeDatatable(tableId) {
         });
     },
     dom: "<'row'<'col-sm-6'f><'col-sm-6'<'float-right'B>>>tip",
-    buttons: ["csv", "excel", "pdf"],
+    buttons: ["csv", "pdf"],
   });
 
   $(`#${tableId} tfoot tr`).appendTo(`#${tableId} thead`);
+}
+
+function getLettersBeforeTO(str) {
+  var parts = str.split("TO");
+  if (parts.length > 1) {
+    return parts[0].trim() + " Out";
+  }
+  return "Tracked In Date and Time";
+}
+
+function getLettersAfterTO(str) {
+  var parts = str.split("TO");
+  if (parts.length > 1) {
+    return parts[1].trim() + " In";
+  }
+  return "Tracked Out Date and Time";
 }
