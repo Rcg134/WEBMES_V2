@@ -256,6 +256,9 @@
                     $("#magazineTableList").html(response);
                     $('#txtMagazineCode').focus();
 
+                    //Current Text
+                    var currentStageText = $('#stagePlanSelect').find(':selected').text();
+
                     //Check if Magazine qty exceed in lot
                     var sum = 0;
                     var lotTotalQTY = $('#txtLotQTY').val();
@@ -272,6 +275,13 @@
                     });
                     $('#txtQTYMagazineNeeded').text(`${magazineTotalQTY} / ${roundedResult}`);
                     $('#txtMagazineTrackOutQTY').text(paramTrackOut);
+
+                    $('#textMagazineID').text('');
+                    $('#btnTrackOut').text('');
+                    $('#textMagazineID').text(getLettersBeforeTO(currentStageText));
+                    $('#btnTrackOut').text(getLettersAfterTO(currentStageText));
+
+
 
                     //Callback if Lot magazine qty needed is already completed
                     if (paramTrackOut == roundedResult) {
