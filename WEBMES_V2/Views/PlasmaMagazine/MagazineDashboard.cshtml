@@ -78,16 +78,20 @@
 
         $(function () {
 
-            callMagazineList(selectedStage , currentTextGlobal)
+            
     
             $('#stagePlanSelect').change(function () {
                 var currentStage = $('#stagePlanSelect').val();
+                selectedStage = $('#stagePlanSelect').val();
                 currentText = $('#stagePlanSelect').find(':selected').text();
                 callMagazineList(currentStage,currentText)
             });
+
+            callMagazineList(selectedStage , currentTextGlobal)
  
             if (running){
                 intervalId = setInterval(function () {
+                    console.log(selectedStage)
                     callMagazineList(selectedStage,currentText)
                 }, typingInterval);
              }
