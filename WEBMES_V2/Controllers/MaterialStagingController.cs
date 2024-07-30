@@ -36,11 +36,15 @@ namespace WEBMES_V2.Controllers
         }
 
 
+        public async Task<IActionResult> GetUserCode()
+        {
+            var Usercode = Convert.ToInt32(User.FindFirstValue(ClaimTypes.NameIdentifier));
 
-
-
-
-
+            return Json(new
+            {
+                user = Usercode
+            });
+        }
 
         public IActionResult MaterialView()
         {

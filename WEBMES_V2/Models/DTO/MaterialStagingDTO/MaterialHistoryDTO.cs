@@ -9,6 +9,7 @@
         public DateTime ThawOutEnd { get; set; }
         public DateTime WorkLifeEnd { get; set; }
         public string ExpirationDate { get; set; }
+        public string TimeLeft { get; set; }
         public string Remarks { get; set; }
         public string Color { get; set; }
 

@@ -1,5 +1,6 @@
 ﻿@{
     ViewBag.Title = "Material Staging";
+    
 }
 
 <div class="card ATEC-theme-color mb-3">
@@ -33,9 +34,9 @@
         </div>
 
         <div class="row p-3">
-            <div class="col-md-3">
+            <div class="col-md-6">
                 <label for="txtQRCode" class="form-label">Scan QR Code</label>
-                <input type="text" class="form-control" id="txtQRCode" />
+                <input type="text" class="form-control" id="txtQRCode" disabled="disabled" />
             </div>
         </div>
 
@@ -64,7 +65,7 @@
             </div>
             <div class="col-md-3">
                 <label for="txtThawingOut" class="form-label">Thawing Time OUT</label>
-                <input type="text" class="form-control" id="txtExpiration" disabled="" />
+                <input type="text" class="form-control" id="txtThawingOut" disabled="" />
             </div>
             <div class="col-md-3">
                 <label for="txtWorklife" class="form-label">Work Life End</label>
@@ -75,12 +76,6 @@
                 <input type="text" class="form-control" id="txtExpiration" disabled="" />
             </div>
         </div>
-
-
-
-
-
-
 
     </div>
 </div>
@@ -93,69 +88,137 @@
         var SID = "";
         var sidDesc = "";
         var materialLot = "";
-
+        var selectedMaterial = $('#materialSelect').val();
+        var htmlLine = '';
+        var userCode = 0;
 
 
         $('.select2').select2({
             width: '100%'
         });
 
-        $('#txtQRCode').focus();
+        $(() => {
+            loginAPI()
+                .then(() => getMaterialCustomer(selectedMaterial))
+                .then(() => getUserCode())
+                .then(() => unlockQR());
+        });
+
+        $('#materialSelect').change(function () {
+            selectedMaterial = $(this).val()
+            removeAllOptions()
+                .then(() => lockQR())
+                .then(() => getMaterialCustomer(selectedMaterial))
+                .then(() => unlockQR());            
+        });
+
+        removeAllOptions = () => {
+            return new Promise((resolve, reject) => {
+                var select = document.getElementById("customerSelect");
+                while (select.options.length > 0) {
+                    select.remove(0);
+                }
+                resolve();
+            });            
+        }
+
+        getMaterialCustomer = (selectedMaterial) => {
+            return new Promise((resolve, reject) => {
+                htmlLine = '';
+                $.ajax({
+                    url: 'http://192.168.1.65:400/api/Staging/GetMaterialCustomer',
+                    //url: "https://localhost:7250/api/Staging/GetMaterialCustomer",
+                    //url: "http://localhost:5058/api/Staging/GetMaterialCustomer",
+                    type: 'GET',
+                    headers: {
+                        'Accept': 'application/json',
+                        'Content-Type': 'application/json',
+                        'paramMaterialType': selectedMaterial
+                    },
+                    xhrFields: {
+                        withCredentials: true
+                    },
+                    success: (response) => { 
+                        $.each(response.details, function (item, value) {
+                            htmlLine += '<option value=' + value['customerCode'] + '>' + value['customerId'] + '</option>';
+                        });
+                        $('#customerSelect').html(htmlLine);
+                        resolve(response);
+                    },
+                    error: function (xhr, status, error) {
+                        console.error('Error in LOG IN:', error);
+                        reject(error);
+                    }
+
+                });
+            });            
+        }
+
 
         //User hit enter or auto enter from barcode scanner
         $('#txtQRCode').keypress((event) => {
             QRCode = $('#txtQRCode').val();
             QRData = QRCode.split(',');
-            console.log($('#txtQRCode').val());
-            console.log(QRData);
+            var QRLength = QRData.length;
             if (event.keyCode === 13) {
                 if ($('#materialSelect').val() == '2') {
                     showNotif("Feature still not available.");
                     return;
                 }
-
-                ValidateQR(QRCode, QRData);
-
-                loginAPI()
+                ValidateQR(QRCode, QRData, QRLength)
                     .then(() => GetMaterialDetails(QRCode, QRData));
-
-
-                //GetMaterialDetails(QRCode, QRData);
-
-
-
-
-            }
-            
+            }            
         });
 
 
-        ValidateQR = (QRCode, QRData) => {
+        ValidateQR = (QRCode, QRData, QRLenght) => {
             var errMsg = "";
             return new Promise((resolve, reject) => {
-                console.log("Im in validation");
-
                 if (QRCode == '') {
                     errMsg = "Please scan Material QR";
                 }
 
+                if (QRLenght != 5) {
+                    errMsg = "Invalid QR Code";
+                }
+
                 if (errMsg != '') {
                     showNotif(errMsg);
+                    reject();
                     return;
-                }          
-
+                }
+                resolve();
             });
         }
+
+        getUserCode = () => {
+            return new Promise((resolve, reject) => {
+                $.ajax({
+                    type: "get",
+                    url: "/MaterialStaging/GetUserCode",
+                    dataType: "json",
+                    success: (response) => {
+                        console.log(response);
+                        userCode = response.user;
+                        resolve();
+                    },
+                    error: function (xhr, status, error) {
+                        alert("Error: Please contact IT for the solution");
+                        reject();
+                    }
+                });
+            });            
+        }       
 
         var AtecUsername = 'dsibayan@atecphil.com';
         var AtecPassword = 'TheReal08*';
 
         loginAPI = () => {
-            console.log("Before");
             return new Promise((resolve, reject) => {
-                console.log("IN");
                 $.ajax({
-                    url: 'https://localhost:7250/login?useCookies=true',
+                    url: 'http://192.168.1.65:400/login?useCookies=true',
+                    // url: "https://localhost:7250/login?useCookies=true",
+                    //url: "http://localhost:5058/login?useCookies=true",
                     type: 'POST',
                     headers: {
                         'accept': 'application/json',
@@ -169,6 +232,7 @@
                         withCredentials: true
                     },
                     success: function (response) {
+                        console.log("LOG IN");
                         console.log(response);
                         resolve();
                     },
@@ -179,15 +243,17 @@
                 });
             });
         }
+
         GetMaterialDetails = (QRCode, QRData) => {
-            console.log(QRData[0], QRData[2], QRData[3], QRData[4]);
             var SID = QRData[0];
             var MaterialId = QRData[2];
             var Serial = QRData[3];
             var Expiration = QRData[4];
             return new Promise((resolve, reject) => {
                 $.ajax({
-                    url: "https://localhost:7250/api/Staging/GetEpoxyDetails",
+                    url: "http://192.168.1.65:400/api/Staging/GetEpoxyDetails",
+                    //url: "http://localhost:7250/api/Staging/GetEpoxyDetails",
+                    //url: "http://localhost:5058/api/Staging/GetEpoxyDetails",
                     type: 'GET',
                     headers: {
                         'Accept': 'application/json',
@@ -196,14 +262,42 @@
                         'paramMaterialId': MaterialId,
                         'paramSerial': Serial,
                         'paramExpirationDate': Expiration,
-                        'paramCustomerCode': '18',
-                        'paramMaterialType': '1'
+                        'paramCustomerCode': $('#customerSelect').val(),
+                        'paramMaterialType': $('#materialSelect').val(),
+                        'paramUserCode': userCode
                     },
                     xhrFields: {
                         withCredentials: true
                     },
                     success: (response) => {
                         console.log(response);
+                        var isSuccessful = response.details[0].isSuccessful;
+                        var isThawed = response.details[0].isThawed;
+                        var sid = response.details[0].sid;
+                        var sidDesc = response.details[0].sidDesc;
+                        var batchId = response.details[0].batchId;
+                        var serial = response.details[0].serial;
+                        var thawingIn = response.details[0].thawingIn;
+                        var thawingOut = response.details[0].thawingOut;
+                        var workLifeEnd = response.details[0].workLifeEnd;
+                        var expirationDate = response.details[0].expirationDate;
+                        var msg = response.details[0].msg;
+
+                        if (isSuccessful) {
+                            $('#txtSID').val(sid);
+                            $('#txtSidDescription').val(sidDesc);
+                            $('#txtBatch').val(batchId);
+                            $('#txtSerial').val(serial);
+                            $('#txtThawing').val(thawingIn);
+                            $('#txtThawingOut').val(thawingOut);
+                            $('#txtWorklife').val(workLifeEnd);
+                            $('#txtExpiration').val(expirationDate);
+                            showNotif(msg);
+                        } else {                            
+                            showNotif(msg)
+                                .then(() => clear());
+                        }
+                        $('#txtQRCode').val('');
                         resolve(response);
                     },
                     error: (xhr, textStatus, errorThrown) => {
@@ -215,45 +309,38 @@
             });
         }
 
-        // GetMaterialDetails = (QRCode, QRData) => {
-        //     console.log(QRData[0], QRData[2], QRData[3], QRData[4]);
-        //     var SID = QRData[0];
-        //     var MaterialId = QRData[2];
-        //     var Serial = QRData[3];
-        //     var Expiration = QRData[4];
-        //     return new Promise((resolve, reject) => {
-        //         $.ajax({
-        //             url: "https://localhost:7250/api/Staging/GetEpoxyDetails",
-        //             type: 'POST',
-        //             headers: {
-        //                 'Accept': 'application/json',
-        //                 'Content-Type': 'application/json'
-        //             },
-        //             data: JSON.stringify({
-        //                 paramSid: SID,
-        //                 paramMaterialId: MaterialId,
-        //                 paramSerial: Serial,
-        //                 paramExpirationDate: Expiration,
-        //                 paramCustomerCode: '18',
-        //                 paramMaterialType: '1'
-        //             }),
-        //             xhrFields: {
-        //                 withCredentials: true
-        //             },
-        //             success: (response) => {
-        //                 console.log(response);
-        //                 resolve(response);
-        //             },
-        //             error: (xhr, textStatus, errorThrown) => {
-        //                 console.error("Error: ", errorThrown);
-        //                 console.error("Response Text: ", xhr.responseText);
-        //                 reject(errorThrown);
-        //             }
-        //         });
-        //     });
-        // }
+        clear = () => {
+            return new Promise((resolve, reject) => {
+                var QRCode = "";
+                var QRData = new Array();
+                $('#txtSID').val('');
+                $('#txtSidDescription').val('');
+                $('#txtBatch').val('');
+                $('#txtSerial').val('');
+                $('#txtThawing').val('');
+                $('#txtThawingOut').val('');
+                $('#txtWorklife').val('');
+                $('#txtExpiration').val('');
+                $('#txtQRCode').val('');
+                resolve();
+            });            
+        }
 
+        unlockQR = () => {
+            return new Promise((resolve, reject) => {
+                document.getElementById("txtQRCode").disabled = false;
+                $('#txtQRCode').focus();
+                resolve();
+            });            
+        }
 
+        lockQR = () => {
+            return new Promise((resolve, reject) => {
+                clear();
+                document.getElementById("txtQRCode").disabled = true;
+                resolve();
+            });
+        }
 
 
     </script>
