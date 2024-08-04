@@ -9,6 +9,9 @@ using static WEBMES_V2.Models.StaticModels.Enums.StatusEnum;
 using System.Security.Claims;
 using WEBMES_V2.Models.DTO.PlasmaMagazineDTO;
 using WEBMES_V2.Models.StaticModels.Dictionary;
+using WEBMES_V2.Services;
+using System.Collections;
+
 
 namespace WEBMES_V2.Controllers
 {
@@ -18,14 +21,20 @@ namespace WEBMES_V2.Controllers
         private readonly IPlasmaMagazineRepository _plasmaMagazineRepository;
         private readonly IXMLConverter _xMLConverter;
         private readonly IDownloadFile _downloadFile;
+        private readonly CacheProcess _cacheProcess;
+        private readonly CacheManagerService _cacheManagerService;
 
         public PlasmaMagazineController(IPlasmaMagazineRepository plasmaMagazineRepository,
                                         IXMLConverter xMLConverter,
-                                        IDownloadFile downloadFile)
+                                        IDownloadFile downloadFile,
+                                        CacheProcess cacheProcess,
+                                        CacheManagerService cacheManagerService)
         {
             this._plasmaMagazineRepository = plasmaMagazineRepository;
             this._xMLConverter = xMLConverter;
             this._downloadFile = downloadFile;
+            this._cacheProcess = cacheProcess;
+            this._cacheManagerService = cacheManagerService;
         }
 
         #region Plasma
@@ -308,14 +317,56 @@ namespace WEBMES_V2.Controllers
 
         public async Task<IActionResult> _MagazineHistoryTable(SearchData searchData)
         {
+            var cacheKey =  User.FindFirstValue(ClaimTypes.NameIdentifier); 
+            var ifListExist =await _cacheProcess.CheckCache<MagazineHistoryDTO>(cacheKey);
+            
+            if (ifListExist != null && 
+                ifListExist.Count != 0 &&
+                searchData.dateFrom != null ||
+                searchData.dateTo != null)
+            {
+                 var filteredList = ifListExist
+                                                .Where(data => 
+                                                    data.DateTime_TrackIn.HasValue && 
+                                                    data.DateTime_TrackOut.HasValue &&
+                                                    searchData.dateFrom.HasValue && 
+                                                    searchData.dateTo.HasValue &&
+                                                    new DateTime(data.DateTime_TrackIn.Value.Year, data.DateTime_TrackIn.Value.Month, data.DateTime_TrackIn.Value.Day) >= 
+                                                    new DateTime(searchData.dateFrom.Value.Year, searchData.dateFrom.Value.Month, searchData.dateFrom.Value.Day) &&
+                                                    new DateTime(data.DateTime_TrackOut.Value.Year, data.DateTime_TrackOut.Value.Month, data.DateTime_TrackOut.Value.Day) <= 
+                                                    new DateTime(searchData.dateTo.Value.Year, searchData.dateTo.Value.Month, searchData.dateTo.Value.Day))
+                                                .ToList();
+                 return PartialView(filteredList);
+            }
+
+
+            if (ifListExist != null && ifListExist.Count != 0)
+            {
+                 return PartialView(ifListExist);
+            }
+
             var magazineHistoryList = await _plasmaMagazineRepository.Get_Magazine_History(searchData);
-            return PartialView(magazineHistoryList);
+             
+            var cacheList = await _cacheProcess.GetSetList<MagazineHistoryDTO>(cacheKey, magazineHistoryList);
+
+            var returnList = cacheList ?? magazineHistoryList ;
+
+            return PartialView(returnList);
         }
+        
+        public async Task<IActionResult> _SearchDateFrom(SearchData searchData)
+        {
+            return RedirectToAction("_MagazineHistoryTable" , new { dateFrom = searchData.dateFrom,
+                                                                    dateTo = searchData.dateTo});
+        }
+         
+
         [HttpPost]
         public async Task<IActionResult> SearchList(SearchData searchData)
         {
+            var cacheKey =  User.FindFirstValue(ClaimTypes.NameIdentifier); 
             var removeSpace = !string.IsNullOrEmpty(searchData.searchValue) ? searchData.searchValue.Trim() : "";
-      
+            _cacheManagerService.RemoveAsync(cacheKey);
             return RedirectToAction("MagazineHistory" , new { searchValue = removeSpace , 
                                                               stagePlanSelect = searchData.stagePlanSelect });
         }
