@@ -13,7 +13,11 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("WEBMES_V2")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
+<<<<<<< Updated upstream
 [assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+5efb41286831cf52817b12b7c380d90081053127")]
+=======
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+9504dc28ab37580844e9f0f0e004a61eeda051b6")]
+>>>>>>> Stashed changes
 [assembly: System.Reflection.AssemblyProductAttribute("WEBMES_V2")]
 [assembly: System.Reflection.AssemblyTitleAttribute("WEBMES_V2")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

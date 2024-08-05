@@ -1,17 +1,16 @@
 ﻿@{
-    ViewBag.Title = "Material Staging";
+    ViewBag.Title = "Material Thawing and Floor Life";
     
 }
 
 <div class="card ATEC-theme-color mb-3">
     <div class="card-header text-white">
-        <h3>Material Staging</h3>
+        <h3>Material Thawing and Floor Life</h3>
     </div>
 </div>
 
 <div class="card pb-3">
     <div class="card-body">
-
 
         <div class="row p-3">
             <div class="col-md-6">
@@ -37,6 +36,14 @@
             <div class="col-md-6">
                 <label for="txtQRCode" class="form-label">Scan QR Code</label>
                 <input type="text" class="form-control" id="txtQRCode" disabled="disabled" />
+            </div>
+            <div class="col-md-3">
+                <label for="txtLotNumber" class="form-label">Lot Number</label>
+                <input type="text" class="form-control" id="txtLotNumber" disabled="disabled" />
+            </div>
+            <div class="col-md-3">
+                <label for="txtMachine" class="form-label">Machine Number</label>
+                <input type="text" class="form-control" id="txtMachine" disabled="disabled" />
             </div>
         </div>
 
@@ -76,7 +83,12 @@
                 <input type="text" class="form-control" id="txtExpiration" disabled="" />
             </div>
         </div>
-
+        <div class="row p-3" id="divCancel">
+            <div class="col-md-3">
+                
+                <a asp-controller="MaterialStaging" class="btn btn-warning asp-action=" MaterialStagingView">Cancel</a>
+            </div>
+        </div>
     </div>
 </div>
 
@@ -292,13 +304,124 @@
                             $('#txtThawingOut').val(thawingOut);
                             $('#txtWorklife').val(workLifeEnd);
                             $('#txtExpiration').val(expirationDate);
+                            $('#txtQRCode').val('');
                             showNotif(msg);
+
+                            if (isThawed) {
+                                //LOT NUMBER CHECKER
+                                document.getElementById("txtLotNumber").disabled = false;
+                                document.getElementById("txtQRCode").disabled = true;
+                                $('#txtLotNumber').focus();
+                            }
                         } else {                            
                             showNotif(msg)
                                 .then(() => clear());
                         }
-                        $('#txtQRCode').val('');
                         resolve(response);
+                    },
+                    error: (xhr, textStatus, errorThrown) => {
+                        console.error("Error: ", errorThrown);
+                        console.error("Response Text: ", xhr.responseText);
+                        reject(errorThrown);
+                    }
+                });
+            });
+        }
+
+        $('#txtLotNumber').keypress((event) => {
+            if (event.keyCode === 13) {
+                scanLotNumber($('#txtLotNumber').val());
+            }
+        });
+
+        scanLotNumber = (Lot) => {
+            return new Promise((resolve, reject) => {
+                $.ajax({
+                    url: "http://192.168.1.65:400/api/Staging/CheckLotNumber",
+                    //url: "http://localhost:7250/api/Staging/CheckLotNumber",
+                    //url: "http://localhost:5058/api/Staging/CheckLotNumber",
+                    type: 'GET',
+                    headers: {
+                        'Accept': 'application/json',
+                        'Content-Type': 'application/json',
+                        'paramLotNumber': Lot,
+                        'paramMachineNo': $('#txtMachine').val(),
+                        'paramCustomerCode': $('#customerSelect').val(),
+                        'paramMode': 1,
+                        'paramSID': $('#txtSID').val(),
+                        'paramMaterialId': $('#txtBatch').val(),
+                        'paramSerial': $('#txtSerial').val()
+                    },
+                    xhrFields: {
+                        withCredentials: true
+                    },
+                    success: (response) => {
+                        var isLotExist = response.details[0].isLotExist;
+                        var isEpoxyAssigned = response.details[0].isEpoxyAssigned;
+                        var isMachineExist = response.details[0].isMachineExist;
+                        var msg = response.details[0].msg;
+
+                        if (isLotExist && !isEpoxyAssigned) {
+                            //Next Phase
+                            document.getElementById("txtLotNumber").disabled = true;
+                            document.getElementById("txtMachine").disabled = false;
+                            $('#txtMachine').focus();
+                            return;
+                        }
+                        $('#txtLotNumber').val('');
+                        $('#txtLotNumber').focus();
+                        showNotif(msg);
+                    },
+                    error: (xhr, textStatus, errorThrown) => {
+                        console.error("Error: ", errorThrown);
+                        console.error("Response Text: ", xhr.responseText);
+                        reject(errorThrown);
+                    }
+                });
+            });
+        }
+
+        $('#txtMachine').keypress((event) => {
+            if (event.keyCode === 13) {
+                scanMachine($('#txtMachine').val());
+            }
+        });
+
+        scanMachine = (Machine) => {
+            return new Promise((resolve, reject) => {
+                $.ajax({
+                    url: "http://192.168.1.65:400/api/Staging/CheckLotNumber",
+                    //url: "http://localhost:7250/api/Staging/CheckLotNumber",
+                    //url: "http://localhost:5058/api/Staging/CheckLotNumber",
+                    type: 'GET',
+                    headers: {
+                        'Accept': 'application/json',
+                        'Content-Type': 'application/json',
+                        'paramLotNumber': $('#txtLotNumber').val(),
+                        'paramMachineNo': Machine,
+                        'paramCustomerCode': $('#customerSelect').val(),
+                        'paramMode': 2,
+                        'paramSID': $('#txtSID').val(),
+                        'paramMaterialId': $('#txtBatch').val(),
+                        'paramSerial': $('#txtSerial').val()
+                    },
+                    xhrFields: {
+                        withCredentials: true
+                    },
+                    success: (response) => {
+                        var isLotExist = response.details[0].isLotExist;
+                        var isEpoxyAssigned = response.details[0].isEpoxyAssigned;
+                        var isMachineExist = response.details[0].isMachineExist;
+                        var msg = response.details[0].msg;
+
+                        if (isMachineExist) {
+                            //Next Phase
+                            document.getElementById("txtMachine").disabled = true;
+                            showNotif(msg)
+                                .then(() => clear());                            
+                            return;
+                        }
+                        showNotif(msg);
                     },
                     error: (xhr, textStatus, errorThrown) => {
                         console.error("Error: ", errorThrown);
@@ -322,8 +445,12 @@
                 $('#txtWorklife').val('');
                 $('#txtExpiration').val('');
                 $('#txtQRCode').val('');
+                $('#txtLotNumber').val('');
+                $('#txtMachine').val('');
+                document.getElementById("txtQRCode").disabled = false;
+                $('#txtQRCode').focus();
                 resolve();
-            });            
+            });
         }
 
         unlockQR = () => {
@@ -341,8 +468,6 @@
                 resolve();
             });
         }
-
-
     </script>
 }
 

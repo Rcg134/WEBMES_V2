@@ -6,14 +6,14 @@
                     <thead>
                         <tr>
                             <th class="fixed-cell-width">Type of Epoxy</th>
-                            <th class="fixed-cell-width">Batch Lot Number</th>
-                            <th class="fixed-cell-width">Withdrawal Date (Barcode at MC)</th>
-                            <th class="fixed-cell-width">Thawing Time In</th>
-                            <th class="fixed-cell-width">Thawing Time Out</th>
+                            <th class="fixed-cell-width">Batch Number/Syringe</th>
+                            <th class="fixed-cell-width">Customer</th>
+                            <th class="fixed-cell-width">Thawing Date/Time IN</th>
+                            <th class="fixed-cell-width">Thawing Date/Time OUT</th>
                             <th class="fixed-cell-width">Epoxy Floor life end</th>
                             <th class="fixed-cell-width">Time Left (hh:mm:ss)</th>
                             <th class="fixed-cell-width">Epoxy Expiration</th>
-                            <th class="fixed-cell-width">Remarks</th>                        
+                            <th class="fixed-cell-width">Remarks</th>               
                         </tr>
                     </thead>
                     <tbody>
@@ -22,10 +22,9 @@
                             foreach (var item in Model)
                             {
                                 <tr>
-                                @* <tr style="background-color : @item.Color"> *@
                                     <td>@item.MaterialDesc</td>
                                     <td>@item.BatchNumber</td>
-                                    <td>@item.MCThawIn</td>
+                                    <td>@item.Customer</td>
                                     <td>@item.ThawIn</td>
                                     <td>@item.ThawOutEnd</td>
                                     <td class="font-weight-bold">@item.WorkLifeEnd</td>
