@@ -36,6 +36,9 @@
                     </select>
                 </div>
             </div>
+            <div class="col-md-6">
+                <button class="btn btn-success" id="autoLoad">Stop Auto Load</button>
+            </div>
         </div>
 
         @* Table *@
@@ -59,6 +62,12 @@
         });
         var selectedMaterial = $('#materialSelect').val();
 
+        var typingInterval = 5000
+        var running = true;
+        var intervalId;
+        var runAutoLoad = 'Run Auto Load'
+        var stopAutoLoad = 'Stop Auto Load'
+
         $(function () {
             callMaterialList(selectedMaterial);
 
@@ -67,11 +76,38 @@
                 callMaterialList(currentMaterial);
             });
 
-            setInterval(function () {
-                console.log(selectedMaterial)
-                callMaterialList(selectedMaterial)
-            }, 5000);        
+            callMaterialList(selectedMaterial);
+
+            if (running) {
+                intervalId = setInterval(function () {
+                    console.log(selectedMaterial)
+                    callMaterialList(selectedMaterial);
+                }, typingInterval);
+            }
+
         });
+
+        $("#autoLoad").click(function () {
+            running ? stopInterval() : startInterval();
+        });
+
+        function stopInterval() {
+            running = false
+            clearInterval(intervalId);
+            $("#autoLoad").text(runAutoLoad)
+            $("#autoLoad").removeClass('btn-success').addClass('btn-danger')
+        }
+
+        function startInterval() {
+
+            intervalId = setInterval(function () {
+                callMaterialList(selectedMaterial);
+            }, typingInterval);
+
+            running = true
+            $("#autoLoad").text(stopAutoLoad)
+            $("#autoLoad").removeClass('btn-danger').addClass('btn-success')
+        }
 
         $('#materialSelect').change(function () {
             selectedMaterial = $(this).val();
@@ -89,6 +125,8 @@
                 success: function (response) {
                     $('#materialTableList').html('');
                     $('#materialTableList').html(response);
+                    initializeDatatable('MaterialListTable');
+
                 },
                 error: function (xhr, status, error) {
                     alert('Error, Please contact IT for the solution');

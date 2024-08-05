@@ -1,14 +1,30 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Users\\russe\\Documents\\GitHub\\WEBMES_V2\\",
+  "WorkspaceRootPath": "D:\\GITHUB\\WEBMES_V2\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{53F2C0E6-7B97-409C-BB71-0F774320914E}|WEBMES_V2\\WEBMES_V2.csproj|c:\\users\\russe\\documents\\github\\webmes_v2\\webmes_v2\\webmes_v2.csproj||{04B8AB82-A572-4FEF-95CE-5222444B6B64}|",
-      "RelativeMoniker": "D:0:0:{53F2C0E6-7B97-409C-BB71-0F774320914E}|WEBMES_V2\\WEBMES_V2.csproj|solutionrelative:webmes_v2\\webmes_v2.csproj||{04B8AB82-A572-4FEF-95CE-5222444B6B64}|"
+      "AbsoluteMoniker": "D:0:0:{53F2C0E6-7B97-409C-BB71-0F774320914E}|WEBMES_V2\\WEBMES_V2.csproj|d:\\github\\webmes_v2\\webmes_v2\\views\\materialstaging\\materialstagingview.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{53F2C0E6-7B97-409C-BB71-0F774320914E}|WEBMES_V2\\WEBMES_V2.csproj|solutionrelative:webmes_v2\\views\\materialstaging\\materialstagingview.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{53F2C0E6-7B97-409C-BB71-0F774320914E}|WEBMES_V2\\WEBMES_V2.csproj|c:\\users\\russe\\documents\\github\\webmes_v2\\webmes_v2\\models\\staticmodels\\generic\\stagelot.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{53F2C0E6-7B97-409C-BB71-0F774320914E}|WEBMES_V2\\WEBMES_V2.csproj|solutionrelative:webmes_v2\\models\\staticmodels\\generic\\stagelot.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{53F2C0E6-7B97-409C-BB71-0F774320914E}|WEBMES_V2\\WEBMES_V2.csproj|d:\\github\\webmes_v2\\webmes_v2\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{53F2C0E6-7B97-409C-BB71-0F774320914E}|WEBMES_V2\\WEBMES_V2.csproj|solutionrelative:webmes_v2\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{53F2C0E6-7B97-409C-BB71-0F774320914E}|WEBMES_V2\\WEBMES_V2.csproj|d:\\github\\webmes_v2\\webmes_v2\\views\\materialstaging\\materialdashboard.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{53F2C0E6-7B97-409C-BB71-0F774320914E}|WEBMES_V2\\WEBMES_V2.csproj|solutionrelative:webmes_v2\\views\\materialstaging\\materialdashboard.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{53F2C0E6-7B97-409C-BB71-0F774320914E}|WEBMES_V2\\WEBMES_V2.csproj|d:\\github\\webmes_v2\\webmes_v2\\models\\storeprocedures\\materialstagingsp\\materialstaging.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{53F2C0E6-7B97-409C-BB71-0F774320914E}|WEBMES_V2\\WEBMES_V2.csproj|solutionrelative:webmes_v2\\models\\storeprocedures\\materialstagingsp\\materialstaging.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{53F2C0E6-7B97-409C-BB71-0F774320914E}|WEBMES_V2\\WEBMES_V2.csproj|d:\\github\\webmes_v2\\webmes_v2\\wwwroot\\css\\custom.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
+      "RelativeMoniker": "D:0:0:{53F2C0E6-7B97-409C-BB71-0F774320914E}|WEBMES_V2\\WEBMES_V2.csproj|solutionrelative:webmes_v2\\wwwroot\\css\\custom.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{53F2C0E6-7B97-409C-BB71-0F774320914E}|WEBMES_V2\\WEBMES_V2.csproj|d:\\github\\webmes_v2\\webmes_v2\\models\\dto\\materialstagingdto\\materialhistorydto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{53F2C0E6-7B97-409C-BB71-0F774320914E}|WEBMES_V2\\WEBMES_V2.csproj|solutionrelative:webmes_v2\\models\\dto\\materialstagingdto\\materialhistorydto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -17,41 +33,81 @@
       "VerticalTabListWidth": 256,
       "DocumentGroups": [
         {
-          "DockedWidth": 200,
-          "SelectedChildIndex": 2,
+          "DockedWidth": 236,
+          "SelectedChildIndex": 4,
           "Children": [
             {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "_Layout.cshtml",
+              "DocumentMoniker": "D:\\GITHUB\\WEBMES_V2\\WEBMES_V2\\Views\\Shared\\_Layout.cshtml",
+              "RelativeDocumentMoniker": "WEBMES_V2\\Views\\Shared\\_Layout.cshtml",
+              "ToolTip": "D:\\GITHUB\\WEBMES_V2\\WEBMES_V2\\Views\\Shared\\_Layout.cshtml",
+              "RelativeToolTip": "WEBMES_V2\\Views\\Shared\\_Layout.cshtml",
+              "ViewState": "AQIAABoBAAAAAAAAAAAAACoBAAAPAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-08-05T12:36:09.09Z"
             },
             {
-              "$type": "Bookmark",
-              "Name": "ST:1:0:{e8b06f52-6d01-11d2-aa7d-00c04f990343}"
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "MaterialDashboard.cshtml",
+              "DocumentMoniker": "D:\\GITHUB\\WEBMES_V2\\WEBMES_V2\\Views\\MaterialStaging\\MaterialDashboard.cshtml",
+              "RelativeDocumentMoniker": "WEBMES_V2\\Views\\MaterialStaging\\MaterialDashboard.cshtml",
+              "ToolTip": "D:\\GITHUB\\WEBMES_V2\\WEBMES_V2\\Views\\MaterialStaging\\MaterialDashboard.cshtml",
+              "RelativeToolTip": "WEBMES_V2\\Views\\MaterialStaging\\MaterialDashboard.cshtml",
+              "ViewState": "AQIAAHUAAAAAAAAAAAAAAH8AAAAnAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-07-29T01:56:49.504Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "MaterialStaging.cs",
+              "DocumentMoniker": "D:\\GITHUB\\WEBMES_V2\\WEBMES_V2\\Models\\StoreProcedures\\MaterialStagingSP\\MaterialStaging.cs",
+              "RelativeDocumentMoniker": "WEBMES_V2\\Models\\StoreProcedures\\MaterialStagingSP\\MaterialStaging.cs",
+              "ToolTip": "D:\\GITHUB\\WEBMES_V2\\WEBMES_V2\\Models\\StoreProcedures\\MaterialStagingSP\\MaterialStaging.cs",
+              "RelativeToolTip": "WEBMES_V2\\Models\\StoreProcedures\\MaterialStagingSP\\MaterialStaging.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAQAAABXAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-07-30T05:20:07.066Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "custom.css",
+              "DocumentMoniker": "D:\\GITHUB\\WEBMES_V2\\WEBMES_V2\\wwwroot\\css\\custom.css",
+              "RelativeDocumentMoniker": "WEBMES_V2\\wwwroot\\css\\custom.css",
+              "ToolTip": "D:\\GITHUB\\WEBMES_V2\\WEBMES_V2\\wwwroot\\css\\custom.css",
+              "RelativeToolTip": "WEBMES_V2\\wwwroot\\css\\custom.css",
+              "ViewState": "AQIAADIAAAAAAAAAAAAqwEIAAAAXAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
+              "WhenOpened": "2024-07-30T05:31:28.907Z"
             },
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "WEBMES_V2",
-              "DocumentMoniker": "C:\\Users\\russe\\Documents\\GitHub\\WEBMES_V2\\WEBMES_V2\\WEBMES_V2.csproj",
-              "RelativeDocumentMoniker": "WEBMES_V2\\WEBMES_V2.csproj",
-              "ToolTip": "C:\\Users\\russe\\Documents\\GitHub\\WEBMES_V2\\WEBMES_V2\\WEBMES_V2.csproj",
-              "RelativeToolTip": "WEBMES_V2\\WEBMES_V2.csproj",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
-              "WhenOpened": "2024-06-16T10:49:41.276Z",
+              "Title": "MaterialStagingView.cshtml",
+              "DocumentMoniker": "D:\\GITHUB\\WEBMES_V2\\WEBMES_V2\\Views\\MaterialStaging\\MaterialStagingView.cshtml",
+              "RelativeDocumentMoniker": "WEBMES_V2\\Views\\MaterialStaging\\MaterialStagingView.cshtml",
+              "ToolTip": "D:\\GITHUB\\WEBMES_V2\\WEBMES_V2\\Views\\MaterialStaging\\MaterialStagingView.cshtml",
+              "RelativeToolTip": "WEBMES_V2\\Views\\MaterialStaging\\MaterialStagingView.cshtml",
+              "ViewState": "AQIAAGIAAAAAAAAAAAAQwG4AAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-07-16T09:10:33.127Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "StageLot.cs",
-              "DocumentMoniker": "C:\\Users\\russe\\Documents\\GitHub\\WEBMES_V2\\WEBMES_V2\\Models\\StaticModels\\Generic\\StageLot.cs",
-              "RelativeDocumentMoniker": "WEBMES_V2\\Models\\StaticModels\\Generic\\StageLot.cs",
-              "ToolTip": "C:\\Users\\russe\\Documents\\GitHub\\WEBMES_V2\\WEBMES_V2\\Models\\StaticModels\\Generic\\StageLot.cs",
-              "RelativeToolTip": "WEBMES_V2\\Models\\StaticModels\\Generic\\StageLot.cs",
-              "ViewState": "AQIAAA4AAAAAAAAAAAAwwCAAAAAzAAAA",
+              "DocumentIndex": 5,
+              "Title": "MaterialHistoryDTO.cs",
+              "DocumentMoniker": "D:\\GITHUB\\WEBMES_V2\\WEBMES_V2\\Models\\DTO\\MaterialStagingDTO\\MaterialHistoryDTO.cs",
+              "RelativeDocumentMoniker": "WEBMES_V2\\Models\\DTO\\MaterialStagingDTO\\MaterialHistoryDTO.cs",
+              "ToolTip": "D:\\GITHUB\\WEBMES_V2\\WEBMES_V2\\Models\\DTO\\MaterialStagingDTO\\MaterialHistoryDTO.cs",
+              "RelativeToolTip": "WEBMES_V2\\Models\\DTO\\MaterialStagingDTO\\MaterialHistoryDTO.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAYAAAAeAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-07T12:07:08.512Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-07-30T05:26:39.255Z"
             }
           ]
         }

@@ -16,6 +16,7 @@
                 </div>
             </div>
         }
+        <hr />
         <div id="historyTable"></div>
     </div>
 </div>
@@ -25,10 +26,30 @@
     <script>
         var searchData = '@Html.Raw(searchData)';
 
+        $(() => {
+
+        });
 
 
-
-
-
+        //Function for getting History Table
+        callMaterialHistory = (paramSearch) => {
+            showSkeletonLoading('historyTable', 10, 20)
+            return new Promise((resolve, reject) => {
+                $.ajax({
+                    type: "GET",
+                    url: "/MaterialStaging/_MaterialHistoryTable",
+                    data: {
+                        searchValue: paramSearch
+                    },
+                    dataType: "html",
+                    success: (response) => {
+                        $('#historyTable').html('');
+                    },
+                    error: (xhr, status, error) => {
+                        alert("Error Please contact IT for the solution");
+                    }
+                });
+            });
+        }
     </script>
 }

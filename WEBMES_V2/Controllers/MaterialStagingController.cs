@@ -5,7 +5,7 @@ using WEBMES_V2.Models.DomainModels.MaterialStaging;
 using WEBMES_V2.Models.DTO.MaterialStagingDTO;
 using WEBMES_V2.Models.ISQLRepository;
 using WEBMES_V2.Models.StaticModels.Generic;
-
+using NiceLabel.SDK;
 
 
 namespace WEBMES_V2.Controllers
@@ -17,6 +17,8 @@ namespace WEBMES_V2.Controllers
         private IXMLConverter _xmlConverter;
         private readonly IDownloadFile _downloadFile;
 
+
+
         public MaterialStagingController(IMaterialRepository materialRepository,
                                   IXMLConverter xMLConverter, 
                                   IDownloadFile downloadFile)
@@ -27,6 +29,23 @@ namespace WEBMES_V2.Controllers
         }
 
         #region Material Staging
+
+        public IActionResult MaterialStagingView()
+        {
+            return View();
+        }
+
+
+        public async Task<IActionResult> GetUserCode()
+        {
+            var Usercode = Convert.ToInt32(User.FindFirstValue(ClaimTypes.NameIdentifier));
+
+            return Json(new
+            {
+                user = Usercode
+            });
+        }
+
         public IActionResult MaterialView()
         {
             return View();

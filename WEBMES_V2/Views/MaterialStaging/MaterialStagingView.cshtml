@@ -1,0 +1,488 @@
+﻿@{
+    ViewBag.Title = "Material Thawing and Floor Life";
+    
+}
+
+<div class="card ATEC-theme-color mb-3">
+    <div class="card-header text-white">
+        <h3>Material Thawing and Floor Life</h3>
+    </div>
+</div>
+
+<div class="card pb-3">
+    <div class="card-body">
+
+        <div class="row p-3">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label>Materials</label>
+                    <select id="materialSelect" class="select2">
+                        <option value="1">Epoxy</option>
+                        <option value="2">Molding Compound</option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label>Customer</label>
+                    <select id="customerSelect" class="select2">
+
+                    </select>
+                </div>
+            </div>
+        </div>
+
+        <div class="row p-3">
+            <div class="col-md-6">
+                <label for="txtQRCode" class="form-label">Scan QR Code</label>
+                <input type="text" class="form-control" id="txtQRCode" disabled="disabled" />
+            </div>
+            <div class="col-md-3">
+                <label for="txtLotNumber" class="form-label">Lot Number</label>
+                <input type="text" class="form-control" id="txtLotNumber" disabled="disabled" />
+            </div>
+            <div class="col-md-3">
+                <label for="txtMachine" class="form-label">Machine Number</label>
+                <input type="text" class="form-control" id="txtMachine" disabled="disabled" />
+            </div>
+        </div>
+
+        <div class="row p-3">
+            <div class="col-md-3">
+                <label for="txtSID" class="form-label">SID</label>
+                <input type="text" class="form-control" id="txtSID" disabled="disabled" />
+            </div>
+            <div class="col-md-3">
+                <label for="txtSidDescription" class="form-label">Description</label>
+                <input type="text" class="form-control" id="txtSidDescription" disabled="" />
+            </div>
+            <div class="col-md-3">
+                <label for="txtSerial" class="form-label">Batch ID</label>
+                <input type="text" class="form-control" id="txtBatch" disabled="" />
+            </div>
+            <div class="col-md-3">
+                <label for="txtSerial" class="form-label">Serial</label>
+                <input type="text" class="form-control" id="txtSerial" disabled="" />
+            </div>            
+        </div>
+        <div class="row p-3">
+            <div class="col-md-3">
+                <label for="txtThawingIn" class="form-label">Thawing Time IN</label>
+                <input type="text" class="form-control" id="txtThawing" disabled="" />
+            </div>
+            <div class="col-md-3">
+                <label for="txtThawingOut" class="form-label">Thawing Time OUT</label>
+                <input type="text" class="form-control" id="txtThawingOut" disabled="" />
+            </div>
+            <div class="col-md-3">
+                <label for="txtWorklife" class="form-label">Work Life End</label>
+                <input type="text" class="form-control" id="txtWorklife" disabled="" />
+            </div>
+            <div class="col-md-3">
+                <label for="txtExpiration" class="form-label">Expiration Date</label>
+                <input type="text" class="form-control" id="txtExpiration" disabled="" />
+            </div>
+        </div>
+        <div class="row p-3" id="divCancel">
+            <div class="col-md-3">
+                
+                <a asp-controller="MaterialStaging" class="btn btn-warning asp-action=" MaterialStagingView">Cancel</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts
+{
+    <script>
+        var QRCode = "";
+        var QRData = new Array();
+        var SID = "";
+        var sidDesc = "";
+        var materialLot = "";
+        var selectedMaterial = $('#materialSelect').val();
+        var htmlLine = '';
+        var userCode = 0;
+
+
+        $('.select2').select2({
+            width: '100%'
+        });
+
+        $(() => {
+            loginAPI()
+                .then(() => getMaterialCustomer(selectedMaterial))
+                .then(() => getUserCode())
+                .then(() => unlockQR());
+        });
+
+        $('#materialSelect').change(function () {
+            selectedMaterial = $(this).val()
+            removeAllOptions()
+                .then(() => lockQR())
+                .then(() => getMaterialCustomer(selectedMaterial))
+                .then(() => unlockQR());            
+        });
+
+        removeAllOptions = () => {
+            return new Promise((resolve, reject) => {
+                var select = document.getElementById("customerSelect");
+                while (select.options.length > 0) {
+                    select.remove(0);
+                }
+                resolve();
+            });            
+        }
+
+        getMaterialCustomer = (selectedMaterial) => {
+            return new Promise((resolve, reject) => {
+                htmlLine = '';
+                $.ajax({
+                    url: 'http://192.168.1.65:400/api/Staging/GetMaterialCustomer',
+                    //url: "https://localhost:7250/api/Staging/GetMaterialCustomer",
+                    //url: "http://localhost:5058/api/Staging/GetMaterialCustomer",
+                    type: 'GET',
+                    headers: {
+                        'Accept': 'application/json',
+                        'Content-Type': 'application/json',
+                        'paramMaterialType': selectedMaterial
+                    },
+                    xhrFields: {
+                        withCredentials: true
+                    },
+                    success: (response) => { 
+                        $.each(response.details, function (item, value) {
+                            htmlLine += '<option value=' + value['customerCode'] + '>' + value['customerId'] + '</option>';
+                        });
+                        $('#customerSelect').html(htmlLine);
+                        resolve(response);
+                    },
+                    error: function (xhr, status, error) {
+                        console.error('Error in LOG IN:', error);
+                        reject(error);
+                    }
+
+                });
+            });            
+        }
+
+
+        //User hit enter or auto enter from barcode scanner
+        $('#txtQRCode').keypress((event) => {
+            QRCode = $('#txtQRCode').val();
+            QRData = QRCode.split(',');
+            var QRLength = QRData.length;
+            if (event.keyCode === 13) {
+                if ($('#materialSelect').val() == '2') {
+                    showNotif("Feature still not available.");
+                    return;
+                }
+                ValidateQR(QRCode, QRData, QRLength)
+                    .then(() => GetMaterialDetails(QRCode, QRData));
+            }            
+        });
+
+
+        ValidateQR = (QRCode, QRData, QRLenght) => {
+            var errMsg = "";
+            return new Promise((resolve, reject) => {
+                if (QRCode == '') {
+                    errMsg = "Please scan Material QR";
+                }
+
+                if (QRLenght != 5) {
+                    errMsg = "Invalid QR Code";
+                }
+
+                if (errMsg != '') {
+                    showNotif(errMsg);
+                    reject();
+                    return;
+                }
+                resolve();
+            });
+        }
+
+        getUserCode = () => {
+            return new Promise((resolve, reject) => {
+                $.ajax({
+                    type: "get",
+                    url: "/MaterialStaging/GetUserCode",
+                    dataType: "json",
+                    success: (response) => {
+                        console.log(response);
+                        userCode = response.user;
+                        resolve();
+                    },
+                    error: function (xhr, status, error) {
+                        alert("Error: Please contact IT for the solution");
+                        reject();
+                    }
+                });
+            });            
+        }       
+
+        var AtecUsername = 'dsibayan@atecphil.com';
+        var AtecPassword = 'TheReal08*';
+
+        loginAPI = () => {
+            return new Promise((resolve, reject) => {
+                $.ajax({
+                    url: 'http://192.168.1.65:400/login?useCookies=true',
+                    // url: "https://localhost:7250/login?useCookies=true",
+                    //url: "http://localhost:5058/login?useCookies=true",
+                    type: 'POST',
+                    headers: {
+                        'accept': 'application/json',
+                        'Content-Type': 'application/json'
+                    },
+                    data: JSON.stringify({
+                        "email": AtecUsername,
+                        "password": AtecPassword
+                    }),
+                    xhrFields: {
+                        withCredentials: true
+                    },
+                    success: function (response) {
+                        console.log("LOG IN");
+                        console.log(response);
+                        resolve();
+                    },
+                    error: function (xhr, status, error) {
+                        console.error('Error in LOG IN:', error);
+                        reject(error);
+                    }
+                });
+            });
+        }
+
+        GetMaterialDetails = (QRCode, QRData) => {
+            var SID = QRData[0];
+            var MaterialId = QRData[2];
+            var Serial = QRData[3];
+            var Expiration = QRData[4];
+            return new Promise((resolve, reject) => {
+                $.ajax({
+                    url: "http://192.168.1.65:400/api/Staging/GetEpoxyDetails",
+                    //url: "http://localhost:7250/api/Staging/GetEpoxyDetails",
+                    //url: "http://localhost:5058/api/Staging/GetEpoxyDetails",
+                    type: 'GET',
+                    headers: {
+                        'Accept': 'application/json',
+                        'Content-Type': 'application/json',
+                        'paramSid': SID,
+                        'paramMaterialId': MaterialId,
+                        'paramSerial': Serial,
+                        'paramExpirationDate': Expiration,
+                        'paramCustomerCode': $('#customerSelect').val(),
+                        'paramMaterialType': $('#materialSelect').val(),
+                        'paramUserCode': userCode
+                    },
+                    xhrFields: {
+                        withCredentials: true
+                    },
+                    success: (response) => {
+                        console.log(response);
+                        var isSuccessful = response.details[0].isSuccessful;
+                        var isThawed = response.details[0].isThawed;
+                        var sid = response.details[0].sid;
+                        var sidDesc = response.details[0].sidDesc;
+                        var batchId = response.details[0].batchId;
+                        var serial = response.details[0].serial;
+                        var thawingIn = response.details[0].thawingIn;
+                        var thawingOut = response.details[0].thawingOut;
+                        var workLifeEnd = response.details[0].workLifeEnd;
+                        var expirationDate = response.details[0].expirationDate;
+                        var msg = response.details[0].msg;
+
+                        if (isSuccessful) {
+                            $('#txtSID').val(sid);
+                            $('#txtSidDescription').val(sidDesc);
+                            $('#txtBatch').val(batchId);
+                            $('#txtSerial').val(serial);
+                            $('#txtThawing').val(thawingIn);
+                            $('#txtThawingOut').val(thawingOut);
+                            $('#txtWorklife').val(workLifeEnd);
+                            $('#txtExpiration').val(expirationDate);
+                            $('#txtQRCode').val('');
+                            showNotif(msg);
+
+                            if (isThawed) {
+                                //LOT NUMBER CHECKER
+                                document.getElementById("txtLotNumber").disabled = false;
+                                document.getElementById("txtQRCode").disabled = true;
+                                $('#txtLotNumber').focus();
+                            }
+                        } else {                            
+                            showNotif(msg)
+                                .then(() => clear());
+                        }
+                        resolve(response);
+                    },
+                    error: (xhr, textStatus, errorThrown) => {
+                        console.error("Error: ", errorThrown);
+                        console.error("Response Text: ", xhr.responseText);
+                        reject(errorThrown);
+                    }
+                });
+            });
+        }
+
+        $('#txtLotNumber').keypress((event) => {
+            if (event.keyCode === 13) {
+                scanLotNumber($('#txtLotNumber').val());
+            }
+        });
+
+        scanLotNumber = (Lot) => {
+            return new Promise((resolve, reject) => {
+                $.ajax({
+                    url: "http://192.168.1.65:400/api/Staging/CheckLotNumber",
+                    //url: "http://localhost:7250/api/Staging/CheckLotNumber",
+                    //url: "http://localhost:5058/api/Staging/CheckLotNumber",
+                    type: 'GET',
+                    headers: {
+                        'Accept': 'application/json',
+                        'Content-Type': 'application/json',
+                        'paramLotNumber': Lot,
+                        'paramMachineNo': $('#txtMachine').val(),
+                        'paramCustomerCode': $('#customerSelect').val(),
+                        'paramMode': 1,
+                        'paramSID': $('#txtSID').val(),
+                        'paramMaterialId': $('#txtBatch').val(),
+                        'paramSerial': $('#txtSerial').val()
+                    },
+                    xhrFields: {
+                        withCredentials: true
+                    },
+                    success: (response) => {
+                        var isLotExist = response.details[0].isLotExist;
+                        var isEpoxyAssigned = response.details[0].isEpoxyAssigned;
+                        var isMachineExist = response.details[0].isMachineExist;
+                        var msg = response.details[0].msg;
+
+                        if (isLotExist && !isEpoxyAssigned) {
+                            //Next Phase
+                            document.getElementById("txtLotNumber").disabled = true;
+                            document.getElementById("txtMachine").disabled = false;
+                            $('#txtMachine').focus();
+                            return;
+                        }
+                        $('#txtLotNumber').val('');
+                        $('#txtLotNumber').focus();
+                        showNotif(msg);
+                    },
+                    error: (xhr, textStatus, errorThrown) => {
+                        console.error("Error: ", errorThrown);
+                        console.error("Response Text: ", xhr.responseText);
+                        reject(errorThrown);
+                    }
+                });
+            });
+        }
+
+        $('#txtMachine').keypress((event) => {
+            if (event.keyCode === 13) {
+                scanMachine($('#txtMachine').val());
+            }
+        });
+
+        scanMachine = (Machine) => {
+            return new Promise((resolve, reject) => {
+                $.ajax({
+                    url: "http://192.168.1.65:400/api/Staging/CheckLotNumber",
+                    //url: "http://localhost:7250/api/Staging/CheckLotNumber",
+                    //url: "http://localhost:5058/api/Staging/CheckLotNumber",
+                    type: 'GET',
+                    headers: {
+                        'Accept': 'application/json',
+                        'Content-Type': 'application/json',
+                        'paramLotNumber': $('#txtLotNumber').val(),
+                        'paramMachineNo': Machine,
+                        'paramCustomerCode': $('#customerSelect').val(),
+                        'paramMode': 2,
+                        'paramSID': $('#txtSID').val(),
+                        'paramMaterialId': $('#txtBatch').val(),
+                        'paramSerial': $('#txtSerial').val()
+                    },
+                    xhrFields: {
+                        withCredentials: true
+                    },
+                    success: (response) => {
+                        var isLotExist = response.details[0].isLotExist;
+                        var isEpoxyAssigned = response.details[0].isEpoxyAssigned;
+                        var isMachineExist = response.details[0].isMachineExist;
+                        var msg = response.details[0].msg;
+
+                        if (isMachineExist) {
+                            //Next Phase
+                            document.getElementById("txtMachine").disabled = true;
+                            showNotif(msg)
+                                .then(() => clear());                            
+                            return;
+                        }
+                        showNotif(msg);
+                    },
+                    error: (xhr, textStatus, errorThrown) => {
+                        console.error("Error: ", errorThrown);
+                        console.error("Response Text: ", xhr.responseText);
+                        reject(errorThrown);
+                    }
+                });
+            });
+        }
+
+        clear = () => {
+            return new Promise((resolve, reject) => {
+                var QRCode = "";
+                var QRData = new Array();
+                $('#txtSID').val('');
+                $('#txtSidDescription').val('');
+                $('#txtBatch').val('');
+                $('#txtSerial').val('');
+                $('#txtThawing').val('');
+                $('#txtThawingOut').val('');
+                $('#txtWorklife').val('');
+                $('#txtExpiration').val('');
+                $('#txtQRCode').val('');
+                $('#txtLotNumber').val('');
+                $('#txtMachine').val('');
+                document.getElementById("txtQRCode").disabled = false;
+                $('#txtQRCode').focus();
+                resolve();
+            });
+        }
+
+        unlockQR = () => {
+            return new Promise((resolve, reject) => {
+                document.getElementById("txtQRCode").disabled = false;
+                $('#txtQRCode').focus();
+                resolve();
+            });            
+        }
+
+        lockQR = () => {
+            return new Promise((resolve, reject) => {
+                clear();
+                document.getElementById("txtQRCode").disabled = true;
+                resolve();
+            });
+        }
+    </script>
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
