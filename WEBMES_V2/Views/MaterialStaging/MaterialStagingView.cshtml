@@ -1,6 +1,6 @@
 ﻿@{
     ViewBag.Title = "Material Thawing and Floor Life";
-    
+
 }
 
 <div class="card ATEC-theme-color mb-3">
@@ -63,7 +63,7 @@
             <div class="col-md-3">
                 <label for="txtSerial" class="form-label">Serial</label>
                 <input type="text" class="form-control" id="txtSerial" disabled="" />
-            </div>            
+            </div>
         </div>
         <div class="row p-3">
             <div class="col-md-3">
@@ -85,7 +85,7 @@
         </div>
         <div class="row p-3" id="divCancel">
             <div class="col-md-3">
-                
+
                 <a asp-controller="MaterialStaging" class="btn btn-warning asp-action=" MaterialStagingView">Cancel</a>
             </div>
         </div>
@@ -93,6 +93,7 @@
 </div>
 
 @section Scripts
+
 {
     <script>
         var QRCode = "";
@@ -121,7 +122,7 @@
             removeAllOptions()
                 .then(() => lockQR())
                 .then(() => getMaterialCustomer(selectedMaterial))
-                .then(() => unlockQR());            
+                .then(() => unlockQR());
         });
 
         removeAllOptions = () => {
@@ -131,7 +132,7 @@
                     select.remove(0);
                 }
                 resolve();
-            });            
+            });
         }
 
         getMaterialCustomer = (selectedMaterial) => {
@@ -139,8 +140,6 @@
                 htmlLine = '';
                 $.ajax({
                     url: 'http://192.168.1.65:400/api/Staging/GetMaterialCustomer',
-                    //url: "https://localhost:7250/api/Staging/GetMaterialCustomer",
-                    //url: "http://localhost:5058/api/Staging/GetMaterialCustomer",
                     type: 'GET',
                     headers: {
                         'Accept': 'application/json',
@@ -150,7 +149,7 @@
                     xhrFields: {
                         withCredentials: true
                     },
-                    success: (response) => { 
+                    success: (response) => {
                         $.each(response.details, function (item, value) {
                             htmlLine += '<option value=' + value['customerCode'] + '>' + value['customerId'] + '</option>';
                         });
@@ -163,7 +162,7 @@
                     }
 
                 });
-            });            
+            });
         }
 
 
@@ -179,7 +178,7 @@
                 }
                 ValidateQR(QRCode, QRData, QRLength)
                     .then(() => GetMaterialDetails(QRCode, QRData));
-            }            
+            }
         });
 
 
@@ -219,8 +218,8 @@
                         reject();
                     }
                 });
-            });            
-        }       
+            });
+        }
 
         var AtecUsername = 'dsibayan@atecphil.com';
         var AtecPassword = 'TheReal08*';
@@ -313,7 +312,7 @@
                                 document.getElementById("txtQRCode").disabled = true;
                                 $('#txtLotNumber').focus();
                             }
-                        } else {                            
+                        } else {
                             showNotif(msg)
                                 .then(() => clear());
                         }
@@ -418,7 +417,7 @@
                             //Next Phase
                             document.getElementById("txtMachine").disabled = true;
                             showNotif(msg)
-                                .then(() => clear());                            
+                                .then(() => clear());
                             return;
                         }
                         showNotif(msg);
@@ -458,7 +457,7 @@
                 document.getElementById("txtQRCode").disabled = false;
                 $('#txtQRCode').focus();
                 resolve();
-            });            
+            });
         }
 
         lockQR = () => {
@@ -470,19 +469,3 @@
         }
     </script>
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
