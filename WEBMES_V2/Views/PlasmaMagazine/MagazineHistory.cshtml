@@ -40,6 +40,28 @@
              </div>
          }
 
+    <div class="row p-2">
+        <div class="col-md-6">
+                     <div class="form-group">
+                                   <div class="input-group date" id="dateFrom" data-target-input="nearest">
+                                       <input type="text" class="form-control datetimepicker-input" name="dateFrom" data-target="#dateFrom" id="dateFrom" placeholder="Select Date From"/>
+                                       <div class="input-group-append" data-target="#dateFrom" data-toggle="datetimepicker">
+                                           <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                                       </div>
+                                   </div>
+                  </div>
+        </div>
+            <div class="col-md-6">
+                      <div class="form-group">
+                                   <div class="input-group date" id="dateTo" data-target-input="nearest">
+                                       <input type="text" class="form-control datetimepicker-input" name="dateTo" data-target="#dateTo" id="dateTo" placeholder="Select Date To"/>
+                                       <div class="input-group-append" data-target="#dateTo" data-toggle="datetimepicker">
+                                           <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                                       </div>
+                                   </div>
+                      </div>
+              </div>
+    </div>
 
 
          <hr>
@@ -63,6 +85,10 @@
         $('.select2').select2({
             width: '100%'
         });
+        $('.date').datetimepicker({
+                format: 'L'
+        });
+
 
         $(function () {
             callmagazineHistory(searchData, 
@@ -80,6 +106,46 @@
                 $('#trckOut').text(getLettersAfterTO(currentText));
          });
 
+        $('#dateTo').keydown(function(event) {
+                if (event.key === 'Enter' || event.keyCode === 13) {
+                       var dateFrom = $('#dateFrom').datetimepicker('date');
+                       var dateTo = $('#dateTo').datetimepicker('date');
+
+                       var dateFromFormated = dateFrom.format('MM/DD/YYYY');
+                       var dateToFormated = dateTo.format('MM/DD/YYYY');
+                       console.log(`${dateFromFormated} ${dateToFormated}`)
+                    callFilterMagazineHistoryByDate(dateToFormated , dateToFormated)  
+                }
+         });
+        
+        function callFilterMagazineHistoryByDate(dateFrom , dateTo)
+        {
+             $.ajax({
+                    type: "GET",
+                    url: "/PlasmaMagazine/_SearchDateFrom",
+                    data: {
+                        dateFrom: dateFrom,
+                        dateTo: dateTo
+                    },
+                    dataType: "html",
+                    success: function (response) {
+                        $("#historyTable").html('');
+                        $("#historyTable").html(response);
+                       var currentStageText = $('#stagePlanSelect').find(':selected').text();
+
+                      initializeDatatable('MagazineHistoryListTable')
+                       $('#trckIn').text('');
+                       $('#trckOut').text('');
+                       $('#trckIn').text(getLettersBeforeTO(currentStageText));
+                       $('#trckOut').text(getLettersAfterTO(currentStageText));
+                       
+                    },
+                    error: function (xhr, status, error) {
+                        alert("Error Please contact IT for the solution")
+                    }
+
+             });
+        }
 
        //Function for Geting History table
         function callmagazineHistory(paramSearch , currentStageText , stageValue) {

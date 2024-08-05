@@ -10,7 +10,7 @@
         public string LeadCount { get; set; }
         public string StatusId { get; set; }
         public string StageId { get; set; }
-        public DateTime DateTime_TrackIn { get; set; }
+        public DateTime? DateTime_TrackIn { get; set; }
         public DateTime? DateTime_TrackOut { get; set; }
         public string ScannedBy { get; set; }
         public string Remarks { get; set; }

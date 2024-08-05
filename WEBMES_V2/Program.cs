@@ -5,6 +5,7 @@ using WEBMES_V2.Models.Context;
 using WEBMES_V2.Models.DomainModels.Login;
 using WEBMES_V2.Models.ISQLRepository;
 using WEBMES_V2.Models.SQLRepositoryImplementation;
+using WEBMES_V2.Services;
 using static WEBMES_V2.Models.ISQLRepository.ILoginRepository;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -17,6 +18,8 @@ builder.Services.AddScoped<IPlasmaMagazineRepository, PlasmaMagazineRepository>(
 builder.Services.AddScoped<IMaterialRepository, MaterialRepository>();
 builder.Services.AddScoped<IXMLConverter, XMLConverter>();
 builder.Services.AddScoped<IDownloadFile, DownloadFiles>();
+builder.Services.AddScoped<CacheManagerService>();
+builder.Services.AddScoped<CacheProcess>();
 //------------------------------------------------------
 
 // Add services to the container.
